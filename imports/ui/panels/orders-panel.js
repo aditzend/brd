@@ -3,6 +3,8 @@ import '../pages/orders-show-page.js';
 
 Template.Orders_panel.onCreated(function() {
   this.autorun( () => {
+        FlowRouter.watchPathChange();
+
     if(Meteor.user()){
       const w = wf('orders-panel.js');
       this.subscribe('Orders.test');
@@ -19,44 +21,60 @@ Template.Orders_panel.helpers({
       case 'validation_finished':
         return 'Validación finalizada'
         break
-      case 'validation_started':
-        return 'Validación comenzada'
+      case 'validation_violated':
+        return 'Infracción'
         break
-      case 'enrolment_finished':
+      case 'enrolment_full':
         return 'Enrolamiento exitoso'
         break
+      case 'signature_finished':
+        return 'Firma exitosa'
+        break
+      case 'signature_failed':
+        return 'Firma errónea'
+        break
       default:
-        return 'Procesando...'
+        return ''
+    }
+  },
+  icon(passed) {
+    switch (passed) {
+      case "true":
+        return '<i class="fa fa-check" style="color:green!important;"></i>'
+        break
+      case "false":
+        return  '<i class="fa fa-times" style="color:red!important;"></i>'
+        break
+      default:
+        return '<i class="fa fa-book"></i>'
     }
   },
   countEnroled() {
-    return Orders.find({type: 'enrolment_finished'}).count()
+    return Orders.find({type: 'enrolment_full'}).count()
   },
   countAccepted() {
-    return Orders.find({type: 'validation_finished', passed: true}).count()
+    return Orders.find({type: 'validation_finished', passed: "true"}).count()
   },
   countRejected() {
-    return Orders.find({type: 'validation_finished', passed: false}).count()
+    return Orders.find({type: 'validation_finished', passed: "false"}).count()
   },
-  clean(user) {
-    return '29903390'
+  countInfracted() {
+    return Orders.find({type: 'validation_violated'}).count()
   },
-   channel1() {
-       return Orders.find({
-         channel: 1
-       }, {
-         sort: {
-           createdAt: -1
-         }
-       })
+  anis(){
+    return _.uniq([3,3,2])
+  },
+   enroledUsers() {
+       return Orders.find({type:'enrolment_full'})
      },
-     channel2() {
+     feed() {
        return Orders.find({
-         channel: 2
+         
        }, {
          sort: {
            createdAt: -1
-         }
+         },
+         limit:48
        });
      },
      channel3() {
@@ -77,9 +95,7 @@ Template.Orders_panel.helpers({
          }
        });
      },
-  timeFromOrderCreation(createdAt) {
-    return moment(createdAt).fromNow();
-  },
+
   pathForOrder(id) {
 
       const params = {

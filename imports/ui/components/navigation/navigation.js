@@ -43,27 +43,15 @@ Template.navigation.helpers({
         const instance = Template.instance();
         if (instance.subscriptionsReady() && Meteor.user()
             .relatedPerson) {
-
-
-            //let r = Meteor.users.findOne(Meteor.userId())
-            //.relatedPerson;
-            // let relatedPersonId = Rels.findOne({
-            //   destiny: Meteor.userId(),
-            //   type: "HAS_USER"
-            // }).origin;
-            ///let relatedPerson = Persons.findOne(r);
             let name = Meteor.user()
                 .name;
-
-
-
             return (name) ?
                 name :
-                'Completa tus datos!';
+                '';
             // return 'subscriptionsReady';
 
         } else {
-            return "Completa tus datos!"
+            return ""
         }
     }
 
@@ -71,11 +59,12 @@ Template.navigation.helpers({
 });
 
 Template.navigation.events({
-    'click .js-show-treasury': function() {
+    'click .js-ddd': function() {
         BlazeLayout.render('App_body', {
             main: 'Treasury_show_page'
         });
     },
+    'click .js-create-report': () => Meteor.call('createCSVReport'),
     'click .js-create-sale': function() {
         FlowRouter.go('createSale');
     },

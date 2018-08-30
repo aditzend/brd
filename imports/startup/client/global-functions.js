@@ -159,12 +159,11 @@ workfor = function(caller) {
     }
 };
 wf = function(caller) {
-  console.log('wf CALLED BY :', caller);
   let index = Session.get('job');
   if (Meteor.user()) {
     let jobs = Meteor.user().jobs;
     if (index === undefined || jobs === undefined || jobs.length === 0 ) {
-      console.log('NO JOBS FOUND');
+    //   console.log('NO JOBS FOUND');
       return {
         _id: Meteor.userId(),
         name: '',

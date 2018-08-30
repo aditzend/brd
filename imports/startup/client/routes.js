@@ -15,7 +15,7 @@ if (Session.get('theme') == 'light'){
   import '../../ui/stylesheets/style-light.less';
 } else {
   import '../../ui/stylesheets/style.less';
-  console.log('im in dark');
+//   console.log('im in dark');
 
 };
 import '../../ui/layouts/app-body.js';
@@ -38,6 +38,12 @@ import '../../ui/pages/reset-password.js';
 import '../../ui/pages/landing-page.js';
 import '../../ui/pages/treasury-show-page.js';
 import '../../ui/pages/order-show-page.js';
+import '../../ui/pages/user-show-page.js';
+import '../../ui/pages/validated-show-page.js';
+import '../../ui/pages/interactions-show-page.js'
+import '../../ui/pages/rejected-show-page.js';
+import '../../ui/pages/infractors-show-page.js';
+import '../../ui/pages/enroled-show-page.js';
 import '../../ui/pages/expense-new-page.js';
 import '../../ui/pages/create-admin-page.js';
 import '../../ui/pages/delivery-note-show-page.js';
@@ -46,7 +52,57 @@ import '../../ui/pages/sql-show-page.js';
 import '../../ui/layouts/landing-layout.html';
 import '../../ui/specs/specs-home.html';
 
+FlowRouter.route('/usuario/:_id/', {
+    triggersEnter: [AccountsTemplates.ensureSignedIn],
+    name: 'showUser',
+    action(params, queryParams) {
+        BlazeLayout.render('App_body', {
+            main: 'User_show_page'
+        });
+        //console.log('params', params);
+    }
+});
 
+FlowRouter.route('/enrolados/', {
+    name: 'showEnroledUsers',
+    action() {
+        BlazeLayout.render('App_body', {
+            main: 'Enroled_show_page'
+        })
+    }
+})
+FlowRouter.route('/validados/', {
+    name: 'showValidatedUsers',
+    action() {
+        BlazeLayout.render('App_body', {
+            main: 'Validated_show_page'
+        })
+    }
+})
+FlowRouter.route('/interacciones/', {
+    name: 'showInteractions',
+    action() {
+        BlazeLayout.render('App_body', {
+            main: 'Interactions_show_page'
+        })
+    }
+})
+FlowRouter.route('/rechazados/', {
+    name: 'showRejectedUsers',
+    action() {
+        BlazeLayout.render('App_body', {
+            main: 'Rejected_show_page'
+        })
+    }
+})
+FlowRouter.route('/infractores/', {
+    name: 'showInfractorUsers',
+    action() {
+        BlazeLayout.render('App_body', {
+            main: 'Infractors_show_page'
+        })
+    }
+})
 
 FlowRouter.route('/sql/', {
     triggersEnter: [AccountsTemplates.ensureSignedIn],
@@ -67,7 +123,7 @@ FlowRouter.route('/onloggedin', {
             FlowRouter.go('/');
 
         } else {
-            FlowRouter.go('/profile');
+            FlowRouter.go('/');
 
         }
 
@@ -144,7 +200,6 @@ FlowRouter.route('/order/:_id/', {
             main: 'Order_show_page'
         });
         //console.log('params', params);
-
     }
 });
 FlowRouter.route('/delivery-note/:_id/', {

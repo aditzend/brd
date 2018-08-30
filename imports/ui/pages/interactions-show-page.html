@@ -1,0 +1,100 @@
+
+<template name="Interactions_show_page">
+  {{#if Template.subscriptionsReady}}
+
+{{#staggering effect="fadeInDown"}}
+  {{#pageTitle title="Interacciones"}}
+  <br>
+  <h2>
+   {{countInteractions}}
+  </h2>
+  <br>
+<div class='col-xs-12 col-lg-12'>
+<table class="table table-fixed" style="margin:0 auto">
+  <thead>
+    <tr>
+      <th class="col-xs-2 col-md-2 col-lg-2 text-center">
+              <span>
+                <i class="fa fa-clock-o"></i>
+              </span>
+      </th>
+      <th class="col-xs-2 col-md-2 col-lg-2 text-center">
+              <span>DNI</span>
+            </th>
+      <th class="col-xs-2 col-md-2 col-lg-2 text-center">
+              <span>ANI</span>
+            </th>
+      <th class="col-xs-4 col-md-4 col-lg-4 text-center">
+              <span>AUDIO</span>
+            </th>
+      <th class="col-xs-2 col-md-2 col-lg-2 text-center">
+              <span>SCORE</span>
+            </th>
+      <!-- <th class="col-xs-2 col-md-2 col-lg-2 text-center">
+              <span>RES.</span>
+      </th> -->
+      <!-- <th class="col-xs-2 col-md-2 col-lg-2">
+        <span>Q.A.</span>
+      </th> -->
+    </tr>
+  </thead>
+<tbody>
+ {{#each action in interactions}}
+    <tr>
+<td class="col-xs-2">
+        <a class='btn btn-default btn-sm' href="">
+          {{timeFromOrderCreation action.createdAt}}
+        </a>
+      </td>
+<td class="col-xs-2">
+        <a class='btn btn-default' href="{{pathForUser action.user}}">
+          {{clean action.user}}
+        </a>
+      </td>
+     
+<td class="col-xs-2">
+          <a class='btn btn-default btn-sm' href="">
+          +{{action.ani}}
+          </a>
+      </td>
+<td class="col-xs-4">
+          <a class='btn btn-default btn-sm' href="">
+          {{#if action.audio}} {{action.audio}} {{else}} - {{/if}}
+          </a>
+      </td>
+<td class="col-xs-2">
+          <a class='btn btn-default btn-sm' href="">
+{{#if action.score}} {{action.score}} {{else}} - {{/if}}
+          </a>
+      </td>
+<!-- <td class="col-xs-2">
+          <a class='btn btn-default btn-sm' href="">
+
+            {{#if isValidation action.type}}
+               {{#if action.passed}}
+                Validada
+              {{else}}
+                Rechazada
+              {{/if}}
+            {{else}}
+              -
+            {{/if}}
+          </a>
+      </td> -->
+<!-- <td class="col-xs-2">
+          <a class='btn btn-default btn-sm' href="">
+        {{#if isValidation action.type}}
+          {{#if action.isCorrect}} OK {{else}} ERR {{/if}}
+        {{/if}}
+          </a>
+      </td> -->
+    </tr>
+     {{/each}}
+  </tbody>
+</table>
+</div>
+
+  {{/pageTitle}}
+  {{/staggering}}
+  {{/if}}
+</template>

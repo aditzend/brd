@@ -7,16 +7,26 @@
  	font-family: Aileron-Light;
  	src: url('/fonts/Aileron-Light.otf');
  }
+@font-face {
+    font-family: 'Titillium';
+    src: url('/fonts/Titillium-Regular.eot');
+    src: url('/fonts/Titillium-Regular.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/Titillium-Regular.woff2') format('woff2'),
+        url('/fonts/Titillium-Regular.woff') format('woff'),
+        url('/fonts/Titillium-Regular.ttf') format('truetype'),
+        url('/fonts/Titillium-Regular.svg#Titillium-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
 
 
 
-
-// Color list DARK THEME
-@color-default:lighten(@color-background, 10%);
-@color-primary-dark:#3F8ECD;
-@color-primary-light:#2c92a2;
-@color-violet:#596587;
-@color-blue:#31B9CE;
+// Color list Mitrol
+@color-default :#ffffff;
+@color-primary-dark: #737373;
+@color-primary-light: #dd2222;
+@color-violet: #596587;
+@color-blue: rgb(18, 84, 154);
 // @color-green: repeating-linear-gradient(90deg, #81D2D5, #53A8CC);
 @color-green: #5b944d;
 @color-yellow:#F4CC45;
@@ -27,21 +37,21 @@
 // Additional colors
 // @color-background: #1D1D32;
 // @color-background-gradient: #49657A;
-@color-background: #2d3140;
-@color-background-gradient: #121b39;
+@color-background: #fdfdfd;
+@color-background-gradient: #ffffff;
 // @color-background: #gradient .radial;
 @color-nav: #343743;
 @color-sidebar: #343743;
 @color-header: #343743;
 @color-panel: rgba(255,255,255,0.1);
 @color-panel-header: darken(@color-panel, 40%);
-@color-text: #fff;
-@color-text-light: #fff;
-@color-icon: #F3F6FC;
-@color-bright: #F3F6FC;
-@color-background-boxed: lighten(@color-background, 3%);
+@color-text: #4d4d4d;
+@color-text-light:@color-primary-light;
+@color-icon: @color-primary-light;
+@color-bright: @color-primary-light;
+@color-background-boxed: darken(@color-background, 3%);
 
-@color-text-default: @color-background;
+@color-text-default: @color-primary-light;
 @border-color: rgba(255,255,255,0.3);
 
 
@@ -54,6 +64,32 @@
 @color-alert-700: #c9cbcd;
 @color-alert-800: #d8d8d9;
 
+
+
+.table-fixed thead {
+  width: 97%;
+}
+.table-fixed tbody {
+  height: 230px;
+  overflow-y: auto;
+  width: 100%;
+}
+.table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
+  display: block;
+}
+.table-fixed tbody td, .table-fixed thead > tr> th {
+  float: left;
+  border-bottom-width: 0;
+}
+
+.blinking {
+    animation: blinker 0.7s cubic-bezier(.5, 0, 1, 1) infinite alternate;  
+}
+
+@keyframes blinker {  
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
 .map_canvas {
   width: 100%;
   height: 400px;

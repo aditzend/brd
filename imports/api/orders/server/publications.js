@@ -11,6 +11,10 @@ Meteor.publish('Orders.test', function ordersTest() {
     }
 
 });
+
+Meteor.publish('Orders.all', function ordersAll() {
+        return Orders.find();
+});
 Meteor.publish('Orders.byChannel', function ordersByChannel(channel) {
     if (this.userId) {
         return Orders.find({

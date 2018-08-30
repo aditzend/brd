@@ -1,0 +1,47 @@
+
+<template name="Enroled_show_page">
+  {{#if Template.subscriptionsReady}}
+
+{{#staggering effect="fadeInDown"}}
+  {{#pageTitle title="Usuarios enrolados"}}
+  <br>
+  <h2>
+   {{countEnroled}} <i class="fa fa-book"></i>
+  </h2>
+  <br>
+<div class='col-xs-12 col-lg-12'>
+<table style="margin:0 auto">
+  <tbody>
+    <tr>
+      <td>
+        <span>DNI</span>
+      </td>
+      <td>
+        <span>
+          <i class="fa fa-clock-o"></i>
+        </span>
+      </td>
+    </tr>
+    <hr> {{#each action in enroled}}
+    <tr>
+      <td>
+        <a class='btn btn-default' href="{{pathForUser action.user}}">
+          {{clean action.user}}
+        </a>
+      </td>
+      <td>
+          <a class='btn btn-default btn-sm' href="">
+           {{timeFromOrderCreation action.createdAt}}
+          </a>
+        </td>
+    </tr>
+    <hr>
+     {{/each}}
+  </tbody>
+</table>
+</div>
+
+  {{/pageTitle}}
+  {{/staggering}}
+  {{/if}}
+</template>

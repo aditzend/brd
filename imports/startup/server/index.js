@@ -2,6 +2,7 @@
 
 
 import './email.js';
+import './excel.js';
 import './register-api.js';
 // import './connection.js';
 // import './importer.js';

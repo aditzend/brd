@@ -18,9 +18,7 @@ Template.Orders_panel.helpers({
   orders() {
     return Orders.find({},{limit: 6, sort:{createdAt:-1}});
   },
-  timeFromOrderCreation(createdAt) {
-    return moment(createdAt).fromNow();
-  },
+ 
   pathForOrder(id) {
 
       const params = {

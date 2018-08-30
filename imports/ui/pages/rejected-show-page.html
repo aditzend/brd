@@ -1,0 +1,57 @@
+
+<template name="Rejected_show_page">
+  {{#if Template.subscriptionsReady}}
+
+{{#staggering effect="fadeInDown"}}
+  {{#pageTitle title="Rechazos"}}
+  <br>
+  <h2>
+   {{countRejected}} <i class="fa fa-times"></i>
+  </h2>
+  <br>
+<div class='col-xs-12 col-lg-12'>
+<table style="margin:0 auto">
+  <tbody>
+    <tr>
+      <td>
+        <span>DNI</span>
+      </td>
+      <td>
+        <span>
+          <i class="fa fa-clock-o"></i>
+        </span>
+      </td>
+      <td>
+        <span>
+          <i class="fa fa-phone"></i>
+        </span>
+      </td>
+    </tr>
+    <hr> {{#each action in rejected}}
+    <tr>
+      <td>
+        <a class='btn btn-default' href="{{pathForUser action.user}}">
+          {{clean action.user}}
+        </a>
+      </td>
+      <td>
+          <a class='btn btn-default btn-sm' href="">
+           {{timeFromOrderCreation action.createdAt}}
+          </a>
+      </td>
+      <td>
+          <a class='btn btn-default btn-sm' href="">
+          {{action.ani}}
+          </a>
+      </td>
+    </tr>
+    <hr>
+     {{/each}}
+  </tbody>
+</table>
+</div>
+
+  {{/pageTitle}}
+  {{/staggering}}
+  {{/if}}
+</template>

@@ -1,4 +1,8 @@
 Meteor.methods({
+
+  changeCorrectness(orderId, value) {
+    Orders.update({_id: orderId},{$set:{isCorrect:value}})
+  },
   removeDetail(orderId,orderDetailId) {
     console.log("order", orderId);
     //console.log("index", orderDetailId);

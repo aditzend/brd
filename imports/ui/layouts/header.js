@@ -25,7 +25,7 @@ Template.header.helpers({
             'id': 'search-input',
             'class': 'form-control',
             'autocomplete': 'off',
-            'placeholder': "Buscador de contactos"
+            'placeholder': "Mitrol Biometrics"
         };
     },
     persons() {

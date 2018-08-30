@@ -12,23 +12,9 @@ Template.Orders_show_page.onCreated(function() {
 Template.Orders_show_page.helpers({
 
   orders() {
-    return Orders.find({channel:1},{ sort:{createdAt:-1}});
+    return Orders.find({},{ sort:{createdAt:-1}});
   },
-  channelOne() {
-    return Orders.find({channel:1},{ sort:{createdAt:-1}})
-  },
-  channel2() {
-    return Orders.find({channel:2},{ sort:{createdAt:-1}});
-  },
-  channel3() {
-    return Orders.find({channel:3},{ sort:{createdAt:-1}});
-  },
-  channel4() {
-    return Orders.find({channel:4},{ sort:{createdAt:-1}});
-  },
-  timeFromOrderCreation(createdAt) {
-    return moment(createdAt).fromNow();
-  },
+ 
   pathForOrder(id) {
 
       const params = {
