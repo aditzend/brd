@@ -51,16 +51,20 @@
    <div class="text-center col col-xs-12 col-lg-12">
   {{#each action in feed}}
   <div class="text-center col col-xs-6 col-md-3">
-          <a class='btn btn-default order-show-btn' href="{{pathForUser action.user}}">
+          <a class='btn btn-default order-show-btn' href="">
+
             <h6 class="text-info"> {{{icon action.passed}}} {{explain action.type}}</h6>
             <p> <i class="fa fa-user"></i>{{clean action.user}}  | <i class="fa fa-phone"></i>{{action.ani}}</p>
             <p> </p>
             <p> {{action.audio}}</p>
             <p> {{action.score}}</p>
             <p> <i class="fa fa-clock-o"></i> {{timeFromOrderCreation action.createdAt}}</p>
-           
-            
+<a class='btn btn-default btn-xs' href="{{pathForUser action.user}}">Ver usuario</a>
+<a href="" class="btn btn-xs btn-default btn-danger js-mark-as-false">F</a>
+<a href="" class="btn btn-xs js-mark-as-true">V</a>
+
           </a>
+          
           </div>
         {{/each}}
         </div>
