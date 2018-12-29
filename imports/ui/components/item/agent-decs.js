@@ -1,11 +1,11 @@
 
-import './car-decs.html';
-import './car-search.js';
-import './car-show.js';
-import './car-edit.js';
+import './agent-decs.html';
+import './agent-search.js';
+import './agent-show.js';
+import './agent-edit.js';
 
 
-Template.Car_DECS.onCreated(function() {
+Template.Agent_DECS.onCreated(function() {
     this.autorun(() => {
     //   const w = workfor('item motor decs.js');
         // this.subscribe('items.own', w._id);
@@ -26,37 +26,22 @@ Template.Car_DECS.onCreated(function() {
 });
 
 //vvvvvvvvvvvvvv ARGS vvvvvvvvvvvvvv
-Template.Car_DECS.helpers({
-  // pathForLabel() {
-  //   const routeName = 'printLabels',
-  //   const params
-  //   const path = FlowRouter.path(routeName, params, queryParams);
-  //   return path;
-  // },
+Template.Agent_DECS.helpers({
+    passdata(s) {
+        const agent = Agents.findOne(s);
 
-  showArgs(id) {
-      const car = Items.findOne({_id: id});
-      return {
-          ttt: 'test ok',
-          carId: id,
-          plate: car.plate,
-          brand: car.brand,
-          model: car.model,
-          year: car.year,
-          km: car.km,
-          purchases: car.purchases,
-          carOwner: car.carOwner
-
-      }
-  },
-
-    searchItemArgs() {
+        return {
+            foo:"bar"
+            ,agent:agent
+        }
+    }
+    ,searchAgentArgs() {
         const instance = Template.instance();
 
         return {
             //mode: 'product',
             mode: instance.data.mode,
-            index: CarsIndex,
+            index: AgentsIndex,
             selectedItem(id) {
                 instance.state.set('selectedItem', id);
                 console.log("STATE>>>>>>>>>>>>>> SELECTED Item ", id);
@@ -73,10 +58,10 @@ Template.Car_DECS.helpers({
     //         foo: 'bar'
     //     }
     // },
-    showCarArgs(selectedItemId) {
+    showAgentArgs(selectedItemId) {
         const instance = Template.instance();
-        const car = Cars.findOne(selectedItemId);
-        instance.data.selectedItemName(car.plate);
+        const agent = Agents.findOne(selectedItemId);
+        instance.data.selectedItemName(agent.DocNumber);
         // instance.data.selectedItemDesc(item.desc);
 
         // instance.data.selectedItemProfitCenter(item.profitCenter);
@@ -84,14 +69,13 @@ Template.Car_DECS.helpers({
         instance.data.selectedItemId(selectedItemId);
 
         return {
-            foo: "bar",
-            car: car,
-
-            onEdit(itemId) {
+            agent: agent
+            ,foo:"bar"
+            ,onEdit(itemId) {
                 instance.state.set('editingItem', itemId);
                 // console.log('EDIT CONTACT REL ', relId);
-            },
-            onDelete(itemId) {
+            }
+            ,onDelete(itemId) {
                 instance.state.set('deletingItem', itemId);
                 // console.log('DELETE CONTACT REL ', relId);
                 swal({
@@ -117,64 +101,14 @@ Template.Car_DECS.helpers({
 
             }
         }
-    },
-    editItemArgs(id) {
-        const instance = Template.instance();
-        const item = Items.findOne(id);
-        return {
-            item: item,
-            onSavedData() {
-                instance.state.set('editingItem', false);
-
-            },
-            onCancel() {
-                instance.state.set('editingItem', false);
-
-            }
-
-        }
-    },
-    showVendorRelArgs(itemId) {
-        const instance = Template.instance();
-        const rel = Rels.findOne({
-            type: 'vendor',
-            origin: itemId,
-            destiny: HARDCODE_OWNER
-        });
-        return {
-            rel,
-            onEdit(relId) {
-                instance.state.set('editingVendorRel', relId);
-                // console.log('EDIT CONTACT REL ', relId);
-            }
-        }
-
-    },
-    editVendorRelArgs(itemId) {
-        const instance = Template.instance();
-
-        return {
-            type: 'vendor',
-            origin: itemId,
-            destiny: HARDCODE_OWNER,
-            onSavedData(relId) {
-                instance.state.set('createdRel', relId);
-                instance.state.set('editingVendorRel', false);
-
-            },
-            onCancel() {
-                instance.state.set('editingVendorRel', false);
-                console.log('Cancelado');
-            }
-        }
-    },
-    createCarArgs() {
+    }
+    ,createAgentArgs() {
         const instance = Template.instance();
         console.log("item name", instance.state.get('creatingItem'));
 
         return {
-            car: {
-                plate: instance.state.get('creatingItem')
+            agent: {
+                DocNumber: instance.state.get('creatingItem')
             },
             onSavedData(newItem) {
                 instance.state.set('creatingItem', false);
@@ -186,20 +120,19 @@ Template.Car_DECS.helpers({
 
             }
         }
-    },
-
-    editCarArgs(carId) {
+    }
+    ,editAgentArgs(agentId) {
         const instance = Template.instance();
-        const car = Cars.findOne(carId);
+        const agent = Agents.findOne(agentId);
         return {
-            car: car,
-            onSavedData() {
+            agent: agent
+            ,onSavedData() {
                 // console.log('rel created contact', relId);
                 instance.state.set('editingItem', false);
                 instance.state.set('creatingItem', false);
 
-            },
-            onCancel() {
+            }
+            ,onCancel() {
                 // console.log('cancel');
                 instance.state.set('editingItem', false);
                 instance.state.set('creatingItem', false);
@@ -210,7 +143,7 @@ Template.Car_DECS.helpers({
 
 });
 //vvvvvvvvvvvvvv STATE vvvvvvvvvvvvvv
-Template.Car_DECS.helpers({
+Template.Agent_DECS.helpers({
   
     editingItem() {
         const instance = Template.instance();
@@ -238,7 +171,7 @@ Template.Car_DECS.helpers({
  
 });
 //vvvvvvvvvvvvvv HELPERS vvvvvvvvvvvvvv
-Template.Car_DECS.helpers({
+Template.Agent_DECS.helpers({
     rel(item) {
         const rel = Rels.findOne({
             type: 'vendor',
@@ -265,7 +198,7 @@ Template.Car_DECS.helpers({
     }
 });
 
-Template.Car_DECS.events({
+Template.Agent_DECS.events({
     'click .js-deselect-item': function(e, instance) {
         instance.state.set('selectedItem', false);
     },

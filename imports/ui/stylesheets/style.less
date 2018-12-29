@@ -1,12 +1,51 @@
+// Import global styles
+@import "globals/margins.import.less";
+@import "globals/alerts.import.less";
+@import "globals/modal.import.less";
+@import "globals/progress_bar.import.less";
+@import "globals/login.import.less";
+@import "globals/timeline.import.less";
+@import "globals/contact.import.less";
+@import "globals/calendar.import.less";
+@import "globals/text_editor.import.less";
+@import "globals/grid.import.less";
+@import "globals/dropdown.import.less";
+@import "globals/chat.import.less";
+@import "globals/buttons.import.less";
+@import "globals/fonts.import.less";
+@import "globals/icheck.import.less";
+@import "globals/layout.import.less";
+@import "globals/lists.import.less";
+@import "globals/panels.import.less";
+@import "globals/tabs.import.less";
+@import "globals/tooltip.import.less";
+@import "globals/various.import.less";
+@import "globals/projects.import.less";
+@import "globals/social_board.import.less";
+@import "globals/nestable_list.import.less";
+@import "globals/tour.import.less";
+@import "globals/blog.import.less";
+@import "globals/forum.import.less";
+@import "globals/mailbox.import.less";
+@import "globals/loader.import.less";
+@import "globals/print.import.less";
+
+// Import own styles
+@import "own/search.import.less";
+@import "own/printable-doc.import.less";
+@import "own/alert-categories.import.less";
+@import "own/buttons.less";
+@import "own/colors.less";
+@import "own/forms.less";
+
+// Styles for landing page
+@import "globals/landing.import.less";
+
 // Import Google font
 //@import url("http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
  //@import url("https://fonts.googleapis.com/css?family=Roboto:400,300,500,700&subset=latin,latin-ext");
  //@import "/fonts/proximanova-regular.otf";
 
- @font-face {
- 	font-family: Aileron-Light;
- 	src: url('/fonts/Aileron-Light.otf');
- }
 @font-face {
     font-family: 'Titillium';
     src: url('/fonts/Titillium-Regular.eot');
@@ -18,51 +57,6 @@
     font-weight: normal;
     font-style: normal;
 }
-
-
-
-// Color list Mitrol
-@color-default :#ffffff;
-@color-primary-dark: #737373;
-@color-primary-light: #dd2222;
-@color-violet: #596587;
-@color-blue: rgb(18, 84, 154);
-// @color-green: repeating-linear-gradient(90deg, #81D2D5, #53A8CC);
-@color-green: #5b944d;
-@color-yellow:#F4CC45;
-@color-orange:#F4CC45;
-@color-red:#9e424f;
-@color-red-deep:#c0392b;
-@color-female:#81488a;
-// Additional colors
-// @color-background: #1D1D32;
-// @color-background-gradient: #49657A;
-@color-background: #fdfdfd;
-@color-background-gradient: #ffffff;
-// @color-background: #gradient .radial;
-@color-nav: #343743;
-@color-sidebar: #343743;
-@color-header: #343743;
-@color-panel: rgba(255,255,255,0.1);
-@color-panel-header: darken(@color-panel, 40%);
-@color-text: #4d4d4d;
-@color-text-light:@color-primary-light;
-@color-icon: @color-primary-light;
-@color-bright: @color-primary-light;
-@color-background-boxed: darken(@color-background, 3%);
-
-@color-text-default: @color-primary-light;
-@border-color: rgba(255,255,255,0.3);
-
-
-@color-alert-100:#c0392b;
-@color-alert-200:#e67e22;
-@color-alert-300:#ffb606;
-@color-alert-400:#9b59b6;
-@color-alert-500:#6ab0df;
-@color-alert-600:#7b8ea1;
-@color-alert-700: #c9cbcd;
-@color-alert-800: #d8d8d9;
 
 
 
@@ -156,40 +150,4 @@ input {
 @main-transition: all 0.1s ease-out 0s;
 
 
-// Import all styles
-@import "globals/margins.import.less";
-@import "globals/alerts.import.less";
-@import "globals/modal.import.less";
-@import "globals/progress_bar.import.less";
-@import "globals/login.import.less";
-@import "globals/timeline.import.less";
-@import "globals/contact.import.less";
-@import "globals/calendar.import.less";
-@import "globals/text_editor.import.less";
-@import "globals/grid.import.less";
-@import "globals/dropdown.import.less";
-@import "globals/chat.import.less";
-@import "globals/buttons.import.less";
-@import "globals/fonts.import.less";
-@import "globals/icheck.import.less";
-@import "globals/layout.import.less";
-@import "globals/lists.import.less";
-@import "globals/panels.import.less";
-@import "globals/tabs.import.less";
-@import "globals/tooltip.import.less";
-@import "globals/various.import.less";
-@import "globals/projects.import.less";
-@import "globals/social_board.import.less";
-@import "globals/nestable_list.import.less";
-@import "globals/tour.import.less";
-@import "globals/blog.import.less";
-@import "globals/forum.import.less";
-@import "globals/mailbox.import.less";
-@import "globals/loader.import.less";
-@import "own/search.import.less";
-@import "own/printable-doc.import.less";
-@import "own/alert-categories.import.less";
-@import "globals/print.import.less";
 
-// Styles for landing page
-@import "globals/landing.import.less";

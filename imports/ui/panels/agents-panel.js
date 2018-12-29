@@ -1,9 +1,9 @@
-import './cars-panel.html';
+import './agents-panel.html';
 // import '../components/car/car-search.js';
 // import '../components/car/car-show.js';
 
 
-Template.Cars_panel.onCreated(function() {
+Template.Agents_panel.onCreated(function() {
   this.state = new ReactiveDict();
   this.state.setDefault({
       // company: false,
@@ -35,12 +35,12 @@ Template.Cars_panel.onCreated(function() {
 });
 
 //vvvvvvvvvvvvvv ARGS vvvvvvvvvvvvvv
-Template.Cars_panel.helpers({
+Template.Agents_panel.helpers({
   selectedMotor() {
     const instance = Template.instance();
     return instance.state.get('selectedItemId');
   },
-  productArgs() {
+  agentArgs() {
       const instance = Template.instance();
       return {
         mode:'product',
@@ -168,7 +168,7 @@ Template.Cars_panel.helpers({
 
 });
 //vvvvvvvvvvvvvv STATE vvvvvvvvvvvvvv
-Template.Cars_panel.helpers({
+Template.Agents_panel.helpers({
     editingVendorRel() {
         const instance = Template.instance();
         return instance.state.get('editingVendorRel');
@@ -199,7 +199,7 @@ Template.Cars_panel.helpers({
 });
 
 
-Template.Cars_panel.events({
+Template.Agents_panel.events({
     'click .js-deselect-item': function(e, instance) {
         instance.state.set('selectedItem', false);
     },

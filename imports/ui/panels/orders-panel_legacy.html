@@ -1,0 +1,75 @@
+<template name="Orders_panel_legacy">
+    {{#if Template.subscriptionsReady}}
+
+    <div class='row'>
+        <div class="text-center col col-xs-12 col-lg-12">
+            <hr />
+        </div>
+        <div class="text-center col col-xs-6 col-md-3">
+            <a class='btn btn-default order-show-btn' href="{{pathFor 'showEnroledUsers'}}">
+                <h5>Usuarios enrolados</h5>
+                <h3 class="text-info">{{countEnroled}}</h3>
+            </a>
+        </div>
+        <div class="text-center col col-xs-6 col-md-3">
+            <a class='btn btn-default order-show-btn' href="{{pathFor 'showValidatedUsers'}}">
+                <h5>Validaciones exitosas</h5>
+                <h3 class="text-success">{{countAccepted}}</h3>
+            </a>
+        </div>
+        <div class="text-center col col-xs-6 col-md-3">
+            <a class='btn btn-default order-show-btn' href="{{pathFor 'showRejectedUsers'}}">
+                <h5>Rechazos</h5>
+                <h3 class="text-danger">{{countRejected}}</h3>
+            </a>
+        </div>
+        <div class="text-center col col-xs-6 col-md-3">
+            <a class='btn btn-default order-show-btn' href="{{pathFor 'showInfractorUsers'}}">
+                <h5>Infracciones</h5>
+                <h3 class="text-danger">{{countInfracted}}</h3>
+            </a>
+        </div>
+    </div>
+
+    <div class='row'>
+        <div class="text-center col col-xs-12 col-lg-12">
+            <hr />
+        </div>
+        <div class="pull-right">
+            <!-- <a href="{{pathForOrders}}" class='btn btn-default'><i class="fa fa-search"></i> Buscar usuario</a> -->
+            <!-- <button class='btn btn-success js-new-order'><i class="fa fa-plus-circle"></i> {{_ "New order"}}</button> -->
+        </div>
+    </div>
+    <!-- <div class='row'>
+    <div class="text-center col col-lg-12">
+      <i class="blinking fa fa-circle" style="font-size:0.7em;color:green!important"></i>
+       <span style="font-size:0.7em"> IVR EN LÍNEA</span>
+    </div>
+  </div> -->
+    {{#staggering effect=FadeInDown}}
+    <div class="row">
+        <div class="text-center col col-xs-12 col-lg-12">
+            {{#each action in feed}}
+            <div class="text-center col col-xs-6 col-md-3">
+                <a class='btn btn-default order-show-btn' href="">
+
+                    <h6 class="text-info"> {{{icon action.passed}}} {{explain action.type}}</h6>
+                    <p> <i class="fa fa-user"></i>{{clean action.user}} | <i class="fa fa-phone"></i>{{action.ani}}</p>
+                    <p> </p>
+                    <p> {{action.audio}}</p>
+                    <p> {{action.score}}</p>
+                    <p> <i class="fa fa-clock-o"></i> {{timeFromOrderCreation action.createdAt}}</p>
+                    <a class='btn btn-default btn-xs' href="{{pathForUser action.user}}">Ver usuario</a>
+                    <a href="" class="btn btn-xs btn-default btn-danger js-mark-as-false">F</a>
+                    <a href="" class="btn btn-xs js-mark-as-true">V</a>
+
+                </a>
+
+            </div>
+            {{/each}}
+        </div>
+    </div>
+
+    {{/staggering}}
+    {{/if}}
+</template>

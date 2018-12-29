@@ -1,5 +1,6 @@
 import './orders-panel.html';
 import '../pages/orders-show-page.js';
+import moment from 'moment/moment';
 
 Template.Orders_panel.onCreated(function() {
   this.autorun( () => {
@@ -61,8 +62,8 @@ Template.Orders_panel.helpers({
   countInfracted() {
     return Orders.find({type: 'validation_violated'}).count()
   },
-  anis(){
-    return _.uniq([3,3,2])
+  anis(calls){
+    return _.uniq(calls)
   },
    enroledUsers() {
        return Orders.find({type:'enrolment_full'})
@@ -76,8 +77,64 @@ Template.Orders_panel.helpers({
          },
          limit:48
        });
-     },
-     channel3() {
+     }
+     ,ongoingCalls() {
+        const sinceTime = moment().subtract(30, "minutes").format()
+
+        // query recent ended calls
+        const endedCalls = Orders.find({
+          $and: [
+            {createdAt: {$gt: sinceTime }}
+            ,{ type: "call_ended"}
+          ]
+          
+          }, {
+          call_id: 1
+        })
+         let endedCallsArray = []
+         endedCalls.map(call => endedCallsArray.push(call.call_id))
+         endedCallsArray = _.uniq(endedCallsArray)
+
+        // query recent calls
+        const allCalls = Orders.find({
+          createdAt: {
+            $gt: sinceTime
+            }
+          }, {
+          call_id: 1
+        })
+        let allCallsArray = []
+        allCalls.map(call => allCallsArray.push(call.call_id))
+        allCallsArray = _.uniq(allCallsArray)
+
+        // remove ended from latest calls using lodash
+        const ongoingCallsArray =  _.difference(allCallsArray, endedCallsArray)
+        return ongoingCallsArray.length
+     }
+     ,latestCalls() {
+
+        const sinceTime = moment().subtract(10, "minutes").format()
+        const calls = Orders.find(
+         {
+           createdAt: {
+             $gt: sinceTime
+           }
+          }
+         ,{ 
+           call_id : 1
+          }
+       )
+       let callArray = []
+       calls.map( call => callArray.push(call.call_id))
+       return _.uniq(callArray)
+      //  return ['1234','1234','2345']
+     }
+     ,feedByCallID(callID) {
+        return Orders.find(
+          { call_id: callID}
+          ,{ sort: { createdAt: -1 }})
+     }
+     ,channel3() {
        return Orders.find({
          channel: 3
        }, {

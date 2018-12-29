@@ -1,5 +1,5 @@
 import './labels-show-page.html';
-import '../components/item/car-decs.js';
+import '../components/item/agent-decs.js';
 import './sticker15.html';
 
 Template.Labels_show_page.onCreated(function(){

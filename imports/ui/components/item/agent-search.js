@@ -1,25 +1,26 @@
 // import {Index, MinimongoEngine } from 'meteor/easy:search'
-import './car-search.html'
+import './agent-search.html'
 
-Template.Car_search.onCreated(function() {
+Template.Agent_search.onCreated(function() {
+    // Meteor.call("agents.insert", {DocNumber:"13668992", FirstName:"Silvia"})
   this.autorun(() => {
-    let itemsSubscription = this.subscribe('cars.all');
+    let itemsSubscription = this.subscribe('agents.all');
   });
 
 });
-Template.Car_search.helpers({
-    car_searchIndexAttributes: function() {
+Template.Agent_search.helpers({
+    agentSearchIndexAttributes: function() {
         return {
             'id': 'search-input',
             'class': 'form-control',
             'autocomplete': 'off',
-            'placeholder': " 'NVF254'... ",
+            'placeholder': " '29980789'... ",
             'style': "text-transform:uppercase"
         };
     },
-    car_searchIndex: function() {
+    agentSearchIndex: function() {
         // const instance = Template.instance();
-        return CarsIndex;
+        return AgentsIndex;
     },
     insertedText: function() {
         const instance = Template.instance();
@@ -28,9 +29,20 @@ Template.Car_search.helpers({
         return dict.get('searchDefinition')
             .toUpperCase();
     }
+    ,agents: function() {
+        return Agents.find()
+    }
 });
 
-Template.Car_search.events({
+Template.Agent_search.events({
+    // 'keyup #DocNumberInput': function(event) {
+    //     console.log(event.target.value);
+    // }
+    // 'submit #search-agent': function(event, instance) {
+    //     event.preventDefault()
+    //     instance.data.searchedDoc(event.target.docnumber.value)
+    //     console.log(event.target.docnumber.value);
+    // }
     'click .js-search-result-item': function(e, instance) {
         //console.log("id elegido ", );
         instance.data.selectedItem(e.target.id);

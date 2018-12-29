@@ -8,6 +8,7 @@ import '../../api/actions/methods.js';
 import '../../api/accounting/general-ledger/general-ledger.js';
 import '../../api/accounting/current-accounts/current-account-items.js';
 import '../../api/cars/cars.js';
+import '../../api/agents/agents.js';
 import '../../api/companies/companies.js';
 import '../../api/counters/counters.js';
 import '../../api/controlling/profit-centers/profit-centers.js';

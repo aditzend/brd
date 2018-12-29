@@ -18,6 +18,7 @@ if (Session.get('theme') == 'light'){
 //   console.log('im in dark');
 
 };
+import '../../ui/stylesheets/own/timeline.less'
 import '../../ui/layouts/app-body.js';
 import '../../ui/layouts/header.js';
 import '../../ui/layouts/app-nav.js';
@@ -189,7 +190,6 @@ FlowRouter.route('/too/sale/:_id/', {
             main: 'Sales_new_page'
         });
         //console.log('params', params);
-
     }
 });
 FlowRouter.route('/order/:_id/', {

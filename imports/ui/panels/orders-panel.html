@@ -46,26 +46,117 @@
        <span style="font-size:0.7em"> IVR EN LÍNEA</span>
     </div>
   </div> -->
-  {{#staggering effect=FadeInDown}}
+<h1>Llamadas en curso : {{ongoingCalls}}</h1>
+{{#each call in latestCalls}}
+<!-- timeline comienza -->
+<div class="container">
   <div class="row">
-   <div class="text-center col col-xs-12 col-lg-12">
-  {{#each action in feed}}
-  <div class="text-center col col-xs-6 col-md-3">
-          <a class='btn btn-default order-show-btn' href="{{pathForUser action.user}}">
-            <h6 class="text-info"> {{{icon action.passed}}} {{explain action.type}}</h6>
-            <p> <i class="fa fa-user"></i>{{clean action.user}}  | <i class="fa fa-phone"></i>{{action.ani}}</p>
-            <p> </p>
-            <p> {{action.audio}}</p>
-            <p> {{action.score}}</p>
-            <p> <i class="fa fa-clock-o"></i> {{timeFromOrderCreation action.createdAt}}</p>
-           
-            
-          </a>
-          </div>
-        {{/each}}
-        </div>
+    <div class="col-md-12">
+      <div class="page-header">
+<!-- <h1>{{call.call_id}}</h1> -->
       </div>
-     
-    {{/staggering}}
+      <div style="display:inline-block;width:100%;overflow-y:auto;">
+        <ul class="timeline timeline-horizontal">
+<h1>{{call}}</h1>
+
+{{#each action in feedByCallID call}}
+
+          <li class="timeline-item">
+            <div class="timeline-badge primary"><i class="glyphicon glyphicon-check"></i></div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+<h6 class="small-text">{{action.intent}} {{action.type}}</h6>
+                <h6>Perfil biométrico : {{action.user}}</h6>
+                <h6 class="timeline-title">Intento: {{action.record_count}}</h6>
+                <!-- <h6 class="timeline-title">StASR: {{action.asr_status}}</h6> -->
+                <!-- <h6 class="timeline-title">Transcripción: {{action.transcription}}</h6> -->
+                <h6>{{action.createdAt}}</h6>
+<h6>{{action.call_id}} </h6>
+{{#if action.length_err }} <h4 class="timeline-title">Audio cortado!</h4> {{/if}}
+{{#if action.content_err }} <h4 class="timeline-title">Error de contenido!</h4> {{/if}}
+                <!-- <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11 hours ago via Twitter</small></p> -->
+              </div>
+              <div class="timeline-body">
+                <h6>{{action.audio}}</h6>
+              </div>
+            </div>
+          </li>
+          {{/each}}
+          <!-- <li class="timeline-item">
+            <div class="timeline-badge success"><i class="glyphicon glyphicon-check"></i></div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4 class="timeline-title">Mussum ipsum cacilds 2</h4>
+                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11 hours ago via Twitter</small></p>
+              </div>
+              <div class="timeline-body">
+                <p>Mussum ipsum cacilds, vidis faiz elementum girarzis, nisi eros gostis.</p>
+              </div>
+            </div>
+          </li>
+          <li class="timeline-item">
+            <div class="timeline-badge info"><i class="glyphicon glyphicon-check"></i></div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4 class="timeline-title">Mussum ipsum cacilds 3</h4>
+                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11 hours ago via Twitter</small></p>
+              </div>
+              <div class="timeline-body">
+                <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipisci. Mé faiz elementum girarzis, nisi eros
+                  gostis.</p>
+              </div>
+            </div>
+          </li>
+          <li class="timeline-item">
+            <div class="timeline-badge danger"><i class="glyphicon glyphicon-check"></i></div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4 class="timeline-title">Mussum ipsum cacilds 4</h4>
+                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11 hours ago via Twitter</small></p>
+              </div>
+              <div class="timeline-body">
+                <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis
+                  porris, paradis. Paisis, filhis, espiritis santis.</p>
+              </div>
+            </div>
+          </li>
+          <li class="timeline-item">
+            <div class="timeline-badge warning"><i class="glyphicon glyphicon-check"></i></div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4 class="timeline-title">Mussum ipsum cacilds 5</h4>
+                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11 hours ago via Twitter</small></p>
+              </div>
+              <div class="timeline-body">
+                <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis
+                  porris, paradis. Paisis, filhis, espiritis santis.</p>
+              </div>
+            </div>
+          </li>
+          <li class="timeline-item">
+            <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4 class="timeline-title">Mussum ipsum cacilds 6</h4>
+                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11 hours ago via Twitter</small></p>
+              </div>
+              <div class="timeline-body">
+                <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis
+                  porris, paradis. Paisis, filhis, espiritis santis.</p>
+              </div>
+            </div>
+          </li> -->
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- fin timeline -->
+{{/each}}
+
+
+
+
+
   {{/if}}
 </template>

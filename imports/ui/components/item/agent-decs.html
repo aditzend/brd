@@ -1,4 +1,4 @@
-<template name="Car_DECS">
+<template name="Agent_DECS">
     {{#if selectedItem}}
     <!-- <h6>selected item : {{selectedItem}}</h6> -->
     <div class="list-item">
@@ -10,26 +10,27 @@
     </div>
   </div>
         {{#if editingItem}}
-        <h1>editando</h1>
-          {{> Car_edit (editCarArgs selectedItem)}}
+        <br>
+          Editando {{> Agent_edit (editAgentArgs selectedItem)}}
 
         {{else}}
           <button style="margin:3px;" class="btn btn-danger js-delete" id={{selectedItem}}>eliminar</button>
           <button style="margin:3px;" class="btn btn-warning js-edit" id={{selectedItem}}>editar</button>
           <!-- {{> Item_show showthis}} -->
-          {{> Car_show (showCarArgs selectedItem)}}
+          {{> Agent_show (passdata selectedItem)}}
+          <!-- {{> Agent_show (showAgentArgs selectedItem)}} -->
           <!-- {{> Item_motor_show (showItemArgs selectedItem)}} -->
           <!-- <a href="{{pathFor 'printLabels' paramsLabel}}">print labels</a> -->
         {{/if}}
     {{else}} <!-- //selectedItem -->
       {{#if creatingItem}}
-        <h1>creando</h1>
-      
-        {{> Car_edit createCarArgs }}
+        <!-- <h1>creando</h1> -->
+        <br>
+        Ingresando  {{> Agent_edit createAgentArgs }}
 
       {{else}}
-          <h3>Ingresá la patente</h3>
-          {{> Car_search searchItemArgs }}
+          <h3>Ingresar DNI del funcionario sin puntos ni espacios</h3>
+          {{> Agent_search searchAgentArgs }}
 
 
       {{/if}}

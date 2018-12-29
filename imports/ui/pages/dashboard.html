@@ -1,7 +1,7 @@
 <template name="Dashboard">
   {{#staggering}}
     <div class="wrapper">
- {{#pageTitle title="NSSA DEMO"}}
+ {{#pageTitle title="BIOMETRICO"}}
       <!-- <button class="btn btn-lg js-send-email">enviar</button> -->
       <!-- <h1>wwff>>>>>>>{{wwffHelper.name}}</h1> -->
         <h2>
@@ -13,6 +13,8 @@
              </h2>
             {{/pageTitle}}
             <div class="row">
+{{> Agents_panel}}
+
               <!-- <div class='col col-lg-2'> -->
                 <!-- <a class="btn btn-success" href={{pathFor 'printLabels'}}>
                   <span class='text-big'>{{_ "Print labels"}}</span></a> -->
@@ -52,8 +54,6 @@
                     {{> Vendors_panel}}
                 </div> -->
                 <div class="col-lg-12">
-                  <!-- {{> Cars_panel}} -->
-                  <!-- {{> Cars_panel}} -->
                   <!-- {{> Families_panel}} -->
                     <!-- {{> ValidateWorkerRels}} -->
                   

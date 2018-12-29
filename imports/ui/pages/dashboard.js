@@ -10,7 +10,7 @@ import '/imports/ui/panels/items-panel.js';
 // import '/imports/ui/panels/hospitals-panel.js';
 // import '/imports/ui/panels/payments-panel.js';
 // import '/imports/ui/panels/items-motors-panel.js';
-import '/imports/ui/panels/cars-panel.js';
+import '/imports/ui/panels/agents-panel.js';
 // import '/imports/ui/panels/sales-performance-panel.js';
 // import '/imports/ui/panels/cash-flow-panel.js';
 import '/imports/ui/components/person/person-create.js';

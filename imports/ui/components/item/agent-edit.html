@@ -1,0 +1,73 @@
+<template name="Agent_edit">
+{{agent.DocNumber}} {{agent.FirstName}} {{agent.LastName}}
+  <div class="panel hpanel subpanel">
+    <!-- <div class="panel-heading hpanel">{{agent.DocNumber}} </div> -->
+    <div class="panel-body hpanel">
+      <hr>
+      <form class="form-horizontal" data-action='agent-edit-form'>
+        <!-- <h3>Datos del Funcionario</h3> -->
+        <div class="row">
+          <div class="form-group col-lg-2 col-xs-6">
+<label class="control-label" for='DocNumber'>DNI</label>
+<input id='DocNumber' type="number" class="form-control plate" name='DocNumber' value="{{agent.DocNumber}}">
+            <span class='form-control-feedback'></span>
+            <span class='help-block'></span>
+          </div>
+        <div class="row">
+          <div class="form-group col-lg-3 col-xs-12">
+<label class="control-label " for='FirstName'>Nombre</label>
+<input id='FirstName' type="text" class="form-control uppercase" name="FirstName" value="{{agent.FirstName}}">
+            <span class='form-control-feedback'></span>
+            <span class='help-block'></span>
+          </div>
+          <div class="form-group col-lg-3 col-xs-12">
+<label class="control-label" for='LastName'>Apellido</label>
+<input id='LastName' type="text" class="form-control uppercase" value="{{agent.LastName}}" name="LastName">
+            <span class='form-control-feedback'></span>
+            <span class='help-block'></span>
+          </div>
+          <div class="form-group col-lg-3 col-xs-12">
+            <label class="control-label" for='Roles'>Roles</label>
+<span class="control-label  mg-l-50px">N1</span><input id='isN1' type="checkbox" name="isN1" {{checkIfN1}} />
+<span class="control-label mg-l-50px">N2</span><input id='isN2' type="checkbox" name="isN2" {{checkIfN2}} />
+            <!-- <input id='car-owner-gender' type="text" class="form-control"  value="{{car.carOwner.gender}}"> -->
+            <span class='form-control-feedback'></span>
+            <span class='help-block'></span>
+        </div>
+          <!-- <div class="form-group col-lg-3 col-xs-12">
+            <label class="control-label" for='birthdate'>Cumple</label>
+            <input id='birthdateInput' type="date" class="form-control" name="birthdate" value="{{car.carOwner.birthdate}}">
+            <span class='form-control-feedback'></span>
+            <span class='help-block'></span>
+          </div> -->
+        </div>
+
+        <div class="row">
+          <div class="form-group col-lg-4 col-xs-12">
+            <label class="control-label" for='Email'>Email</label>
+<input id='Email' type="email" class="form-control" name="Email" value="{{agent.Email}}">
+            <span class='form-control-feedback'></span>
+            <span class='help-block'></span>
+          </div>
+          <div class="form-group col-lg-4 col-xs-12">
+            <label class="control-label" for='Phone'>Teléfono</label>
+<input id='Phone' type="tel" class="form-control" name="Phone" value="{{agent.Phone}}">
+            <span class='form-control-feedback'></span>
+            <span class='help-block'></span>
+          </div>
+   
+        </div>
+
+        <div class="hr-line-dashed"></div>
+        <div class="form-group">
+          <div class="col-sm-8 col-sm-offset-2">
+            <span class="btn btn-default js-cancel">Cancelar</span>
+            <button class="btn btn-success js-save" type="submit">Guardar</button>
+            <span class="danger" id="summary"></span>
+          </div>
+        </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</template>
