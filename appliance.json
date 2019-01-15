@@ -1,0 +1,39 @@
+{
+    "mailgun": {
+        "key": "key-ca749cc6a5c8daa7b2a85213547decab",
+        "domain": "mailgun.gomatodo.com",
+        "url": "smtp://postmaster%40mailgun.gomatodo.com:a34e2bdecff4d0990bb443603d30fbb5@smtp.mailgun.org:465"
+    }
+    ,"ftp": {
+          "host": "serabey.com",
+              "user": "gts@serabey.com",
+              "password": "R6M2%t%lT0l["
+    }
+    ,"biometrics": {
+        "username": "admin"
+        ,"password": "QL0AFWMIX8NRZTKeof9cXsvbvu8="
+        ,"domainId": "201"
+        ,"device_info": "Panel"
+        ,"url": "https://172.21.20.13"
+    }
+    ,"mitrol": {
+        "recordings_path":"http://172.21.20.12:9000/"
+        ,"ae_phoneNumber":"6841-6492"
+        ,"ce_phoneNumber":"6841-6493"
+        ,"iv_phoneNumber":"6841-6493"
+    }
+    ,"client": {
+        "minimum_retirement_age":60
+    }
+    ,"mssqlConfig": {
+        "user": "mituser",
+        "password": "mitcall",
+        "server": "172.21.20.11",
+        "database": "NSSA_BIOMETRICS_PILOT",
+        "pool": {
+            "max": 10,
+            "min": 0,
+            "idleTimeoutMillis": 30000
+        }
+    }
+}

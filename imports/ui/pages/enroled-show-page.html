@@ -1,13 +1,17 @@
 
 <template name="Enroled_show_page">
   {{#if Template.subscriptionsReady}}
-
 {{#staggering effect="fadeInDown"}}
   {{#pageTitle title="Usuarios enrolados"}}
   <br>
+  {{> Report_date_picker}}
   <h2>
    {{countEnroled}} <i class="fa fa-book"></i>
   </h2>
+  <br>
+  <button class="btn btn-success js-download-csv">Descargar Reporte de Usuarios Enrolados</button>
+  <button class="btn btn-primary js-download-audios-csv">Descargar Reporte de Audios</button>
+  <br>
   <br>
 <div class='col-xs-12 col-lg-12'>
 <table style="margin:0 auto">
@@ -17,21 +21,29 @@
         <span>DNI</span>
       </td>
       <td>
+        <span>ID INTERACCIÓN</span>
+      </td>
+      <td>
         <span>
-          <i class="fa fa-clock-o"></i>
+          FECHA Y HORA
         </span>
       </td>
     </tr>
-    <hr> {{#each action in enroled}}
+<hr> {{#each order in enroled}}
     <tr>
       <td>
-        <a class='btn btn-default' href="{{pathForUser action.user}}">
-          {{clean action.user}}
+        <a class='btn btn-default' href="{{pathForUser order.user}}">
+{{clean order.user}} {{pathForUser order.user}}
         </a>
       </td>
       <td>
           <a class='btn btn-default btn-sm' href="">
-           {{timeFromOrderCreation action.createdAt}}
+           {{order.call_id}}
+          </a>
+        </td>
+      <td>
+          <a class='btn btn-default btn-sm' href="">
+           {{timeFromOrderCreation order.createdAt}}
           </a>
         </td>
     </tr>
@@ -45,3 +57,5 @@
   {{/staggering}}
   {{/if}}
 </template>
+
+

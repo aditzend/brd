@@ -3,6 +3,7 @@
 
   <div class='row'>
     <div class="text-center col col-xs-12 col-lg-12">
+     
     <hr/>
     </div>
     <div class="text-center col col-xs-6 col-md-3">
@@ -65,8 +66,12 @@
             <div class="timeline-badge primary"><i class="glyphicon glyphicon-check"></i></div>
             <div class="timeline-panel">
               <div class="timeline-heading">
-<h6 class="small-text">{{action.intent}} {{action.type}}</h6>
+{{{explain action.type}}}
+<h6 class="small-text">{{action.intent}} </h6>
+
                 <h6>Perfil biométrico : {{action.user}}</h6>
+                <h6>{{action.transaction_id}}</h6>
+                <h6> | tid {{action.transaction_id}} | s {{action.samples}} | session {{action.x_session_id}} | {{#if action.is_full_enroll}} fe {{else}} ne {{/if}}| tr {{action.transcription}} </h6>
                 <h6 class="timeline-title">Intento: {{action.record_count}}</h6>
                 <!-- <h6 class="timeline-title">StASR: {{action.asr_status}}</h6> -->
                 <!-- <h6 class="timeline-title">Transcripción: {{action.transcription}}</h6> -->
@@ -77,7 +82,9 @@
                 <!-- <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11 hours ago via Twitter</small></p> -->
               </div>
               <div class="timeline-body">
-                <h6>{{action.audio}}</h6>
+                {{#if action.audio}}
+                    <a href="http://172.21.20.12:9000/{{action.audio}}" target="_blank" class=" btn btn-primary btn-lg .js-goto-audio" id="{{action.audio}}"> <i class="fa fa-play"></i></a>
+                {{/if}}
               </div>
             </div>
           </li>

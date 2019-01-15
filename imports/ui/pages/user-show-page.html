@@ -1,250 +1,259 @@
 <template name="User_show_page">
-{{#if Template.subscriptionsReady}}
-{{#staggering effect="fadeInDown"}}
-  {{#pageTitle title="Usuario"}}
-  <br>
-  <h2>
-    {{clean user}}
-  </h2>
- 
-  <br>
-<div class='col col-xs-12 col-md-6 col-lg-4'>
-  {{#panel title="Intentos de Validación"}}
-    <h1>
-    {{countValidationAttempts user}} 
-    </h1>
-    <table class="table" style="margin:0 auto">
-      <thead>
-        <tr>
-          <th class="col-xs-2 col-md-2 col-lg-2 text-center">
-            <span>
-              QA
-            </span>
-          </th>
-          <th class="col-xs-2 col-md-2 col-lg-2 text-center">
-            <span>
-              <i class="fa fa-clock-o"> </i>
-            </span>
-          </th>
-          <th class="col-xs-2 col-md-2 col-lg-2 text-center">
-            <span>
-              <i class="fa fa-phone"> </i>
-            </span>
-          </th>
-        </tr>
-      </thead>
-  <tbody>
-        {{#each action in validationAttempts user}}
-        <tr>
-          <td class="col-xs-2"> {{#if action.isCorrect}}
-            <i class="fa fa-check" style="color: green!important;"></i>{{else}}
-            <i class="fa fa-times" style="color: red!important;"></i>{{/if}}
-          </td>
-          <td class="col-xs-2">
-              <a class='btn btn-default btn-xs js-show-time' href="#" id='{{action.createdAt}}'>
-              {{timeFromOrderCreation action.createdAt}}
-              </a>
-          </td>
-          <td class="col-xs-2">
-              <a class='btn btn-default btn-xs' href="#">
-                <span class='text-small'>{{action.ani}}</span>
-              </a>
-          </td>
-        </tr>
-        {{/each}}
-  </tbody>
-</table>
-  {{/panel}}
-</div>
-<div class='col col-xs-12 col-md-6 col-lg-4'>
-  {{#panel title="Validaciones Exitosas"}}
-    {{countValidationsAccepted user}} 
-    <table style="margin:0 auto">
-      <thead>
-        <tr>
-          <th class="col-xs-2">
-            <span>
-              <i class="fa fa-clock-o"> </i>
-            </span>
-          </th>
-          <th class="col-xs-2">
-            <span>
-              <i class="fa fa-phone"> </i>
-            </span>
-          </th>
-          <th class="col-xs-2">
-            <span>
-              <i class="fa fa-volume-up"> </i>
-            </span>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each action in validationsAccepted user}}
-        <tr>
-          <td class="col-xs-2">
-              <a class='btn btn-default btn-xs' href="#">
-              {{timeFromOrderCreation action.createdAt}}
-              </a>
-          </td>
-          <td class="col-xs-2">
-              <a class='btn btn-default btn-xs' href="#">
-<small class="text-small">{{action.ani}}</small>
-              
-              </a>
-          </td> 
-            <td class="col-xs-2">
-<a data-file="{{action.audio}}" data-snr="{{action.snr}}" class='btn btn-default btn-xs js-copy-audio' href="#">
-<i data-file="{{action.audio}}" data-snr="{{action.snr}}" class="fa fa-volume-up"></i>
-              </a>
-              
-<!-- <span style="font-size:0.5em!important;">{{action.audio}}</span> -->
-            </td>
-            <!-- <td>
-              <input class="change-correctness" id={{action._id}} type="checkbox" checked={{action.isCorrect}} />
-            </td> -->
-        </tr>
-        {{/each}}
-      </tbody>
-    </table>
-  {{/panel}}
-</div>
-<div class='col col-xs-12 col-md-6 col-lg-4'>
-  {{#panel title="Rechazos"}}
-    <h1>
-    {{countValidationsRejected user}} 
-    </h1>
-    <table style="margin:0 auto">
-      <tbody>
-        <tr>
-          <td>
-            <span>
-              <i class="fa fa-clock-o"> </i>
-            </span> 
-          </td>
-          <td>
-            <span>
-              <i class="fa fa-phone"> </i>
-            </span>
-          </td>
-          <td>
-            <span>
-              <i class="fa fa-volume-up"> </i>
-            </span>
-          </td>
-          <!-- <td>
-            <span>
-              Correcto
-            </span>
-          </td> -->
-        </tr>
-        <hr> 
-        {{#each action in validationsRejected user}}
-        <tr>
-          <td>
-              <a class='btn btn-default btn-xs' href="#">
-              {{timeFromOrderCreation action.createdAt}}
-              </a>
-          </td>
-          <td>
-              <a class='btn btn-default btn-xs' href="#">
-<span class='text-small'>{{action.ani}}</span>
-              </a>
-          </td>
-          <td>
-<a data-file="{{action.audio}}" data-snr="{{action.snr}}" class='btn btn-default btn-xs js-copy-audio' href="#">
-  <i data-file="{{action.audio}}" data-snr="{{action.snr}}" class="fa fa-volume-up"></i>
-</a>
-          </td>
-          <!-- <td>
-            <input class="change-correctness" id={{action._id}} type="checkbox" checked={{action.isCorrect}} />
-          </td> -->
-        </tr>
-        <hr>
-        {{/each}}
-      </tbody>
-    </table>
-  {{/panel}}
-</div>
-<div class='col col-xs-12 col-md-6 col-lg-4'>
-  {{#panel title="Firmas erróneas"}}
-    <h1>
-    {{countSignatureAttempts user}} 
-    </h1>
-    <table style="margin:0 auto">
-      <tbody>
-        <tr>
-          <td>
-            <span>
-              <i class="fa fa-clock-o"> </i>
-            </span> 
-          </td>
-          <td>
-            <span>
-              <i class="fa fa-phone"> </i>
-            </span>
-          </td>
-        </tr>
-        <hr> 
-        {{#each action in signatureAttempts user}}
-        <tr>
-          <td>
-              <a class='btn btn-default btn-xs' href="#">
-              {{timeFromOrderCreation action.createdAt}}
-              </a>
-          </td>
-          <td>
-              <a class='btn btn-default btn-xs' href="#">
-              {{action.ani}}
-              </a>
-          </td>
-        </tr>
-        <hr>
-        {{/each}}
-      </tbody>
-    </table>
-  {{/panel}}
-</div>
-<div class='col col-xs-12 col-md-6 col-lg-4'>
-  {{#panel title="Infracciones"}}
-    <h1>
-    {{countInfractions user}} 
-    </h1>
-    <table style="margin:0 auto">
-      <tbody>
-        <tr>
-          <td>
-            <span>
-              <i class="fa fa-clock-o"> </i>
-            </span> 
-          </td>
-          <td>
-            <span>
-              <i class="fa fa-phone"> </i>
-            </span>
-          </td>
-        </tr>
-        <hr> 
-        {{#each action in infractions user}}
-        <tr>
-          <td>
-              <a class='btn btn-default btn-xs' href="#">
-              {{timeFromOrderCreation action.createdAt}}
-              </a>
-          </td>
-          <td>
-              <a class='btn btn-default btn-xs' href="#">
-              {{action.ani}}
-              </a>
-          </td>
-        </tr>
-        <hr>
-        {{/each}}
-      </tbody>
-    </table>
-  {{/panel}}
-</div>
+  {{#if Template.subscriptionsReady}}
+  {{#staggering effect="fadeInDown"}}
+  {{#pageTitle title="Información de Cliente"}}
+  <div class="row">
+    <div class='col col-lg-9 col-xs-12'>{{> User_show}}</div>
+    <div class='col col-lg-3 col-xs-12' >
+      <div class="row">
+<div class='col col-xs-12 col-md-12 col-lg-12' style='margin-right:2%;'>
+          <h1 style="float:left;">
+            {{countValidationAttempts user}}
+          </h1>
+          {{#panel title="Intentos de Validación" collapsed=true}}
+          <h1>
+            {{countValidationAttempts user}}
+          </h1>
+          <table class="table" style="margin:0 auto">
+            <thead>
+              <tr>
+                <th class="col-xs-2 col-md-2 col-lg-2 text-center">
+                  <span>
+                    <i class="fa fa-clock-o"> </i>
+                  </span>
+                </th>
+                <th class="col-xs-2 col-md-2 col-lg-2 text-center">
+                  <span>
+                    <i class="fa fa-phone"> </i>
+                  </span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each action in validationAttempts user}}
+              <tr>
+                <td class="col-xs-2">
+                  <a class='btn btn-default btn-xs js-show-time' href="#" id='{{action.createdAt}}'>
+                    {{timeFromOrderCreation action.createdAt}}
+                  </a>
+                </td>
+                <td class="col-xs-2">
+                  <a class='btn btn-default btn-xs' href="#">
+                    <span class='text-small'>{{action.ani}}</span>
+                  </a>
+                </td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+          {{/panel}}
+        </div>
+        <div class='col col-xs-12 col-md-12 col-lg-12'>
+          <h1 style="float:left;">
+            {{countValidationsAccepted user}}
+          </h1>
+          {{#panel title="Validaciones Exitosas" collapsed=true}}
+          <table style="margin:0 auto">
+            <thead>
+              <tr>
+                <th class="col-xs-2">
+                  <span>
+                    <i class="fa fa-clock-o"> </i>
+                  </span>
+                </th>
+                <th class="col-xs-2">
+                  <span>
+                    <i class="fa fa-phone"> </i>
+                  </span>
+                </th>
+                <th class="col-xs-2">
+                  <span>
+                    <i class="fa fa-volume-up"> </i>
+                  </span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each action in validationsAccepted user}}
+              <tr>
+                <td class="col-xs-2">
+                  <a class='btn btn-default btn-xs' href="#">
+                    {{timeFromOrderCreation action.createdAt}}
+                  </a>
+                </td>
+                <td class="col-xs-2">
+                  <a class='btn btn-default btn-xs' href="#">
+                    <small class="text-small">{{action.ani}}</small>
+
+                  </a>
+                </td>
+                <td class="col-xs-2">
+                  <a data-file="{{action.audio}}" data-snr="{{action.snr}}" class='btn btn-default btn-xs js-copy-audio'
+                    href="#">
+                    <i data-file="{{action.audio}}" data-snr="{{action.snr}}" class="fa fa-volume-up"></i>
+                  </a>
+
+                  <!-- <span style="font-size:0.5em!important;">{{action.audio}}</span> -->
+                </td>
+                <!-- <td>
+                            <input class="change-correctness" id={{action._id}} type="checkbox" checked={{action.isCorrect}} />
+                          </td> -->
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+          {{/panel}}
+        </div>
+        <div class='col col-xs-12 col-md-12 col-lg-12'>
+          <h1 style="float:left;">
+            {{countValidationsRejected user}}
+          </h1>
+          {{#panel title="Rechazos" collapsed=true}}
+          <h1>
+            {{countValidationsRejected user}}
+          </h1>
+          <table style="margin:0 auto">
+            <tbody>
+              <tr>
+                <td>
+                  <span>
+                    <i class="fa fa-clock-o"> </i>
+                  </span>
+                </td>
+                <td>
+                  <span>
+                    <i class="fa fa-phone"> </i>
+                  </span>
+                </td>
+                <td>
+                  <span>
+                    <i class="fa fa-volume-up"> </i>
+                  </span>
+                </td>
+                <!-- <td>
+                          <span>
+                            Correcto
+                          </span>
+                        </td> -->
+              </tr>
+              <hr>
+              {{#each action in validationsRejected user}}
+              <tr>
+                <td>
+                  <a class='btn btn-default btn-xs' href="#">
+                    {{timeFromOrderCreation action.createdAt}}
+                  </a>
+                </td>
+                <td>
+                  <a class='btn btn-default btn-xs' href="#">
+                    <span class='text-small'>{{action.ani}}</span>
+                  </a>
+                </td>
+                <td>
+                  <a data-file="{{action.audio}}" data-snr="{{action.snr}}" class='btn btn-default btn-xs js-copy-audio'
+                    href="#">
+                    <i data-file="{{action.audio}}" data-snr="{{action.snr}}" class="fa fa-volume-up"></i>
+                  </a>
+                </td>
+                <!-- <td>
+                          <input class="change-correctness" id={{action._id}} type="checkbox" checked={{action.isCorrect}} />
+                        </td> -->
+              </tr>
+              <hr>
+              {{/each}}
+            </tbody>
+          </table>
+          {{/panel}}
+        </div>
+        <div class='col col-xs-12 col-md-12 col-lg-12'>
+          <h1 style="float:left;">
+            {{countSignatureAttempts user}}
+          </h1>
+          {{#panel title="Firmas erróneas" collapsed=true}}
+          <table style="margin:0 auto">
+            <tbody>
+              <tr>
+                <td>
+                  <span>
+                    <i class="fa fa-clock-o"> </i>
+                  </span>
+                </td>
+                <td>
+                  <span>
+                    <i class="fa fa-phone"> </i>
+                  </span>
+                </td>
+              </tr>
+              <hr>
+              {{#each action in signatureAttempts user}}
+              <tr>
+                <td>
+                  <a class='btn btn-default btn-xs' href="#">
+                    {{timeFromOrderCreation action.createdAt}}
+                  </a>
+                </td>
+                <td>
+                  <a class='btn btn-default btn-xs' href="#">
+                    {{action.ani}}
+                  </a>
+                </td>
+              </tr>
+              <hr>
+              {{/each}}
+            </tbody>
+          </table>
+          {{/panel}}
+        </div>
+        <div class='col col-xs-12 col-md-12 col-lg-12'>
+          <h1 style="float:left;">
+            {{countInfractions user}}
+          </h1>
+          {{#panel title="Infracciones" collapsed=true}}
+          <table style="margin:0 auto">
+            <tbody>
+              <tr>
+                <td>
+                  <span>
+                    <i class="fa fa-clock-o"> </i>
+                  </span>
+                </td>
+                <td>
+                  <span>
+                    <i class="fa fa-phone"> </i>
+                  </span>
+                </td>
+              </tr>
+              <hr>
+              {{#each action in infractions user}}
+              <tr>
+                <td>
+                  <a class='btn btn-default btn-xs' href="#">
+                    {{timeFromOrderCreation action.createdAt}}
+                  </a>
+                </td>
+                <td>
+                  <a class='btn btn-default btn-xs' href="#">
+                    {{action.ani}}
+                  </a>
+                </td>
+              </tr>
+              <hr>
+              {{/each}}
+            </tbody>
+          </table>
+          {{/panel}}
+        </div>
+      </div>
+    </div>
+  </div>
   {{/pageTitle}}
   {{/staggering}}
+  {{else}}
+  <br>
+  <br>
+  <div class="text-center">
+    <h6>Cargando datos de usuario ...</h6>
+  </div>
+  <!-- TODO: Create a main template with a spinner, this does not look good. -->
   {{/if}}
 </template>

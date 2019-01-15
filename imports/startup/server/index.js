@@ -28,6 +28,7 @@ import './register-api.js';
 
 
 Meteor.startup(function() {
+    // new LoggerFile(LoggerInstance, {path: '/var/log/meteor'})
     // Meteor.call("importSql");
     // process.env.MAIL_URL = Meteor.settings.smtp;
     // process.env.ixDbPass = Meteor.settings.ixDbPass;

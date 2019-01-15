@@ -27,6 +27,17 @@
             <span class='help-block'></span>
           </div>
           <div class="form-group col-lg-3 col-xs-12">
+<label class="control-label" for='FourDigitPin'>PIN</label>
+<input id='FourDigitPin' type="password" class="form-control uppercase" value="{{agent.FourDigitPin}}" name="FourDigitPin">
+            <span class='form-control-feedback'></span>
+            <span class='help-block'></span>
+<label class="control-label" for='FourDigitPinConfirmation'>Confirmación PIN</label>
+                    
+<input id='FourDigitPinConfirmation' type="password" class="form-control uppercase" value="{{agent.FourDigitPin}}" name="FourDigitPinConfirmation">
+            <span class='form-control-feedback'></span>
+            <span class='help-block'></span>
+          </div>
+          <div class="form-group col-lg-3 col-xs-12">
             <label class="control-label" for='Roles'>Roles</label>
 <span class="control-label  mg-l-50px">N1</span><input id='isN1' type="checkbox" name="isN1" {{checkIfN1}} />
 <span class="control-label mg-l-50px">N2</span><input id='isN2' type="checkbox" name="isN2" {{checkIfN2}} />

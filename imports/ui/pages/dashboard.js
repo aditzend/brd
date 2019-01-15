@@ -1,22 +1,19 @@
-import '/imports/ui/components/rel/rel-customer-edit.js';
-// import '/imports/ui/components/profit-center/profit-center.js';
-// import '/imports/ui/components/cost-center/cost-center.js';
-import '/imports/ui/panels/customers-panel.js';
-// import '/imports/ui/panels/payment-methods-panel.js';
-// import '/imports/ui/panels/vendors-panel.js';
+//  INTERNAL MODULES
 import '/imports/ui/panels/orders-panel.js';
-// import '/imports/ui/panels/purchases-panel.js';
-import '/imports/ui/panels/items-panel.js';
-// import '/imports/ui/panels/hospitals-panel.js';
-// import '/imports/ui/panels/payments-panel.js';
-// import '/imports/ui/panels/items-motors-panel.js';
 import '/imports/ui/panels/agents-panel.js';
-// import '/imports/ui/panels/sales-performance-panel.js';
-// import '/imports/ui/panels/cash-flow-panel.js';
-import '/imports/ui/components/person/person-create.js';
-import "/imports/ui/panels/families-panel.js";
-// import '/imports/ui/components/rel/validate-worker-rels.js';
+import '/imports/ui/components/report-date-picker/report-date-picker.js';
+
+// TEMPLATES
 import './dashboard.html';
+
+
+// TODO Verify if some of these are needed
+// import '/imports/ui/components/rel/rel-customer-edit.js';
+// import '/imports/ui/panels/customers-panel.js';
+// import '/imports/ui/panels/items-panel.js';
+// import '/imports/ui/components/person/person-create.js';
+// import '/imports/ui/components/person/person-create.js';
+// import "/imports/ui/panels/families-panel.js";
 
 
 

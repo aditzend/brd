@@ -1,0 +1,10 @@
+<template name="Agents_show_page">
+    {{#if Template.subscriptionsReady}}
+
+    {{#staggering effect="fadeInDown"}}
+    {{#pageTitle title="Funcionarios"}}
+    {{> Agents_panel}}
+    {{/pageTitle}}
+    {{/staggering}}
+    {{/if}}
+</template>

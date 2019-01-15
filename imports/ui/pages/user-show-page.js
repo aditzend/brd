@@ -1,3 +1,8 @@
+// INTERNAL MODULES
+import '../components/user/user-edit'
+import '../components/user/user-show'
+
+// TEMPLATES
 import './user-show-page.html';
 
 Template.User_show_page.onCreated(function() {
@@ -9,25 +14,7 @@ Template.User_show_page.onCreated(function() {
   });
 });
 
-Template.User_show_page.events({
-  'click .change-correctness':(evt, instance) => {
-    console.log(`Value: ${evt.target.checked} OrderID : ${evt.target.id}`)
-    Meteor.call('changeCorrectness',evt.target.id, evt.target.checked)
-  },
-  'click .js-copy-audio':(e,i) => {
-    console.log(e.target.id)
-     swal({
-         title: "Audio Data",
-         text: `Archivo de audio:   ${e.target.dataset.file}`,
-         type: "info",
-         showCancelButton: false,
-         confirmButtonColor: "green",
-         confirmButtonText: "OK",
-         closeOnConfirm: true,
-       });
-  },
-  'click .js-show-time':(e,i) => console.log(moment(e.target.id).add(3,'hours').format('[DIA: ] dddd [HORA: ] h:mm:ss a') )
-})
+
 
 Template.User_show_page.helpers({
   isChecked(id) {
@@ -68,3 +55,26 @@ Template.User_show_page.helpers({
   },
 
 });
+
+Template.User_show_page.events({
+  'click .js-edit-user': (e, instance) => {
+    console.log('open form to edit');
+  }
+  ,'click .change-correctness': (evt, instance) => {
+    console.log(`Value: ${evt.target.checked} OrderID : ${evt.target.id}`)
+    Meteor.call('changeCorrectness', evt.target.id, evt.target.checked)
+  },
+  'click .js-copy-audio': (e, i) => {
+    console.log(e.target.id)
+    swal({
+      title: "Audio Data",
+      text: `Archivo de audio:   ${e.target.dataset.file}`,
+      type: "info",
+      showCancelButton: false,
+      confirmButtonColor: "green",
+      confirmButtonText: "OK",
+      closeOnConfirm: true,
+    });
+  },
+  'click .js-show-time': (e, i) => console.log(moment(e.target.id).add(3, 'hours').format('[DIA: ] dddd [HORA: ] h:mm:ss a'))
+})

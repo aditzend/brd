@@ -225,12 +225,12 @@ Template.Agent_DECS.events({
     'click .js-delete': function(e, instance) {
         console.log("delete ", e.target.id);
         swal({
-            title: "Estas seguro?",
-            text: "No se puede recuperar esta informacion!",
+            title: "CONFIRMAR ELIMINACIÓN",
+            text: "No se puede recuperar esta información!",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Si, borrarlo!",
+            confirmButtonText: "Sí, borrar!",
             cancelButtonText: "No, cancelar por favor!",
             closeOnConfirm: false,
             closeOnCancel: false
@@ -238,13 +238,15 @@ Template.Agent_DECS.events({
             function (isConfirm) {
                 if (isConfirm) {
 
-                    const deleted = Cars.remove(e.target.id);
+                    // const deleted = Agents.remove(e.target.id);
+                    // TODO determinar el DocNumber
+                    const deleted = Meteor.call('agents.delete', e.target.id)
                     console.log('deleted', deleted);
 
 
-                    swal("Eliminado!", "Este auto fue eliminado.", "success");
+                    swal("ELIMINACIÓN CONFIRMADA", "El registro ya no está disponible", "success");
                 } else {
-                    swal("Cancelado", "Este auto esta seguro :)", "error");
+                    swal("ELIMINACIÓN CANCELADA", "El registro sigue disponible", "error");
                 }
             });
     },

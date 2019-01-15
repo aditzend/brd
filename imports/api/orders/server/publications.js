@@ -11,14 +11,53 @@ Meteor.publish('Orders.test', function ordersTest() {
     }
 
 });
+// Meteor.publish('Orders.byDate', function ordersByDate(IsoStartDate, IsoEndDate) {
+//     if (this.userId) {
+//         return Orders.find({
+//             createdAt: {
+//                 $lt: IsoEndDate
+//             }
+//         });
+//     } else {
+//         this.ready();
+//     }
+
+// });
+Meteor.publish('Orders.byDate', function ordersByDate(IsoStartDate, IsoEndDate) {
+    if (this.userId) {
+        if (IsoEndDate == null || IsoEndDate == undefined || IsoEndDate == '') {
+            return Orders.find({
+                    createdAt: {
+                        $gt: IsoStartDate
+                    }
+                });
+        } else {
+             return Orders.find({
+                 $and: [{
+                     createdAt: {
+                         $gt: IsoStartDate
+                     }
+                 }, {
+                     createdAt: {
+                         $lt: IsoEndDate
+                     }
+                 }]
+             })
+        }
+       
+    } else {
+        this.ready();
+    }
+
+});
 
 Meteor.publish('Orders.all', function ordersAll() {
-        return Orders.find();
+    return Orders.find();
 });
 Meteor.publish('Orders.byChannel', function ordersByChannel(channel) {
     if (this.userId) {
         return Orders.find({
-            channel:channel
+            channel: channel
         });
     } else {
         this.ready();
@@ -28,7 +67,7 @@ Meteor.publish('Orders.byChannel', function ordersByChannel(channel) {
 Meteor.publish('Orders.own', function ordersOwn(ownerId) {
     if (this.userId) {
         return Orders.find({
-          owner:ownerId
+            owner: ownerId
         });
     } else {
         this.ready();
@@ -38,7 +77,7 @@ Meteor.publish('Orders.own', function ordersOwn(ownerId) {
 Meteor.publish('Orders.destiny', function ordersOwn(id) {
     if (this.userId) {
         return Orders.find({
-          destiny:id
+            destiny: id
         });
     } else {
         this.ready();

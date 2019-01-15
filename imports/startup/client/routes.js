@@ -31,6 +31,7 @@ import '../../ui/components/common/page-title.html';
 import '../../ui/components/common/page-header.js';
 import '../../api/users/createUser.js';
 import '../../ui/pages/profile-show-page.js';
+import '../../ui/pages/agents-show-page.js';
 import '../../ui/pages/labels-show-page.js';
 import '../../ui/pages/profile-new-page.js';
 import '../../ui/pages/dashboard.js';
@@ -64,6 +65,14 @@ FlowRouter.route('/usuario/:_id/', {
     }
 });
 
+FlowRouter.route('/funcionarios/', {
+    name: 'showAgents',
+    action() {
+        BlazeLayout.render('App_body', {
+            main: 'Agents_show_page'
+        })
+    }
+})
 FlowRouter.route('/enrolados/', {
     name: 'showEnroledUsers',
     action() {
@@ -80,6 +89,7 @@ FlowRouter.route('/validados/', {
         })
     }
 })
+
 FlowRouter.route('/interacciones/', {
     name: 'showInteractions',
     action() {

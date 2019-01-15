@@ -1,0 +1,58 @@
+<template name="User_show">
+    {{#if editing}}
+    {{> User_edit editArgs}}
+    {{else}}
+    <div style="margin:2%;" class=" {{#if showingOptionButtons}}js-hide-option-buttons{{else}}js-show-option-buttons{{/if}}">
+        <div class='row'>
+            <div class='col-xs-12 col-md-12 col-lg-12'>
+                <p class='text-left'>
+                    <h1 class="text-big"><strong>{{Client.FirstName}} {{Client.LastName}}</strong></h1>
+                    <div class="row">
+                        <div class='col col-lg-4'>
+                            <button class='btn btn-sm btn-warning js-edit'><i class='fa fa-pencil'> </i> Editar</button>
+                        </div>
+                        <div class='col col-lg-4'>
+                            <button class='btn btn-sm btn-default js-edit'>{{{sex Client.Sex}}}</button>
+                        </div>
+                        <div class='col col-lg-4'>
+                            <button class='btn btn-sm btn-default js-edit'>{{age Client.DateOfBirth}}</button>
+                        </div>
+                    </div>
+                </p>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class='col-xs-12 col-md-6 col-lg-4'>
+                <p class="text-uppercase"><strong>DNI</strong> {{Client.DocNumber}}</p>
+            </div>
+            <div class='col-xs-12 col-md-6 col-lg-4'>
+                <p class="text-uppercase"><strong>Teléfono</strong> {{Client.PhoneNumber}}</p>
+            </div>
+            <div class='col-xs-12 col-md-6 col-lg-4'>
+
+            </div>
+            <div class='col-xs-12 col-md-6 col-lg-4'>
+                <p class="text-uppercase"><strong>Última edición</strong> {{timeFromCreation Client.ModifiedDate}}</p>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            {{#if Client.IsBlocked}}
+            <div class='col-xs-12 col-md-6 col-lg-4'>
+                <h2><span class="badge badge-danger">CLIENTE BLOQUEADO</span></h2>
+            </div>
+            {{/if}}
+            {{#if Client.EnroledWithOwnPhone}}
+            <div class='col-xs-12 col-md-6 col-lg-4'>
+                <h2><span class="badge badge-default">ENROLADO CON SU TEL.</span></h2>
+            </div>
+            {{/if}}
+            <div class='col-xs-12 col-md-6 col-lg-4'>
+                <h2><span class="badge badge-default">{{Client.CurrentStatus}}</span></h2>
+            </div>
+        </div>
+
+    </div>
+    {{/if}}
+</template>

@@ -3,6 +3,8 @@ import '../../api/actions/actions.js';
 import '../../api/actions/methods.js';
 import '../../api/agents/agents.js';
 import '../../api/agents/methods.js';
+import '../../api/clients/clients.js';
+import '../../api/clients/methods.js';
 
 import '../../api/accounting/accounts/accounts.js';
 import '../../api/accounting/general-ledger/general-ledger.js';
@@ -48,6 +50,8 @@ import '../../api/rels/methods.js';
 import '../../api/sales/methods.js';
 import '../../api/users/methods.js';
 import '../../api/biometrics/methods.js';
+import '../../ui/layouts/server/methods.js';
+
 
 //publications
 import '../../api/accounting/current-accounts/server/publications.js';
@@ -56,6 +60,7 @@ import '../../api/accounting/general-ledger/server/publications.js';
 import '../../api/actions/server/publications.js';
 import '../../api/cars/server/publications.js';
 import '../../api/agents/server/publications.js';
+import '../../api/clients/server/publications.js';
 import '../../api/controlling/profit-centers/server/publications.js';
 import '../../api/controlling/cost-centers/server/publications.js';
 import '../../api/counters/server/publications.js';

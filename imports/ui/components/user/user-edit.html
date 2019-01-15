@@ -1,0 +1,101 @@
+<template name="User_edit">
+        <div class="panel hpanel subpanel">
+            <div class="panel-heading hpanel">{{Client.FirstName}} {{Client.LastName}} </div>
+            <div class="panel-body hpanel">
+                <hr>
+                <form class="form-horizontal" data-action='user-edit-form'>
+                    <div class="row">
+                        <!-- DNI -->
+                        <div class="form-group col-lg-2 col-xs-12">
+                            <label class="control-label" for='DocNumber'>DNI</label>
+                            <input id='DocNumber' type="number" class="form-control plate" name='DocNumber' value="{{Client.DocNumber}}">
+                            <span class='form-control-feedback'></span>
+                            <span class='help-block'></span>
+                        </div>
+                        <!-- FirstName -->
+                        <div class="form-group col-lg-5 col-xs-12">
+                            <label class="control-label " for='FirstName'>Nombre</label>
+                            <input id='FirstName' type="text" class="form-control uppercase" name="FirstName" value="{{Client.FirstName}}">
+                            <span class='form-control-feedback'></span>
+                            <span class='help-block'></span>
+                        </div>
+                        <!-- LastName -->
+                        <div class="form-group col-lg-5 col-xs-12">
+                            <label class="control-label" for='LastName'>Apellido</label>
+                                <input id='LastName' type="text" class="form-control uppercase" value="{{Client.LastName}}"
+                                name="LastName">
+                            <span class='form-control-feedback'></span>
+                            <span class='help-block'></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- PhoneNumber -->
+                        <div class="form-group col-lg-3 col-xs-12">
+<label class="control-label" for='PhoneNumber'>Teléfono</label>
+<input id='PhoneNumber' type="tel" class="form-control" name="PhoneNumber" value="{{Client.PhoneNumber}}">
+                            <span class='form-control-feedback'></span>
+                            <span class='help-block'></span>
+                        </div>
+                        <!-- DateOfBirth -->
+                        <div class="form-group col-lg-3 col-xs-12">
+                            <label class="control-label" for='DateOfBirth'>Fecha Nac.</label>
+                            <input id='DateOfBirth' type="date" class="form-control" name="DateOfBirth" value="{{Client.DateOfBirth}}">
+                            <span class='form-control-feedback'></span>
+                            <span class='help-block'></span>
+                        </div>
+                        <!-- Sex -->
+                        <div class="form-group col-lg-2 col-xs-12" style="margin-top:2px;">
+                        <label style="margin-top:4px;"  for="Sex">Sexo</label>
+                        <select class="form-control" id="Sex" style="margin-top:-4px;">
+                            <option {{checkIfFemale Client.Sex}} value="F">F</option>
+                            <option {{checkIfMale Client.Sex}} value="M">M</option>
+                        </select>
+                        </div>
+                        <!-- Notes -->
+                        <div class="form-group col-lg-4 col-xs-12">
+                            <label class="control-label" for='Notes'>Notas</label>
+                            <input id='Notes' type="text" class="form-control uppercase" value="{{Client.Notes}}"
+                                name="Notes">
+                            <span class='form-control-feedback'></span>
+                            <span class='help-block'></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        
+                        <!-- EnroledWithOwnPhone -->
+                        <div class="form-group col-lg-4 col-xs-12">
+                            <br>
+                            <br>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="EnroledWithOwnPhone"
+                                    {{checkIfEnroledWithOwnPhone Client.EnroledWithOwnPhone}}>
+                                <label class="form-check-label" for="EnroledWithOwnPhone">Se enroló con su propio teléfono</label>
+                            </div>
+                        </div>
+                        <!-- IsBlocked -->
+                        <div class="form-group col-lg-4 col-xs-12">
+                            <br>
+                            <br>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="IsBlocked" {{checkIfIsBlocked Client.IsBlocked}}>
+                                <label class="form-check-label" for="IsBlocked">
+                                    Bloqueo
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="hr-line-dashed"></div>
+                        <!-- Submit Buttons -->
+                        <div class="form-group">
+                            <div class="col-sm-8 col-sm-offset-2">
+                                <span class="btn btn-default js-cancel">Cancelar</span>
+                                <button class="btn btn-success js-save" type="submit">Guardar</button>
+                                <span class="danger" id="summary"></span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+</template>

@@ -6,6 +6,11 @@ Template.header.onCreated(function() {
 });
 
 Template.header.helpers({
+   
+    phoneNumber(ivr) {
+        let result = Meteor.call('phoneNumber', ivr)
+        return result
+    },
   workingFor() {
     if(Meteor.user()){
       return wf('header js');

@@ -24,7 +24,7 @@ Template.registerHelper("formatDate", function(D, M, Y) {
   return moment([Y, M, D]).format('DD / MM / YYYY');
 });
 Template.registerHelper("clean", function(userV) {
-  return userV.split("-")[0]
+  return userV.split("-")[2]
 });
 
 Template.registerHelper("appname", function() {
@@ -38,12 +38,20 @@ Template.registerHelper("logo", function() {
 Template.registerHelper("timeFromCreation", function(createdAt) {
   return moment(createdAt).fromNow();
 });
-Template.registerHelper("timeFromOrderCreation", function(createdAt) {
-  return moment(createdAt).format('dd hh:mm:ss a')
+Template.registerHelper("age", function(createdAt) {
+  return moment(createdAt).fromNow(true);
 });
+Template.registerHelper("sex", function(letter) {
+  return letter == "M" ? "<i class='fa fa-male'></i>" : "<i class='fa fa-female'></i>"
+});
+Template.registerHelper("timeFromOrderCreation", function(createdAt) {
+  return moment(createdAt).format('D.MMMYYYY HH:mm:ss')
+});
+
 Template.registerHelper("timeForPayment", function(createdAt,plusDays,minusDays) {
   return moment(createdAt).add(plusDays, 'days').subtract(minusDays, 'days').fromNow();
 });
+
 Template.registerHelper("formatAsNumber", function(number) {
   return numeral(number).format('0,0');
 

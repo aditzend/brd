@@ -2,13 +2,12 @@ import './agent-edit.html';
 
 Template.Agent_edit.onCreated(function () {
     console.log("data en agent edit ", this.data);
-      this.autorun(() => {
-          this.subscribe("agents.all")
-      });
+    this.autorun(() => {
+        this.subscribe("agents.all")
+    });
 });
 
 Template.Agent_edit.onRendered(function () {
-    //cargar react form
     const instance = Template.instance();
     const agent = instance.data.agent;
     console.log('on rendered EDIT ITEM >>>>>>', agent);
@@ -19,45 +18,61 @@ Template.Agent_edit.onRendered(function () {
             rules: {
                 DocNumber: {
                     required: true
-                }
-                ,Email: {
+                },
+                Email: {
                     required: true,
                     email: true
-                }
-                ,FirstName: {
+                },
+                FirstName: {
                     required: true,
-                }
-                ,LastName: {
+                },
+                LastName: {
                     required: true,
-                }
-                ,birthdate: {
+                },
+                birthdate: {
                     date: true
-                }
-                ,Phone: {
+                },
+                Phone: {
                     digits: true,
                     minlength: 8,
                     maxlength: 16
+                },
+                FourDigitPin: {
+                    digits: true,
+                    minlength: 4,
+                    maxlength: 4
+                },
+                FourDigitPinConfirmation: {
+                    equalTo: "#FourDigitPin"
                 }
             },
             messages: {
                 Email: {
-                    required: 'Falta completar email!'
-                    ,email: 'Este no es un email válido!'
-                }
-                ,DocNumber: {
-                    required: 'Falta completar el documento',
-                }
-                ,FirstName: {
-                    required: 'Falta completar el nombre',
-                }
-                ,LastName: {
-                    required: 'Falta completar el apellido',
-                }
-                ,Phone: {
-                    digits: 'Sólo números por favor',
-                    minlength: 'minimo 8 numeros',
-                    maxlength: 'maximo 16 numeros'
+                    required: 'Falta completar email!',
+                    email: 'Este no es un email válido!'
                 },
+                DocNumber: {
+                    required: 'Falta completar el documento',
+                },
+                FirstName: {
+                    required: 'Falta completar el nombre',
+                },
+                LastName: {
+                    required: 'Falta completar el apellido',
+                },
+                Phone: {
+                    digits: 'Sólo números por favor',
+                    minlength: 'Mínimo 8 números',
+                    maxlength: 'Máximo 4 números'
+                },
+                FourDigitPin: {
+                    minlength: 'Mínimo 4 números',
+                    maxlength: 'Máximo 4 números',
+                    digits: 'Sólo números por favor'
+                },
+                FourDigitPinConfirmation: {
+                    equalTo: 'Los PINs no coinciden'
+                }
             },
             showErrors: function (errorMap, errorList) {
                 console.log('form has errors')
@@ -77,40 +92,52 @@ Template.Agent_edit.onRendered(function () {
                 let Phone = instance.$('#Phone').val().toUpperCase();
                 let isN1 = instance.$('#isN1').is(':checked')
                 let isN2 = instance.$('#isN2').is(':checked')
+                let FourDigitPin = instance.$('#FourDigitPin').val()
                 if (agent._id == undefined) {
                     console.log("INSERTING...");
-                    const newAgentId = Agents.insert({
-                         DocNumber: DocNumber
-                         , Email: Email
-                         , FirstName: FirstName
-                         , LastName: LastName
-                         , Phone: Phone
-                         ,isN2:isN2
-                         ,isN1:isN1
-                    });
-                    instance.data.onSavedData(newAgentId);
-                    swal({
-                        title: DocNumber + ' creado!',
-                        type: "success"
-                    });
+                    const data = {
+                        DocType_ShortName: 'DNI',
+                        DocNumber: DocNumber,
+                        FirstName: FirstName,
+                        LastName: LastName,
+                        FourDigitPin: FourDigitPin,
+                        isN1: isN1,
+                        isN2: isN2,
+                        Phone: Phone,
+                        Email: Email
+                    }
+                    let newAgentId
+                    Meteor.call('agents.insert', data, (err, res) => {
+                        if (err) {
+                            swal('Error DB', 'Contacte a un administrador', 'error')
+                        } else {
+                            newAgentId = res
+                            instance.data.onSavedData(newAgentId);
+                            swal({
+                                title: DocNumber + ' creado!',
+                                type: "success"
+                            });
+                        }
+
+                    })
+
                 } else {
                     console.log("UPDATING...");
-                    Agents.update({
-                        _id: agent._id
-                    }, {
-                        $set: {
-                            DocNumber:DocNumber
-                            ,Email:Email
-                            ,FirstName:FirstName
-                            ,LastName:LastName
-                            ,Phone:Phone
-                            , isN2: isN2
-                            , isN1: isN1
-                        }
-                    });
+                    const data = {
+                        _id: agent._id,
+                        DocNumber: DocNumber,
+                        Email: Email,
+                        FirstName: FirstName,
+                        LastName: LastName,
+                        Phone: Phone,
+                        isN2: isN2,
+                        isN1: isN1,
+                        FourDigitPin: FourDigitPin
+                    }
+                    let update = Meteor.call('agents.update', data)
                     instance.data.onSavedData(agent._id);
                     swal({
-                        title: FirstName + ' ' + LastName + ' : Ingreso Correcto',
+                        title: FirstName + ' ' + LastName + ' : DATOS GUARDADOS',
                         type: "success"
                     });
                 }
@@ -121,19 +148,13 @@ Template.Agent_edit.onRendered(function () {
 });
 
 Template.Agent_edit.helpers({
-    calandra() {
-        return {FirstName:"Silvina"};
-    }
-    ,foo() {
-        return Template.instance().data.foo
-    }
-    ,agent() {
+    agent() {
         return Template.instance().data.agent
-    }
-    ,checkIfN1() {
-        return Template.instance().data.agent.isN1?"checked":""
-    }
-    , checkIfN2() {
+    },
+    checkIfN1() {
+        return Template.instance().data.agent.isN1 ? "checked" : ""
+    },
+    checkIfN2() {
         return Template.instance().data.agent.isN2 ? "checked" : ""
     }
 });

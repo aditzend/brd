@@ -1,84 +1,18 @@
 <template name="Dashboard">
   {{#staggering}}
-    <div class="wrapper">
- {{#pageTitle title="BIOMETRICO"}}
-      <!-- <button class="btn btn-lg js-send-email">enviar</button> -->
-      <!-- <h1>wwff>>>>>>>{{wwffHelper.name}}</h1> -->
-        <h2>
-          <!-- {{#if workingFor.logo}}
-              <img src="{{workingFor.logo}}" alt="" />
-              {{else}}
-              {{workingFor.name}}
-              {{/if}} -->
-             </h2>
-            {{/pageTitle}}
-            <div class="row">
-{{> Agents_panel}}
-
-              <!-- <div class='col col-lg-2'> -->
-                <!-- <a class="btn btn-success" href={{pathFor 'printLabels'}}>
-                  <span class='text-big'>{{_ "Print labels"}}</span></a> -->
-                <!-- <a class="btn btn-success" href={{pathForCreateOrder}}>{{_ "New order"}}</a> -->
-                <!-- <a class="btn btn-success" href={{pathForCreateExpense}}>{{_ "New expense"}}</a> -->
-                <!-- <a class="btn btn-default" href={{pathForShowTreasury}}>{{_ "Treasury"}}</a> -->
-              <!-- </div> -->
-        <!--         <div class="col-lg-3">
-
-            {{#panel footer="Estado de Genericos"}}
-
-            {{> Generics_show}}
-
-            {{/panel}}
-
-        </div>
-        <div class="col-lg-3">
-
-            {{#panel footer="This is standard panel footer" panelClass="stats"}}
-
-              {{> Birthday_widget}}
-            {{/panel}}
-
-        </div> -->
-
-                  <!-- {{#each module in modules}}
-                  <div class="col-lg-4">
-                  
-                  {{> Template.dynamic template= module}}
-                </div>
-                  
-                  {{/each}} -->
-                  <!-- {{> Hospitals_panel}} -->
-                  
-                    <!-- {{> Customers_panel}} -->
-                <!-- <div class="col-lg-4">
-                    {{> Vendors_panel}}
-                </div> -->
-                <div class="col-lg-12">
-                  <!-- {{> Families_panel}} -->
-                    <!-- {{> ValidateWorkerRels}} -->
-                  
-                    {{> Orders_panel}}
-                </div>
-                <!-- <div class="col-lg-4">
-                    {{> Items_panel}}
-                </div> -->
-                <!-- <div class="col-lg-4"> -->
-                  <!-- {{> SalesPerformance_panel}} -->
-
-                <!-- </div> -->
-                <div class="col-lg-4"> 
-
-                    <!-- {{> ProfitCenter}}
-                    {{> CostCenter}}
-                    {{> PaymentMethodsPanel}} -->
-
-                </div>
-            </div>
-            <div class='row'>
-              <div class='col col-sm-12 col-lg-12'>
-                <!-- {{> Cash_flow_panel}} -->
-              </div>
-            </div>
-        </div>
-    {{/staggering}}
+  <div class="wrapper">
+{{#pageTitle title="PANEL DE CONTROL DE BIOMETRÍA"}}
+    {{/pageTitle}}
+    <div class="row">
+      <div class="col col-sm-12 col-lg-12">
+        {{> Report_date_picker}}
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col col-sm-12 col-lg-12'>
+        {{> Orders_panel}}
+      </div>
+    </div>
+  </div>
+  {{/staggering}}
 </template>

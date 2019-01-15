@@ -151,7 +151,6 @@ bYearOptions = function() {
 };
 
 workfor = function(caller) {
-      console.log('workfor CALLED BY :', caller);
       return {
         _id:Meteor.userId(),
       name: '',
