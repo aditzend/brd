@@ -71,7 +71,7 @@
 
                 <h6>Perfil biométrico : {{action.user}}</h6>
                 <h6>{{action.transaction_id}}</h6>
-                <h6> | tid {{action.transaction_id}} | s {{action.samples}} | session {{action.x_session_id}} | {{#if action.is_full_enroll}} fe {{else}} ne {{/if}}| tr {{action.transcription}} </h6>
+                <h6> score: {{action.score}} | tid {{action.transaction_id}} | s {{action.samples}} | session {{action.x_session_id}} | {{#if action.is_full_enroll}} fe {{else}} ne {{/if}}| tr {{action.transcription}} </h6>
                 <h6 class="timeline-title">Intento: {{action.record_count}}</h6>
                 <!-- <h6 class="timeline-title">StASR: {{action.asr_status}}</h6> -->
                 <!-- <h6 class="timeline-title">Transcripción: {{action.transcription}}</h6> -->

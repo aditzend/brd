@@ -6,7 +6,7 @@ let fs = require('fs');
 let Client = require('ftp');
 let base = path.resolve('.');
 
-console.log('BASE PATH :', base);
+// console.log('BASE PATH :', base);
 let c = new Client();
 const connectionProperties = {
     host: Meteor.settings.ftp.host,

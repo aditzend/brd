@@ -10,33 +10,22 @@ import './enroled-show-page.html';
 
 Template.Enroled_show_page.onCreated(function () {
   this.autorun(() => {
-    this.subscribe('Orders.all')
+    this.subscribe('Orders.byDate', Session.get('REPORT_BEGINNING_DATE'), Session.get("REPORT_ENDING_DATE"))
   })
 });
 
 Template.Enroled_show_page.helpers({
   enroled() {
     return Orders.find({
-      $and: [{
-        type: 'enrolment_full'
-      }, {
-        createdAt: {
-          $gte: Session.get("REPORT_BEGINNING_DATE"),
-          $lte: Session.get("REPORT_ENDING_DATE")
-        }
-      }]
-    })
+      type: 'enrolment_full'
+    },
+    { $sort: {
+      createdAt: -1
+    }})
   },
   countEnroled() {
     return Orders.find({
-      $and: [{
-        type: 'enrolment_full'
-      }, {
-        createdAt: {
-          $gte: Session.get("REPORT_BEGINNING_DATE"),
-          $lt: Session.get("REPORT_ENDING_DATE")
-        }
-      }]
+      type: 'enrolment_full'
     }).count()
   },
   pathForUser(id) {
@@ -87,11 +76,13 @@ Template.Enroled_show_page.events({
       saveAs(blob, "NSSA_BIOMETRIA_PILOTO_CLIENTES_ENROLADOS_FILTRADOS.csv")
     }, 7 * 1000)
 
-  }
-  ,'click .js-download-audios-csv': function (e, instance) {
+  },
+  'click .js-download-audios-csv': function (e, instance) {
     const orders = Orders.find({
       $and: [{
-        audio: {$exists:true}
+        audio: {
+          $exists: true
+        }
       }, {
         createdAt: {
           $gte: Session.get("REPORT_BEGINNING_DATE"),
@@ -102,20 +93,20 @@ Template.Enroled_show_page.events({
     let arr = []
     orders.map((order) => {
       arr.push([
-        order.user,order.intent,order.type, order.audio, order.call_id, order.createdAt
+        order.user, order.intent, order.type, order.audio, order.call_id, order.createdAt
       ])
     })
     swal('Preparando archivo', 'Aguarde por favor', 'info')
-      let csv = Papa.unparse({
-        fields: [
-          'PERFIL_BIOMETRICO', 'INTENCION', 'TIPO','AUDIO', 'ID_INTERACCION', 'FECHA_HORA_CREACION'
-        ],
-        data: arr
-      })
-      const blob = new Blob([csv], {
-        type: "text/plain;charset=utf-8;"
-      })
-      saveAs(blob, "NSSA_BIOMETRIA_PILOTO_CLIENTES_ENROLADOS_FILTRADOS.csv")
+    let csv = Papa.unparse({
+      fields: [
+        'PERFIL_BIOMETRICO', 'INTENCION', 'TIPO', 'AUDIO', 'ID_INTERACCION', 'FECHA_HORA_CREACION'
+      ],
+      data: arr
+    })
+    const blob = new Blob([csv], {
+      type: "text/plain;charset=utf-8;"
+    })
+    saveAs(blob, "NSSA_BIOMETRIA_PILOTO_CLIENTES_ENROLADOS_FILTRADOS.csv")
   }
 
 })

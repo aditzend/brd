@@ -8,7 +8,26 @@ const mssqlConfig = Meteor.settings.mssqlConfig
 const selectClient = function (BiometricProfile) {
     return new Promise((resolve, reject) => {
         sql.close()
-        const query = `EXEC GetClient @BiometricProfile`
+        // const query = `EXEC GetClient @BiometricProfile`
+        const query = `
+        SELECT
+        Client.DocNumber AS DocNumber
+        ,Client.FirstName AS FirstName
+        , Client.LastName AS LastName
+        , Client.Notes AS Notes
+        , Client.IsBlocked AS IsBlocked
+        , Client.CurrentStatus AS CurrentStatus
+        , Client.EnroledWithOwnPhone AS EnroledWithOwnPhone
+        , Client.Sex AS Sex
+        , CONVERT(VARCHAR(19), Client.DateOfBirth, 120) AS DateOfBirth
+        , CONVERT(VARCHAR(19), Client.ModifiedDate, 120) AS ModifiedDate
+        , Phone.PhoneNumber AS PhoneNumber
+        FROM Client
+        INNER JOIN PhoneClient ON PhoneClient.ClientID = Client.ClientID
+        INNER JOIN Phone ON Phone.PhoneID = PhoneClient.PhoneID
+        WHERE
+        BiometricProfile = @BiometricProfile 
+        `
         sql.connect(mssqlConfig).then(pool => {
                 return pool.request()
                     .input('BiometricProfile', sql.VarChar(20), BiometricProfile)

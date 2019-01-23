@@ -27,8 +27,11 @@ Template.registerHelper("clean", function(userV) {
   return userV.split("-")[2]
 });
 
-Template.registerHelper("appname", function() {
+Template.registerHelper("appName", function() {
   return "<img src='/logos/logo-mitrol.png'/>"
+});
+Template.registerHelper("logoMitrol", function() {
+  return "<img height='90px' src='/logos/logo-mitrol.png'/>"
 });
 Template.registerHelper("logo", function() {
   const company = workfor('logo helper at global-helpers');
