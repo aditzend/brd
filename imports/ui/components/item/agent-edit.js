@@ -104,7 +104,7 @@ Template.Agent_edit.onRendered(function () {
                         isN1: isN1,
                         isN2: isN2,
                         Phone: Phone,
-                        Email: Email
+                        Email: Email,
                     }
                     let newAgentId
                     Meteor.call('agents.insert', data, (err, res) => {
@@ -134,7 +134,7 @@ Template.Agent_edit.onRendered(function () {
                         isN1: isN1,
                         FourDigitPin: FourDigitPin
                     }
-                    let update = Meteor.call('agents.update', data)
+                    Meteor.call('agents.update', data)
                     instance.data.onSavedData(agent._id);
                     swal({
                         title: FirstName + ' ' + LastName + ' : DATOS GUARDADOS',

@@ -37,7 +37,16 @@ const mssqlConfig = Meteor.settings.mssqlConfig
 
 
 
-const createAgent = function(DocNumber, DocType_ShortName, FirstName, LastName, FourDigitPin ,Notes) {
+const createAgent = function(
+    DocNumber
+    ,DocType_ShortName
+    ,FirstName
+    ,LastName
+    ,FourDigitPin
+    ,Notes
+    ,IP 
+    ,User
+    ) {
     return new Promise ( (resolve, reject) => {
         sql.close()
         const query = `EXEC CreateAgent
@@ -47,6 +56,8 @@ const createAgent = function(DocNumber, DocType_ShortName, FirstName, LastName, 
             ,@LastName
             ,@FourDigitPin
             ,@Notes
+            ,@IP
+            ,@User
         `
         sql.connect(mssqlConfig).then(pool => {
                 return pool.request()
@@ -54,8 +65,10 @@ const createAgent = function(DocNumber, DocType_ShortName, FirstName, LastName, 
                     .input('DocType_ShortName', sql.VarChar(10), DocType_ShortName)
                     .input('FirstName', sql.VarChar(50), FirstName)
                     .input('LastName', sql.VarChar(50), LastName)
-                    .input('FourDigitPin', sql.VarChar(255), FourDigitPin)
+                    .input('FourDigitPin', sql.VarChar(4), FourDigitPin)
                     .input('Notes', Notes)
+                    .input('IP', sql.VarChar(20), IP)
+                    .input('User', sql.VarChar(20), User)
                     .query(query)
             }).then(result => resolve({success: true, message: result}))
             .catch(err => {
@@ -97,18 +110,18 @@ const removeClearance = function(DocNumber, Clearance_ShortName) {
 const deleteAgent = function(DocNumber) {
     return new Promise( (resolve,reject) => {
         sql.close()
-        const query = `EXEC DeleteAgent @DocNumber`
+        const query = `EXEC DeactivateAgent @DocNumber`
         sql.connect(mssqlConfig).then(pool => {
             return pool.request().input('DocNumber', sql.VarChar(12), DocNumber).query(query)
         }).then(result => resolve({success: true, message: result}))
         .catch(err => {
-            console.log('problems deleting Agent', err)
+            console.log('❌  PROBLEMS DELETING AGENT ==> ', err)
             resolve({success: false, message: err.originalError.info.message})
         })
     })
 }
 
-const updateAgent = function(AgentID, DocNumber, FirstName, LastName, FourDigitPin, Notes) {
+const updateAgent = function(AgentID, DocNumber, FirstName, LastName, FourDigitPin, Notes, IP, User) {
     return new Promise ( (resolve, reject) => {
         sql.close()
         const query = `EXEC UpdateAgent 
@@ -118,6 +131,8 @@ const updateAgent = function(AgentID, DocNumber, FirstName, LastName, FourDigitP
                         ,@LastName
                         ,@FourDigitPin
                         ,@Notes
+                        ,@IP
+                        ,@User
                         `
         sql.connect(mssqlConfig).then(pool => {
             return pool.request()
@@ -127,6 +142,8 @@ const updateAgent = function(AgentID, DocNumber, FirstName, LastName, FourDigitP
             .input('LastName', sql.VarChar(50), LastName)
             .input('FourDigitPin', sql.VarChar(255), FourDigitPin)
             .input('Notes', sql.Text, Notes)
+            .input('IP', sql.VarChar(20), IP)
+            .input('User', sql.VarChar(20), User)
             .query(query)
         }).then(result => resolve({success: true, message: result}))
         .catch(err => {
@@ -160,7 +177,8 @@ Meteor.methods({
         if (!Meteor.userId()) {
             throw new Meteor.Error('not-authorized')
         }
-        console.log("MAKA METHOD ---> ");
+
+        console.log("MAKA METHOD ---> " + `${Meteor.user().emails[0].address} : ${Meteor.userId()} : IP ==> ${this.connection.clientAddress}`);
         return str
     }
     ,'agents.insert' (data) {
@@ -170,13 +188,16 @@ Meteor.methods({
 
             throw new Meteor.Error('not-authorized')
         }
+        const IP = this.connection.clientAddress
         let sqlAgentInsert = Promise.await(createAgent(
             data.DocNumber
             ,data.DocType_ShortName
             ,data.FirstName
             ,data.LastName
-            , 'e7df7cd2ca07f4f1ab415d457a6e1c13'
-            ,'Panel'
+            ,data.FourDigitPin
+            ,Meteor.settings.mitrol.notes_at_agent_insert
+            ,IP
+            ,`${Meteor.user().emails[0].address}`
         ))
         console.log('2 -  agents.insert...');
 
@@ -238,32 +259,50 @@ Meteor.methods({
         }
     }
     ,'agents.update' (data) {
+        console.log('1')
+
          check(data, Object)
          if (!Meteor.userId()) {
              throw new Meteor.Error('not authorized')
          }
+         console.log('2')
          let Agent = Agents.findOne(data._id)
+        const IP = this.connection.clientAddress
          let sqlAgentUpdate = Promise.await(
              updateAgent(
                  Agent.AgentID
                  ,data.DocNumber
                  ,data.FirstName
                  ,data.LastName
-                 ,'e7df7cd2ca07f4f1ab415d457a6e1c13'
-                 ,data.Notes))
+                 ,data.FourDigitPin
+                 ,data.Notes
+                 ,IP
+                 ,`${Meteor.user().emails[0].address}`))
+         console.log('3')
+
          console.log('AGENT SUCCESSFULLY UPDATED IN MSSQL ==> ', sqlAgentUpdate);
+         
           if (sqlAgentUpdate.success) {
-               if (!data.isN1) {
+              
+               if (!data.isN1 && Agent.isN1) {
+         console.log('4')
+
                    let n1 = Promise.await(removeClearance(Agent.DocNumber, 'FN1'))
                    console.log('AGENT HAS BEEN REVOKED CLEARANCE FN1 ==> ', n1);
-               } else {
+               } else if (data.isN1 && !Agent.isN1) {
+         console.log('5')
+
                    let n1 = Promise.await(grantClearance(Agent.AgentID, 'FN1'))
                    console.log('AGENT HAS BEEN GRANTED CLEARANCE FN1 ==> ', n1);
                }
-               if (!data.isN2) {
+               if (!data.isN2 && Agent.isN2) {
+         console.log('6')
+
                    let n2 = Promise.await(removeClearance(Agent.DocNumber, 'FN2'))
                    console.log('AGENT HAS BEEN REVOKED CLEARANCE FN2 ==> ', n2);
-               } else {
+               } else if (data.isN2 && !Agent.isN2 ) {
+         console.log('7')
+
                         let n2 = Promise.await(grantClearance(Agent.AgentID, 'FN2'))
                         console.log('AGENT HAS BEEN GRANTED CLEARANCE FN2 ==> ', n2);
                }
