@@ -17,7 +17,9 @@
         ,"url": "https://172.21.20.13"
     }
     ,"mitrol": {
-        "recordings_path":"http://172.21.20.12:9000/"
+        "ip_mite1x":"172.21.20.12"
+        ,"ip_panel":"172.21.20.15"
+        ,"recordings_path":"http://172.21.20.12:9000/"
         ,"ae_phoneNumber":"6841-6492"
         ,"ce_phoneNumber":"6841-6493"
         ,"iv_phoneNumber":"6841-6493"

@@ -22,6 +22,7 @@ import '../../api/generics/generics.js';
 // import '../../api/invoices/invoices.js';
 import '../../api/items/items.js';
 import '../../api/logs/logs.js';
+import '../../api/logs/methods.js';
 import '../../api/orders/orders.js';
 import '../../api/orders/details/details.js';
 import '../../api/payments/payments.js';
