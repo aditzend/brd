@@ -1,46 +1,135 @@
 <template name="Report_date_picker">
-    <hr>
-    <div class="row">
-        <div class="col col-xs-12 col-lg-12 text-center">
-            <h3>{{reportDatesExplanation}}</h3>
-            {{#if showingForm}}
-            <button class="js-hide-form btn btn-sm btn-primary"> Ocultar filtros de fecha</button>
-            {{else}}
-            <button type="button" class="js-show-form btn btn-sm btn-warning"> Ver filtros de fecha</button>
-            {{/if}}
-        </div>
-    </div>
-    <br>
-    {{#if showingForm}}
-    <div class='row'>
-        <div class="col col-xs-12 col-lg-12 text-center">
-            <button class="btn btn-primary js-set-1hr">1 HR</button>
-            <button class="btn btn-primary js-set-today">HOY</button>
-            <button class="btn btn-primary js-set-week">SEMANA</button>
-            <button class="btn btn-primary js-set-month">MES</button>
-            <button class="btn btn-primary js-set-all">TODO</button>
-        </div>
-    </div>
-    <form class="form-horizontal" data-action="set-report-dates">
-        <div class="form-row">
-            <div class="form-group col col-xs-12 col-lg-3">
-                <label class="control-label" for="ReportStartDate">Inicio</label>
-                <input class="form-control form-control-sm" type="date" id="ReportStartDate" name="ReportStartDate" />
-                <span class='form-control-feedback'></span>
-                <span class='help-block'></span>
+  <ul
+    class="dropdown-menu mega-menu pa-0"
+    data-dropdown-in="fadeIn"
+    data-dropdown-out="fadeOut"
+    id="report-dates-menu"
+  >
+    <li class="product-nicescroll-bar row">
+      <ul class="pa-20">
+        <li class="col-md-3 col-xs-6 col-menu-list">
+          <a href="javascript:void(0);"
+            ><div class="pull-left">
+              <i class="zmdi zmdi-time-interval mr-20"></i
+              ><span class="right-nav-text">Filtros rápidos</span>
             </div>
-            <div class="form-group col col-xs-12 col-lg-3">
-                <label class="control-label" for="ReportEndDate">Fin</label>
-                <input class="form-control form-control-sm" type="date" id="ReportEndDate" name="ReportEndDate" />
-                <span class='form-control-feedback'></span>
-                <span class='help-block'></span>
+            <!-- <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div> -->
+            <div class="clearfix"></div
+          ></a>
+          <hr class="light-grey-hr ma-0" />
+          <ul>
+            <br />
+            <li class="js-set-1hr">
+              <p><span class="text-info">HORA </span></p>
+              <p>
+                <span class="text-muted"
+                  >Ver eventos de los últimos 60 minutos.</span
+                >
+              </p>
+            </li>
+            <hr />
+            <li class="js-set-today">
+              <p><span class="text-info">HOY </span></p>
+              <p>
+                <span class="text-muted"
+                  >Ver eventos desde las 0 hs de hoy.</span
+                >
+              </p>
+            </li>
+            <hr />
+            <li class="js-set-week">
+              <p><span class="text-info">SEMANA </span></p>
+              <p>
+                <span class="text-muted"
+                  >Ver eventos desde el comienzo de la semana actual.</span
+                >
+              </p>
+            </li>
+            <hr />
+            <li class="js-set-month">
+              <p><span class="text-info">MES </span></p>
+              <p>
+                <span class="text-muted"
+                  >Ver eventos desde el comienzo del mes actual.</span
+                >
+              </p>
+            </li>
+            <hr />
+            <li class="js-set-all">
+              <p><span class="text-danger">BORRAR FILTROS </span></p>
+              <p><span class="text-muted">Ver todos los eventos </span></p>
+            </li>
+            <br />
+          </ul>
+        </li>
+
+        <li class="col-md-3 col-xs-6 col-menu-list">
+          <a href="javascript:void(0);">
+            <div class="pull-left">
+              <i class="zmdi zmdi-calendar mr-20"></i
+              ><span class="right-nav-text"
+                >Seleccionar fechas específicas</span
+              >
             </div>
-            <br>
-            <!-- <div class="form-group col col-xs-12 col-lg-6"> -->
-                <button type="submit" class="btn btn-sm btn-success" style="margin-left:9px;margin-top:6px;">Confirmar</button>
-                <!-- <span class="danger" id="summary"></span> -->
-            <!-- </div> -->
-        </div>
-    </form>
-    {{/if}}
+            <!-- <div class="pull-right"><span class="label label-success">hot</span>
+												</div> -->
+            <div class="clearfix"></div>
+          </a>
+          <hr class="light-grey-hr ma-0" />
+          <ul>
+            <li>
+              <br>
+              <form data-action="set-report-dates">
+                <div class="form-group">
+                  <label class="control-label mb-10" for="ReportStartDate"
+                    >Inicio:</label
+                  >
+                  <input type="date" class="form-control" id="ReportStartDate" />
+                   <span class="form-control-feedback"></span>
+                </div>
+                <div class="form-group">
+                  <label class="control-label mb-10" for="ReportEndDate">Fin:</label>
+                  <input type="date" class="form-control" id="ReportEndDate" />
+                   <span class="form-control-feedback"></span>
+                </div>
+                <div class="form-group mb-0">
+                  <button type="submit" class="btn btn-success btn-anim">
+                    <i class="zmdi zmdi-check mr-20"></i
+                    ><span class="btn-text"> Confirmar</span>
+                  </button>
+                   <!-- <span class="danger" id="summary"></span> -->
+                </div>
+              </form>
+            </li>
+          </ul>
+        </li>
+        <!-- <li class="col-md-6 col-xs-12 preview-carousel">
+											<a href="javascript:void(0);"><div class="pull-left"><span class="right-nav-text">Seleccionar fechas específicas</span></div><div class="clearfix"></div></a>
+											<hr class="light-grey-hr ma-0"/>
+											<div class="product-carousel owl-carousel owl-theme text-center">
+												<a href="#">
+													<img src="../img/chair.jpg" alt="chair">
+													<span>Circle chair</span>
+												</a>
+												<a href="#">
+													<img src="../img/chair2.jpg" alt="chair">
+													<span>square chair</span>
+												</a>
+												<a href="#">
+													<img src="../img/chair3.jpg" alt="chair">
+													<span>semi circle chair</span>
+												</a>
+												<a href="#">
+													<img src="../img/chair4.jpg" alt="chair">
+													<span>wooden chair</span>
+												</a>
+												<a href="#">
+													<img src="../img/chair2.jpg" alt="chair">
+													<span>square chair</span>
+												</a>								
+											</div>
+										</li> -->
+      </ul>
+    </li>
+  </ul>
 </template>

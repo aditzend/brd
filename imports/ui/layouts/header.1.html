@@ -1,0 +1,182 @@
+<template name="header">
+  <!-- Search Results -->
+  <div id='search-result-wrapper'>
+    <!-- {{#if searchingInHeader}} -->
+    <!-- <div id='search-results' class="dropdown dropdown-example">
+
+                                    <ul id='search-result-ul' class="dropdown-menu" role="menu">
+  <li> <i class='fa fa-search'></i> BUSCANDO</li>
+                                      {{#EasySearch.Each index=headerIndex }}
+                                        {{#if oneFound}}
+                                          {{> Search_fast_result}}
+                                          {{else}}
+                                          {{> Search_result_item}}
+                                        {{/if}}
+                                      {{/EasySearch.Each}}
+
+
+
+                                    </ul>
+                                </div> -->
+                                <!-- {{#EasySearch.IfNoResults index=index }} -->
+                                <!-- {{nothingFoundAlert}} -->
+                                <!-- <li class='h-bg-orange'><a href="../show-{{actodeType}}/{{_id}}"> -->
+                                <!-- <div class="panel-body note-link"> -->
+                                                            <!-- No existe nada con ese nombre! -->
+                                                        <!-- </div> -->
+                                                      <!-- </a></li> -->
+                                                      <!-- <div class="hpanel"> -->
+              <!-- <div class="panel-body float-e-margins"> -->
+                  <!-- <div class="wrapper"> -->
+                      <!-- <div class="row color-demo"> -->
+                          <!-- <div class="header-line h-bg-orange">
+                              <div>No existe nada con ese nombre!<span>Proba con otra palabra.</span></div>
+                          </div> -->
+                      <!-- </div> -->
+                  <!-- </div> -->
+              <!-- </div> -->
+
+                                <!-- {{/EasySearch.IfNoResults}} -->
+
+                                <!-- {{/if}} -->
+  </div>
+    <div id="header" class='hidden-print'>
+     <!-- <div class="color-line">
+    </div> -->
+    <div id="logo" class="light-version">
+        <span>
+            <!-- Mitrol Biometrics -->
+        </span>
+    </div>
+   
+    <div id="logo" class="light-version">
+        <span style="font-size:10px;">
+{{reportDatesExplanation}}     </span>
+    </div>
+        <nav role="navigation">
+            <!-- <div class="header-link hide-menu"><i class="fa fa-bars"></i></div> -->
+                                    <!-- <span class='centered-heading'> Mostrando todos los resultados</span> -->
+
+            <!-- <form data-action='header-form' role="search" class="navbar-form-custom" method="post" action="#">
+                <div data-action='header-search' class="form-group">
+                  {{> EasySearch.Input index=headerIndex attributes=headerInputAttributes noDocumentsOnEmpty='true' }}
+                    <input type="text" placeholder="Busca lo que quieras" class="form-control" name="search">
+                </div>
+
+            </form> -->
+
+            <div class="mobile-menu">
+                <button type="button" class="navbar-toggle mobile-menu-toggle" data-toggle="collapse" data-target="#mobile-collapse">
+                    <i class="fa fa-chevron-down"></i>
+                </button>
+                <div class="collapse mobile-navbar" id="mobile-collapse">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a class="" href="{{pathFor 'login'}}"><span class='text-primary'> <i class='fa fa-sign-in'></i> </span></a>
+                        </li>
+                        <li>
+                            <a class="" href="{{pathFor 'home'}}"><span class='text-primary'> <i class='fa fa-tachometer'></i> </span></a>
+                        </li>
+                        <li>
+                            <a class="js-logout" href="{{pathFor 'exit'}}">  <span class='text-primary'><i class='fa fa-sign-out'></i>  </span></a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="navbar-right">
+                        <ul class="nav navbar-nav no-borders">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+    <i class="fa fa-calendar"></i>
+                                </a>
+                                <ul class="dropdown-menu hdropdown notification animated flipInY">
+                                        {{> Report_date_picker}}
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                                    <i class="fa fa-ellipsis-h"></i>
+                                </a>
+                                <div class="dropdown-menu hdropdown bigmenu animated flipInX">
+                                    <table>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <a href="{{pathFor 'home'}}">
+                                                    <!-- <i class="fa fa-tachometer
+                                                     text-danger"></i> -->
+                                                    <h5>Panel principal</h5>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="{{pathFor 'showAgents'}}">
+                                                    <!-- <i class="fa fa-user text-warning"></i> -->
+                                                    <h5>Adm. Funcionarios</h5>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="{{pathFor 'showEnroledUsers'}}">
+                                                    <!-- <i class="pe pe-7s-users text-success"></i> -->
+                                                    <h5>Usuarios Enrolados</h5>
+                                                </a>
+                                            </td>
+                                        </tr>
+    
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle label-menu-corner" href="#" data-toggle="dropdown">
+                                    <i class="fa fa-bell"></i>
+                                    <!-- <span class="label label-success">4</span> -->
+                                </a>
+                                <ul class="dropdown-menu hdropdown animated flipInX">
+                                    <div class="title">
+                                        You have 4 new messages
+                                    </div>
+                                    <li>
+                                        <a>
+                                            It is a long established.
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a>
+                                            There are many variations.
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a>
+                                            Lorem Ipsum is simply dummy.
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a>
+                                            Contrary to popular belief.
+                                        </a>
+                                    </li>
+                                    <li class="summary"><a href="#">See All Messages</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" id="sidebar" class="right-sidebar-toggle">
+                                    <i class="pe-7s-upload pe-7s-news-paper"></i>
+                                </a>
+                            </li>
+                            <li class="dropdown">
+                                <a href='{{pathFor 'exit'}}'>
+    <i class="fa fa-sign-out-alt"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+           
+        </nav>
+    </div>
+
+
+
+
+</template>

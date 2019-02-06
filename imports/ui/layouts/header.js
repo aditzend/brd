@@ -6,6 +6,9 @@ Template.header.onCreated(function() {
 });
 
 Template.header.helpers({
+     reportDatesExplanation() {
+        return Session.get('REPORT_DATES_EXPLANATION')
+    },
    
     phoneNumber(ivr) {
         let result = Meteor.call('phoneNumber', ivr)

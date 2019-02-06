@@ -1,0 +1,48 @@
+<template name="Logs_panel">
+  <div class="panel panel-default card-view">
+    <div class="panel-heading">
+      <div class="pull-left">
+        <h6 class="panel-title txt-dark">Logs</h6>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <div class="panel-wrapper collapse in">
+      <div class="panel-body">
+        <p class="text-muted">
+ Todos los eventos del sistema en orden de aparición.
+        </p>
+        <div class="table-wrap mt-40">
+          <div class="table-responsive">
+            <table class="table table-striped table-bordered mb-0">
+              <thead>
+                <tr>
+                  <th>Código</th>
+                  <th>Descripción</th>
+                  <th>Notas</th>
+                  <th>ID Interacción</th>
+                  <th>IP Origen</th>
+                  <th>IP Destino</th>
+                  <th>T (ISO 8601)</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                  {{#each log in logs}}
+                <tr>
+                  <td><span class="label {{labelClass log.label}}">{{log.label}} {{log.code}}</span></td>
+                  <td>{{log.explanation}}</td>
+                  <td>{{log.notes}}</td>
+                  <td>{{log.callID}}</td>
+                  <td>{{log.senderIP}}</td>
+                  <td>{{log.receiverIP}}</td>
+                  <td>{{log.createdAt}}</td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

@@ -1,6 +1,8 @@
 //  INTERNAL MODULES
+import '/imports/ui/panels/logs-panel.js';
 import '/imports/ui/panels/orders-panel.js';
 import '/imports/ui/panels/agents-panel.js';
+import '/imports/ui/panels/counters.js';
 import '/imports/ui/components/report-date-picker/report-date-picker.js';
 
 // TEMPLATES

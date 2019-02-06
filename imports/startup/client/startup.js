@@ -2,12 +2,14 @@ import {
     Meteor
 } from 'meteor/meteor';
 
+const moment = require('moment')
+
 
 function waitUserData() {
     if (Meteor.user()) {
-        console.log('COMPANY READY', Meteor.user().company);
-        Session.set('company', Meteor.user().company);
-        Meteor.clearInterval(userInterval);
+        // console.log('COMPANY READY', Meteor.user().company);
+        // Session.set('company', Meteor.user().company);
+        // Meteor.clearInterval(userInterval);
 
     } else {
         console.log('RETRYING');
@@ -20,18 +22,22 @@ function kill(id) {
 
 
 function startAll() {
-    $('body')
-        .addClass('fixed-sidebar');
-    $('body').addClass('fixed-navbar');
-    $('body')
-        .addClass('fixed-small-header');
-    Session.set('job', 0);
+    // $('body')
+    //     .addClass('fixed-sidebar');
+    //     $("body")
+    //             .toggleClass("hide-sidebar");
+    // $('body').addClass('fixed-navbar');
+    // $('body')
+    //     .addClass('fixed-small-header');
+    // Session.set('job', 0);
     TAPi18n.setLanguage('es')
         .done(function () {})
         .fail(function (error_message) {
             // Handle the situation
             console.log(error_message);
         });
+        moment.locale('es')
+   
 }
 
 Meteor.startup(function () {

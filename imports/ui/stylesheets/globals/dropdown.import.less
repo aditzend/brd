@@ -1,3 +1,5 @@
+@dropdown-border-width: 0.25px;
+
 .dropdown-menu.hdropdown {
   padding: 0;
   z-index: 1060;
@@ -6,21 +8,21 @@
 .dropdown-menu.hdropdown .title {
   padding: 12px 12px;
   text-align: center;
-  border-bottom:1px solid @border-color ;
+  border-bottom:@dropdown-border-width solid @border-color ;
 }
 
 .dropdown-menu.hdropdown li {
   padding: 6px 12px;
   text-align: left;
   background: lighten(@color-background, 3%);
-  border-bottom:1px solid @border-color;
+  border-bottom:@dropdown-border-width solid @border-color;
 }
 
 .dropdown-menu.filedropdown li {
   padding: 6px 6px;
   text-align: left;
   background: lighten(@color-background, 3%);
-  border-bottom:1px solid @border-color;
+  border-bottom:@dropdown-border-width solid @border-color;
 }
 
 .dropdown-menu.filedropdown li i {
@@ -54,7 +56,7 @@ li.search_fast_result:hover, li.search_result_item:hover {
 }
 
 .navbar-nav > li > a:hover, .navbar-nav > li > a:focus, .navbar-nav .open > a, .navbar-nav .open > a:hover, .navbar-nav .open > a:focus {
-  color: inherit;
-  background: lighten(@color-background, 2%);
-  border-bottom:1px solid @border-color;
+  color: black;
+  background:@color-background;
+  // border-bottom:1px solid @border-color;
 }

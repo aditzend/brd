@@ -13,7 +13,7 @@ body {
   // text-rendering: geometricPrecision;
   // background-color: @color-background;
   background: @color-background;
-  font-size: 16pt;
+  font-size: 13px;
   color: @color-text;
   margin: 0;
   padding: 0;
@@ -21,13 +21,27 @@ body {
 }
 
 #header {
-  background: repeating-linear-gradient(90deg, @color-background,@color-background-gradient);
+  // background: repeating-linear-gradient(90deg, @color-background,@color-background-gradient);
+  background: @color-background;
   display: block;
-  height: 62px;
-  margin: 0;
-  padding: 0;
+  min-height: 66px;
+
+  // margin: 0;
+  // padding: 0;
   position: relative;
-  border-bottom: 1px solid @border-color;
+  // daffy 
+  border-bottom: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.35);
+    margin-bottom: 0;
+    min-height: 66px;
+    padding: 0 15px 0 0;
+  // border-bottom: 1px solid @border-color;
+}
+
+.centered-heading {
+  margin-top: 5px;
+  font-size: 17px;
+  // display:block;
 }
 
 #menu {
@@ -46,7 +60,8 @@ body {
   /* margin: 0 0 0 0; */
   margin: 0 0 0 @menu-width;
   padding: 0;
-  background: repeating-linear-gradient(90deg ,@color-background,@color-background-gradient);
+  background-color: @color-background;
+  // background: repeating-linear-gradient(90deg ,@color-background,@color-background-gradient);
   border-left: 1px solid @border-color;
   transition: margin 0.4s ease 0s;
   /* position: absolute; */

@@ -6,7 +6,7 @@
   </form> -->
 {{> EasySearch.Input index=agentSearchIndex attributes=agentSearchIndexAttributes noDocumentsOnEmpty='true' }}
 {{#EasySearch.Each index=agentSearchIndex }}
-<button class='js-search-result-item btn  search-result' id={{_id}}>{{FirstName}} {{LastName}}</button>
+<button class='js-search-result-item btn btn-default btn-ouline  search-result' id={{_id}}>{{FirstName}} {{LastName}}</button>
   {{/EasySearch.Each}}
 {{#EasySearch.IfNoResults index=agentSearchIndex}}
   Este funcionario no está ingresado.

@@ -2,7 +2,10 @@ const sql = require('mssql')
 const mssqlConfig = Meteor.settings.mssqlConfig
 
 Meteor.methods({
-    'logs.insert'(label, code, explanation, notes, callID, clientIP, serverIP) {
+    'logs.insert'(label, code, explanation, notes, callID, sender, receiver) {
+        const senderIP = sender?sender:''
+        const receiverIP = receiver?receiver:''
+
         // Inserting to MongoDB
         Logs.insert({
             label:label
@@ -10,8 +13,8 @@ Meteor.methods({
             ,explanation:explanation
             ,notes:notes
             ,callID:callID
-            ,clientIP:clientIP
-            ,serverIP:serverIP
+            ,senderIP:senderIP 
+            ,receiverIP:receiverIP
         })
         // Inserting to sql server
         sql.close()
@@ -21,8 +24,8 @@ Meteor.methods({
             ,@Explanation
             ,@Notes
             ,@CallID
-            ,@ClientIP
-            ,@ServerIP`
+            ,@SenderIP
+            ,@ReceiverIP`
         sql.connect(mssqlConfig).then(pool => {
             return pool.request()
                 .input('Label', sql.VarChar(12), label)
@@ -30,10 +33,10 @@ Meteor.methods({
                 .input('Explanation', sql.VarChar(40), explanation)
                 .input('Notes', sql.Text, notes)
                 .input('CallID', sql.VarChar(127), callID)
-                .input('ClientIP', sql.VarChar(30), clientIP)
-                .input('ServerIP', sql.VarChar(30), serverIP)
+                .input('SenderIP', sql.VarChar(30), senderIP)
+                .input('ReceiverIP', sql.VarChar(30), receiverIP)
                 .query(query)
         }).then(result => console.log('event logged to Log Table', result))
-        .catch(err => console.log('ERROR LOGGIN TO SQL SERVER', err))
+        .catch(err => console.log('ERROR LOGING TO SQL SERVER', err))
     }
 })

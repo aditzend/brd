@@ -70,6 +70,7 @@ import '../../api/delivery-notes/server/publications.js';
 import '../../api/families/server/publications.js';
 import '../../api/invoices/server/publications.js';
 import '../../api/items/server/publications.js';
+import '../../api/logs/server/publications.js';
 import '../../api/orders/server/publications.js';
 import '../../api/orders/details/server/publications.js';
 import '../../api/payment-methods/server/publications.js';

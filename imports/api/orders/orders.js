@@ -63,12 +63,12 @@ Orders.before.insert(function (userId, doc) {
             Meteor.call('logs.insert', 'ERROR', 1200, explanation, notes, callID, clientIP, serverIP)
             break;
         default:
-            Meteor.call('logs.insert', 'INFO', 4000, explanation, notes, callID, clientIP, serverIP)
+            Meteor.call('logs.insert', 'INFO', 3999, explanation, notes, callID, clientIP, serverIP)
             console.log('UNEXPECTED LOG ATTEMPT')
     }
 
-    doc.clientIP = Meteor.settings.mitrol.ip_mite1x
-    doc.serverIP = Meteor.settings.mitrol.ip_panel
+    doc.senderIP = Meteor.settings.mitrol.ip_mite1x?Meteor.settings.mitrol.ip_mite1x:''
+    doc.receiverIP = Meteor.settings.mitrol.ip_panel?Meteor.settings.mitrol.ip_panel:''
     doc.createdAt = moment()
         .format();
 });

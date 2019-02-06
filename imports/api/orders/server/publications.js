@@ -23,6 +23,14 @@ Meteor.publish('Orders.test', function ordersTest() {
 //     }
 
 // });
+
+Meteor.publish('Orders.byCallID', function ordersByCallID(callID) {
+    if (this.userId) {
+        return Orders.find({call_id: callID})
+    } else {
+        this.ready()
+    }
+});
 Meteor.publish('Orders.byDate', function ordersByDate(IsoStartDate, IsoEndDate) {
     if (this.userId) {
         if (IsoEndDate == null || IsoEndDate == undefined || IsoEndDate == '') {

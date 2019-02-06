@@ -19,6 +19,7 @@
     "mailgun-js": "^0.18.1",
     "meteor-node-stubs": "~0.2.0",
     "moment": "^2.22.2",
+    "moment-timezone": "^0.5.23",
     "mssql": "^4.3.0",
     "mysql": "^2.15.0",
     "numeral": "^1.5.6",

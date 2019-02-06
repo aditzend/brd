@@ -10,6 +10,7 @@ import {
 import * as enrolled from './mongodb/orders'
 import * as biometricsMiddleware from './middleware'
 import './plotting/matrix'
+import * as helpers from './biometric-engine/helpers'
 
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
@@ -19,7 +20,7 @@ const biometricURL = Meteor.settings.biometrics.url
 
 
 // inicia una sesion en el motor biometrico    
-//  let sessionId = Promise.await(getBiometricSessionId())
+ let sessionId = Promise.await(helpers.getBiometricSessionId())
 
 function deleteUser(user, sessionId) {
     return new Promise(function (resolve, reject) {
@@ -253,7 +254,6 @@ const processEnrolmentAudio = function (req) {
 
 Meteor.method("enrolment_audio", function (req) {
     Meteor.setTimeout(() => processEnrolmentAudio(req), 1)
-    // Meteor.setTimeout(processEnrolmentAudio(req), 10 * 1000)
     return 'enrolling'
 })
 

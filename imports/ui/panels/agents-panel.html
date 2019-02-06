@@ -1,41 +1,18 @@
 <template name="Agents_panel">
-  {{#panel title="Administración de Funcionarios" panelClass="stats" color="hpurple"}}
-
-  <hr>
-  <hr>
-  {{> Agent_DECS agentArgs}}
-  <hr>
-  <hr>
-
-  
-  
-  
-  
-<!--   
-    {{#if selectedItem}}
-      <div class="list-item">
-        <div class="">
-          <button class="js-deselect-item btn btn-primary">
-            <i class='fa fa-arrow-left'></i>
-            {{_ "Back to search"}}
-          </button>
+  <div class="row">
+    <div class="col-lg-6 col-sm-12">
+      <div class="panel panel-default border-panel card-view">
+        <div class="panel-heading">
+          <div class="pull-left">
+            <h6 class="panel-title txt-dark">Administración de Funcionarios</h6>
+          </div>
+        </div>
+        <div class="panel-wrapper collapse in">
+          <div class="panel-body">
+            {{> Agent_DECS agentArgs}}
+          </div>
         </div>
       </div>
-      <hr>
-        {{#if editingItem}}
-          {{> Item_edit editItemArgs}}
-        {{else}}
-          {{> Item_show (showItemArgs selectedItem)}}
-        {{/if}}
-      <hr>
-    {{else}} 
-      {{#if creatingItem}}
-        <h1>creating item</h1>
-        {{> Item_edit createItemArgs }}
-      {{else}}
-        <h1>searching item</h1>
-        {{> Car_DECS productArgs}}
-      {{/if}}
-    {{/if}}  -->
-{{/panel}}
+    </div>
+  </div>
 </template>

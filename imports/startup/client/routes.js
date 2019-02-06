@@ -10,15 +10,7 @@ import {
     AccountsTemplates
 }
 from 'meteor/useraccounts:core';
-if (Session.get('theme') == 'light'){
-  console.log('im in light');
-  import '../../ui/stylesheets/style-light.less';
-} else {
-  import '../../ui/stylesheets/style.less';
-//   console.log('im in dark');
 
-};
-import '../../ui/stylesheets/own/timeline.less'
 import '../../ui/layouts/app-body.js';
 import '../../ui/layouts/header.js';
 import '../../ui/layouts/app-nav.js';

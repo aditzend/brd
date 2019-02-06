@@ -8,55 +8,10 @@ Template.Report_date_picker.onCreated(function () {
         showingForm: false
     })
 })
-
-Template.Report_date_picker.helpers({
-    reportDatesExplanation() {
-        return Session.get('REPORT_DATES_EXPLANATION')
-    },
-    showingForm() {
-        const instance = Template.instance()
-        return instance.state.get('showingForm')
-    }
-});
-
-Template.Report_date_picker.events({
-    'click .js-set-1hr': function (e, instance) {
-        Session.set('REPORT_BEGINNING_DATE', moment().subtract(1, 'hour').format())
-        Session.set('REPORT_ENDING_DATE', null)
-        Session.set('REPORT_DATES_EXPLANATION', 'Mostrando resultados desde hace una hora')
-        instance.state.set('showingForm', false)
-
-    },
-    'click .js-set-today': function (e, instance) {
-        Session.set('REPORT_BEGINNING_DATE', moment().startOf('day').format())
-        Session.set('REPORT_ENDING_DATE', null)
-        Session.set('REPORT_DATES_EXPLANATION', 'Mostrando resultados de hoy')
-        instance.state.set('showingForm', false)
-    },
-    'click .js-set-week': function (e, instance) {
-        Session.set('REPORT_BEGINNING_DATE', moment().startOf('week').format())
-        Session.set('REPORT_ENDING_DATE', null)
-        Session.set('REPORT_DATES_EXPLANATION', 'Mostrando resultados de esta semana')
-        instance.state.set('showingForm', false)
-
-    },
-    'click .js-set-month': function (e, instance) {
-        Session.set('REPORT_BEGINNING_DATE', moment().startOf('month').format())
-        Session.set('REPORT_ENDING_DATE', null)
-        Session.set('REPORT_DATES_EXPLANATION', 'Mostrando resultados de este mes')
-        instance.state.set('showingForm', false)
-
-    },
-    'click .js-set-all': function (e, instance) {
-        Session.set('REPORT_BEGINNING_DATE', '1900-01-07T00:00:00-03:00')
-        Session.set('REPORT_ENDING_DATE', null)
-        Session.set('REPORT_DATES_EXPLANATION', 'Mostrando todos los resultados')
-        instance.state.set('showingForm', false)
-
-    },
-    'click .js-show-form': function (e, instance) {
-        instance.state.set('showingForm', true)
-        Meteor.setTimeout(() => {
+Template.Report_date_picker.onRendered(function() {
+    //
+    const instance = Template.instance()
+       Meteor.setTimeout(() => {
             $('#ReportStartDate').val(Session.get('REPORT_BEGINNING_DATE'))
             if (Session.get('REPORT_ENDING_DATE') == null) {
                 $('#ReportEndDate').val(moment().format('YYYY-MM-DD'))
@@ -99,19 +54,61 @@ Template.Report_date_picker.events({
                         console.log(start);
                         if (start == undefined || start == '' || start == null) {
                             swal('Error', 'Debe seleccionar una fecha de inicio', 'error')
+                        } else if (start > end){
+                            swal('Error', 'La fecha de inicio no puede ser mayor a la de fin', 'error')
                         } else {
+                            $('#dates-menu-button').removeClass('open')
                             Session.set('REPORT_BEGINNING_DATE', moment(start).format() )
                             Session.set('REPORT_ENDING_DATE', moment(end).hour(23).minutes(59).seconds(59).format() )
                             Session.set('REPORT_DATES_EXPLANATION', `Mostrando resultados desde el ${moment(start).format('D/MM/YY')} hasta el ${moment(end).format('D/MM/YY')}`)
-                            instance.state.set('showingForm', false)
                         }
 
                     }
                 });
             // FORM END
         }, 200)
-    },
-    'click .js-hide-form': function (e, instance) {
-        instance.state.set('showingForm', false)
-    }
+    //
 })
+
+// Template.Report_date_picker.helpers({
+//     reportDatesExplanation() {
+//         return Session.get('REPORT_DATES_EXPLANATION')
+//     }
+// });
+
+Template.Report_date_picker.events({
+    'click .js-set-1hr': function (e, instance) {
+        Session.set('REPORT_BEGINNING_DATE', moment().subtract(1, 'hour').format())
+        Session.set('REPORT_ENDING_DATE', null)
+        Session.set('REPORT_DATES_EXPLANATION', 'Mostrando resultados desde hace una hora')
+        instance.state.set('showingForm', false)
+
+    },
+    'click .js-set-today': function (e, instance) {
+        Session.set('REPORT_BEGINNING_DATE', moment().startOf('day').format())
+        Session.set('REPORT_ENDING_DATE', null)
+        Session.set('REPORT_DATES_EXPLANATION', 'Mostrando resultados de hoy')
+        instance.state.set('showingForm', false)
+    },
+    'click .js-set-week': function (e, instance) {
+        Session.set('REPORT_BEGINNING_DATE', moment().startOf('week').format())
+        Session.set('REPORT_ENDING_DATE', null)
+        Session.set('REPORT_DATES_EXPLANATION', 'Mostrando resultados de esta semana')
+        instance.state.set('showingForm', false)
+
+    },
+    'click .js-set-month': function (e, instance) {
+        Session.set('REPORT_BEGINNING_DATE', moment().startOf('month').format())
+        Session.set('REPORT_ENDING_DATE', null)
+        Session.set('REPORT_DATES_EXPLANATION', 'Mostrando resultados de este mes')
+        instance.state.set('showingForm', false)
+
+    },
+    'click .js-set-all': function (e, instance) {
+        Session.set('REPORT_BEGINNING_DATE', '1900-01-07T00:00:00-03:00')
+        Session.set('REPORT_ENDING_DATE', null)
+        Session.set('REPORT_DATES_EXPLANATION', 'Mostrando todos los resultados')
+        instance.state.set('showingForm', false)
+
+    }
+    })

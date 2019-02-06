@@ -3,21 +3,21 @@ import './app-body.html';
 Template.App_body.onRendered(function() {
 
   // Add special class to minimalize page elements when screen is less than 768px
-  setBodySmall();
+  // setBodySmall();
   // Wait until metisMenu, collapse effect finish and set wrapper height
-  setTimeout(function() {
-    fixWrapperHeight();
-  }, 300);
+    // setTimeout(function() {
+    //   fixWrapperHeight();
+    // }, 300);
 
-  $(window).bind("resize click", function() {
+  // $(window).bind("resize click", function() {
 
     // Add special class to minimalize page elements when screen is less than 768px
-    setBodySmall();
+    // setBodySmall();
 
     // Wait until metisMenu, collapse effect finish and set wrapper height
-    setTimeout(function() {
-      fixWrapperHeight();
-    }, 300);
+    // setTimeout(function() {
+    //   fixWrapperHeight();
+    // }, 300);
   });
 
   // FIXED SIDEBAR
@@ -33,7 +33,11 @@ Template.App_body.onRendered(function() {
   // $('body').addClass('fixed-small-header');
 
 
-});
+// });
+
+function setDaffyStyles() {
+  $("body").addClass()
+}
 
 function fixWrapperHeight() {
 
