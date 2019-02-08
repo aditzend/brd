@@ -4,13 +4,35 @@
     <input type='submit' value='Buscar Agente'>
 
   </form> -->
-{{> EasySearch.Input index=agentSearchIndex attributes=agentSearchIndexAttributes noDocumentsOnEmpty='true' }}
-{{#EasySearch.Each index=agentSearchIndex }}
-<button class='js-search-result-item btn btn-default btn-ouline  search-result' id={{_id}}>{{FirstName}} {{LastName}}</button>
-  {{/EasySearch.Each}}
-{{#EasySearch.IfNoResults index=agentSearchIndex}}
-  Este funcionario no está ingresado.
-  <hr>
-  <button class='js-create-item btn btn-success '>Ingresar {{insertedText}} al sistema</button>
-  {{/EasySearch.IfNoResults}}
+  <div class="col col-lg-3">
+    <form>
+      <!-- form-group -->
+      <div class="form-group mb-30">
+        <!-- <label class="control-label mb-10">Buscar funcionario</label> -->
+        <div class="input-group mb-15">
+          <span class="input-group-addon">DNI</span>
+          {{> EasySearch.Input index=agentSearchIndex attributes=agentSearchIndexAttributes noDocumentsOnEmpty='true' }}
+        </div>
+      </div>
+      <!-- /form-group -->
+    </form>
+  </div>
+  <div class="col-lg-9">
+    <!-- <div class="button-list mt-25"> -->
+      {{#EasySearch.Each index=agentSearchIndex }}
+      <button
+        id="{{ _id }}"
+        class="pull-left btn btn-info btn-outline search-result js-search-result-item"
+      >
+        {{ FirstName }} {{ LastName }}
+      </button>
+      {{#EasySearch.IfNoResults index=agentSearchIndex}}
+      Este funcionario no está ingresado.
+      <button class="js-create-item btn btn-success btn-outline ">
+        Ingresar {{ insertedText }} al sistema
+      </button>
+      {{/EasySearch.IfNoResults}}
+      {{/EasySearch.Each}}
+    <!-- </div> -->
+  </div>
 </template>

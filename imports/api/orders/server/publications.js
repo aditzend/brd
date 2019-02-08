@@ -31,6 +31,7 @@ Meteor.publish('Orders.byCallID', function ordersByCallID(callID) {
         this.ready()
     }
 });
+
 Meteor.publish('Orders.byDate', function ordersByDate(IsoStartDate, IsoEndDate) {
     if (this.userId) {
         if (IsoEndDate == null || IsoEndDate == undefined || IsoEndDate == '') {
@@ -49,6 +50,36 @@ Meteor.publish('Orders.byDate', function ordersByDate(IsoStartDate, IsoEndDate) 
                      createdAt: {
                          $lt: IsoEndDate
                      }
+                 }]
+             })
+        }
+       
+    } else {
+        this.ready();
+    }
+
+});
+Meteor.publish('Orders.byDateAndAgent', function ordersByDateAndAgent(Agent,IsoStartDate, IsoEndDate) {
+    if (this.userId) {
+        if (IsoEndDate == null || IsoEndDate == undefined || IsoEndDate == '') {
+            return Orders.find({
+                    createdAt: {
+                        $gt: IsoStartDate
+                    },
+                    agent:Agent
+                });
+        } else {
+             return Orders.find({
+                 $and: [{
+                     createdAt: {
+                         $gt: IsoStartDate
+                     }
+                 }, {
+                     createdAt: {
+                         $lt: IsoEndDate
+                     }
+                 },{
+                     agent:Agent
                  }]
              })
         }

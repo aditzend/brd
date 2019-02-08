@@ -10,6 +10,7 @@ Template.Agent_show.onCreated(function() {
     });
     this.autorun(() => {
         this.subscribe("agents.all")
+        this.subscribe("Orders.byDateAndAgent",this.data.agent.DocNumber,Session.get("REPORT_BEGINNING_DATE"),Session.get("REPORT_ENDING_DATE"))
     });
 });
 
@@ -17,6 +18,15 @@ Template.Agent_show.helpers({
     agent() {
         return Template.instance().data.agent;
     },
+    events() {
+        return Orders.find({},{sort:{createdAt:-1}})
+    },
+    enroled() {
+        return Orders.find({type:"enrolment_full"},{sort:{createdAt:-1}})
+    },
+    countEnroled() {
+        return Orders.find({type:"enrolment_full"}).count()
+    }
 });
 
 Template.Agent_show.events({

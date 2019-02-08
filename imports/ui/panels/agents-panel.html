@@ -1,5 +1,77 @@
 <template name="Agents_panel">
-  <div class="row">
+  <div class="page-wrapper">
+    <div class="container-fluid">
+      <!-- Row -->
+      <div class="row">
+        <div class="col-sm-12">
+          <!-- <div class="panel panel-default card-view"> -->
+            <!-- <div class="panel-heading"> -->
+              <div class="pull-left">
+                <h1 class="panel-title txt-dark">
+                  administración de funcionarios
+                </h1>
+              </div>
+              <div class="clearfix"></div>
+            <!-- </div> -->
+            <!-- <div class="panel-wrapper collapse in"> -->
+              <!-- <div class="panel-body"> -->
+                
+              <!-- </div> -->
+            <!-- </div> -->
+          <!-- </div> -->
+        </div>
+      </div>
+      <div class="row">
+        <br>
+        <br>
+        <div class="form-wrap">
+                  {{> Agent_DECS agentArgs}}
+                </div>
+      </div>
+      <!-- /Row -->
+      <!-- Row -->
+      <!-- <div class="row">
+						<div class="col-sm-12">
+            {{> Agent_DECS agentArgs}}
+
+							<div class="panel panel-default card-view">
+								<div class="panel-heading">
+									<div class="pull-left">
+										<h6 class="panel-title txt-dark">inline form</h6>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+								<div class="panel-wrapper collapse in">
+									<div class="panel-body">
+										<div class="form-wrap">
+											<form class="form-inline">
+											   <div class="form-group mr-15">
+													<label class="control-label mr-10" for="email_inline">email:</label>
+													<input type="email" class="form-control" id="email_inline">
+												</div>
+												<div class="form-group mr-15">
+													<label class="control-label mr-10" for="pwd_inline">Password:</label>
+													<input type="password" class="form-control" id="pwd_inline">
+												</div>
+												<div class="checkbox mr-15">
+													<input id="checkbox_inline" type="checkbox">
+													<label for="checkbox_inline">
+														remember me
+													</label>
+												</div>
+												<button type="button" class="btn btn-success btn-anim"><i class="icon-rocket"></i><span class="btn-text">submit</span></button>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>	 -->
+      <!-- /Row -->
+    </div>
+  </div>
+
+  <!-- <div class="row">
     <div class="col-lg-6 col-sm-12">
       <div class="panel panel-default border-panel card-view">
         <div class="panel-heading">
@@ -14,5 +86,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </template>

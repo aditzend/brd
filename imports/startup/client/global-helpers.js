@@ -1,4 +1,36 @@
-
+Template.registerHelper("explain", function(type) {
+  switch (type) {
+      case "call_started":
+        return '<i class="zmdi zmdi-phone-ring text-info"></i> Inicio de llamada';
+        break;
+      case "call_ended":
+        return '<i class="zmdi zmdi-phone-end text-info"></i> Fin de llamada';
+        break;
+      case "validation_finished":
+        return "<i class='zmdi zmdi-gps-dot text-info'></i> Validación finalizada";
+        break;
+      case "validation_violated":
+        return "<i class='zmdi zmdi-alert-triangle text-danger'></i> Infracción";
+        break;
+      case "enrolment_full":
+        return "<i class='zmdi zmdi-check text-success'></i> Enrolamiento exitoso";
+        break;
+      case "enrolment_error":
+        return "<i class='zmdi zmdi-alert-polygon text-warning'></i> Error en el enrolamiento";
+        break;
+      case "enrolment_finished":
+        return "<i class='zmdi zmdi-account-add text-success'></i> Enrolamiento exitoso";
+        break;
+      case "signature_finished":
+        return "Firma exitosa";
+        break;
+      case "signature_failed":
+        return "Firma errónea";
+        break;
+      default:
+        return type;
+    }
+})
 Template.registerHelper("pathFor", function(routeName,params,queryParams){
   const path = FlowRouter.path(routeName, params, queryParams);
   return path;

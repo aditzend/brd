@@ -1,54 +1,375 @@
  <template name="Agent_show">
-  <div class=" {{#if showingOptionButtons}}js-hide-option-buttons{{else}}js-show-option-buttons{{/if}}">
-    <div class='row'>
-      <div class='col-xs-12 col-md-12 col-lg-12'>
-        <p class='text-center'>
-          <h1 class="text-big"><strong>{{agent.FirstName}} {{agent.LastName}}</strong></h1>
-          <!-- <h2>{{brand}} {{model}} {{year}}</h2> -->
-          <!-- <p class="text-muted">Hace {{daylyKm}} km/día</p>  -->
-            <p class="text-uppercase">DNI :{{agent.DocNumber}}</p>
-            <p class="text-uppercase">Email :{{agent.Email}}</p>
-            <p class="text-uppercase">Teléfono :{{agent.Phone}}</p>
-            <p class="text-uppercase">{{#if agent.isN1}} NIVEL 1 {{/if}}</p>
-            <p class="text-uppercase">{{#if agent.isN2}} NIVEL 2 {{/if}}</p>
-            <!-- <p>EMAIL</p> -->
-            <p>
-              <a href="mailto:{{agent.Email}}" class="btn btn-success">   ENVIAR EMAIL A {{agent.FirstName}}</a>
-            </p>
-            <br>
-            <!-- <p>TELÉFONO</p> -->
-            <p>
-              <a href="tel:{{agent.Phone}}" class="btn btn-success">   LLAMAR A {{agent.FirstName}}</a>
-            </p>
-        </p>
-        <hr>
-          {{#if showingOptionButtons}}
-          <button class='btn btn-sm btn-default js-edit'><i class='fa fa-pencil'> </i> Editar</button>
-          <button class='btn btn-sm btn-default js-delete'><i class='fa fa-trash'> </i> Eliminar</button>
-          {{#if expanded}}<button class='btn btn-sm btn-default js-compress'><i class='fa fa-compress'> </i> Ver menos</button>
-        {{else}}
-        <button class='btn btn-sm btn-default js-expand'><i class='fa fa-expand'> </i> Ver m&aacute;s</button>
-        {{/if}}
-      {{/if}}
-
-    <p>
-    <!-- <h3 class="no-margins font-extra-bold text-primary ">{{item.plate}}</h3>
-    <p>{{item.brand}} {{item.model}} {{item.year}}</p>
-    <br>
-    <h3 class="no-margins font-extra-bold text-primary ">{{item.carOwner.givenName}} {{item.carOwner.lastName}}</h3>
-    <p>{{item.carOwner.email}} {{item.carOwner.phone}}</p> -->
-  </p>
-</div>
-<div class='col-xs-12 col-md-12 col-lg-12'>
-
-
-
-  <!-- {{> Car_sell (sellArgs car._id)}} -->
-
-
-</div>
-
-</div>
-</div>
-
+				<div class="row">
+					<div class="col-lg-3 col-xs-12">
+						<div class="panel panel-default card-view  pa-0">
+							<div class="panel-wrapper collapse in">
+								<div class="panel-body  pa-0">
+									<div class="profile-box">
+										<div class="profile-info text-center">
+											<!-- <div class="profile-img-wrap">
+												<img class="inline-block mb-10" src="../img/mock1.jpg" alt="user"/>
+												<div class="fileupload btn btn-default">
+													<span class="btn-text">edit</span>
+													<input class="upload" type="file">
+												</div>
+											</div>	 -->
+											<h5 class="block mt-25 mb-5 weight-500 txt-primary">{{agent.FirstName}} {{agent.LastName}}</h5>
+											<h6 class="block capitalize-font pb-20">{{#if agent.isN1}} Funcionario Nivel 1 {{/if}} {{#if agent.isN2}} Funcionario Nivel 2 {{/if}}</h6>
+											<p class="block capitalize-font pb-20"><i class="zmdi zmdi-user"></i> {{agent.DocNumber}}</p>
+											<p class="block capitalize-font pb-20"><i class="zmdi zmdi-phone"></i> {{agent.Phone}}</p>
+											<p class="block pb-20"><i class="zmdi zmdi-email"></i> {{agent.Email}}</p>
+										</div>	
+							
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-9 col-xs-12">
+						<div class="panel panel-default card-view pa-0">
+							<div class="panel-wrapper collapse in">
+								<div  class="panel-body pb-0">
+									<div  class="tab-struct custom-tab-1">
+										<ul role="tablist" class="nav nav-tabs nav-tabs-responsive" id="myTabs_8">
+											<li class="active" role="presentation"><a  data-toggle="tab" id="profile_tab_8" role="tab" href="#profile_8" aria-expanded="false"><span>actividad</span></a></li>
+											<li  role="presentation" class="next"><a aria-expanded="true"  data-toggle="tab" role="tab" id="follo_tab_8" href="#follo_8"><span>usuarios enrolados<span class="inline-block">({{countEnroled}})</span></span></a></li>
+											<!-- <li role="presentation" class=""><a  data-toggle="tab" id="photos_tab_8" role="tab" href="#photos_8" aria-expanded="false"><span>photos</span></a></li> -->
+											<!-- <li role="presentation" class=""><a  data-toggle="tab" id="earning_tab_8" role="tab" href="#earnings_8" aria-expanded="false"><span>earnings</span></a></li> -->
+											<!-- <li role="presentation" class=""><a  data-toggle="tab" id="settings_tab_8" role="tab" href="#settings_8" aria-expanded="false"><span>settings</span></a></li> -->
+											<!-- <li class="dropdown" role="presentation"> -->
+												<!-- <a  data-toggle="dropdown" class="dropdown-toggle" id="myTabDrop_7" href="#" aria-expanded="false"><span>More</span> <span class="caret"></span></a> -->
+												<!-- <ul id="myTabDrop_7_contents"  class="dropdown-menu"> -->
+													<!-- <li class=""><a  data-toggle="tab" id="dropdown_13_tab" role="tab" href="#dropdown_13" aria-expanded="true">About</a></li> -->
+													<!-- <li class=""><a  data-toggle="tab" id="dropdown_14_tab" role="tab" href="#dropdown_14" aria-expanded="false">Followings</a></li> -->
+													<!-- <li class=""><a  data-toggle="tab" id="dropdown_15_tab" role="tab" href="#dropdown_15" aria-expanded="false">Likes</a></li> -->
+													<!-- <li class=""><a  data-toggle="tab" id="dropdown_16_tab" role="tab" href="#dropdown_16" aria-expanded="false">Reviews</a></li> -->
+												<!-- </ul> -->
+											<!-- </li> -->
+										</ul>
+										<div class="tab-content" id="myTabContent_8">
+											<div  id="profile_8" class="tab-pane fade active in" role="tabpanel">
+												<div class="col-md-12">
+													 <div class="panel-wrapper collapse in">
+          <div class="panel-body row pa-0">
+            
+            <div class="table-wrap">
+              <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                  <thead>
+                    <tr>
+                        <th class="text-center"><span class="text-center"><i class="zmdi zmdi-time"></i></span></th>
+                      <th class="text-center">Evento</th>
+                      <th class="text-center">Detalles</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {{#each event in events }}
+                    <tr>
+                        <td>
+{{event.createdAt}}
+                        </td>
+                      <td>
+                        <span class="txt-dark weight-500"
+                          >{{{
+                           explain event.type
+                          }}}</span
+                        >
+                      </td>
+                      <td>
+                        {{#if event.user }} 
+                        <i class="zmdi zmdi-account-o"></i>
+                        {{event.user}}
+                        {{/if}}
+                        {{#if event.score}}<i class="zmdi zmdi-gps"></i>{{
+                          event.score
+                        }}
+                        {{/if}}
+                      </td>
+                    </tr>
+                    {{/each}}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+												</div>
+											</div>
+											
+											<div  id="follo_8" class="tab-pane fade" role="tabpanel">
+                          	<div class="col-md-12">
+													 <div class="panel-wrapper collapse in">
+          <div class="panel-body row pa-0">
+            <div class="table-wrap">
+              <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                  <thead>
+                    <tr>
+                        <th class="text-center"><i class="zmdi zmdi-time"></i></th>
+                      <th class="text-center">Perfil biométrico</th>
+                      <th class="text-center">ID Interacción</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {{#each event in enroled }}
+                    <tr>
+                        <td>
+{{event.createdAt}}
+                        </td>
+                      <td>
+                        <span class="txt-dark weight-500"
+                          >{{
+                           event.user
+                          }}</span
+                        >
+                      </td>
+                      <td>
+                    {{event.call_id}}
+                      </td>
+                    </tr>
+                    {{/each}}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+												</div>
+													
+											</div>
+											<div  id="photos_8" class="tab-pane fade" role="tabpanel">
+												<div class="col-md-12 pb-20">
+													<div class="gallery-wrap">
+														<div class="portfolio-wrap project-gallery">
+															<ul id="portfolio_1" class="portf auto-construct  project-gallery" data-col="4">
+																<li  class="item"   data-src="../img/gallery/equal-size/mock1.jpg" data-sub-html="<h6>Bagwati</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>" >
+																	<a href="">
+																	<img class="img-responsive" src="../img/gallery/equal-size/mock1.jpg"  alt="Image description" />
+																	<span class="hover-cap">Bagwati</span>
+																	</a>
+																</li>
+																<li class="item" data-src="../img/gallery/equal-size/mock2.jpg"   data-sub-html="<h6>Not a Keyboard</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
+																	<a href="">
+																	<img class="img-responsive" src="../img/gallery/equal-size/mock2.jpg"  alt="Image description" />
+																	<span class="hover-cap">Not a Keyboard</span>
+																	</a>
+																</li>
+																<li class="item" data-src="../img/gallery/equal-size/mock3.jpg" data-sub-html="<h6>Into the Woods</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
+																	<a href="">
+																	<img class="img-responsive" src="../img/gallery/equal-size/mock3.jpg"  alt="Image description" />
+																	<span class="hover-cap">Into the Woods</span>
+																	</a>
+																</li>
+																<li class="item" data-src="../img/gallery/equal-size/mock4.jpg"  data-sub-html="<h6>Ultra Saffire</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
+																	<a href="">
+																	<img class="img-responsive" src="../img/gallery/equal-size/mock4.jpg"  alt="Image description" />
+																	<span class="hover-cap"> Ultra Saffire</span>
+																	</a>
+																</li>
+																
+																<li class="item" data-src="../img/gallery/equal-size/mock5.jpg" data-sub-html="<h6>Happy Puppy</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
+																	<a href="">
+																	<img class="img-responsive" src="../img/gallery/equal-size/mock5.jpg"  alt="Image description" />	
+																	<span class="hover-cap">Happy Puppy</span>
+																	</a>
+																</li>
+																<li class="item" data-src="../img/gallery/equal-size/mock6.jpg"  data-sub-html="<h6>Wooden Closet</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
+																	<a href="">
+																	<img class="img-responsive" src="../img/gallery/equal-size/mock6.jpg"  alt="Image description" />
+																	<span class="hover-cap">Wooden Closet</span>
+																	</a>
+																</li>
+																<li class="item" data-src="../img/gallery/equal-size/mock7.jpg" data-sub-html="<h6>Happy Puppy</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
+																	<a href="">
+																	<img class="img-responsive" src="../img/gallery/equal-size/mock7.jpg"  alt="Image description" />	
+																	<span class="hover-cap">Happy Puppy</span>
+																	</a>
+																</li>
+																<li class="item" data-src="../img/gallery/equal-size/mock8.jpg"  data-sub-html="<h6>Wooden Closet</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
+																	<a href="">
+																	<img class="img-responsive" src="../img/gallery/equal-size/mock8.jpg"  alt="Image description" />
+																	<span class="hover-cap">Wooden Closet</span>
+																	</a>
+																</li>
+															</ul>
+														</div>
+													</div>
+												</div>	
+											</div>
+											<div  id="earnings_8" class="tab-pane fade" role="tabpanel">
+												<div class="row">
+													<div class="col-lg-12">
+														<form id="example-advanced-form" action="#">
+															<div class="table-wrap">
+																<div class="table-responsive">
+																	<table class="table table-striped display product-overview" id="datable_1">
+																		<thead>
+																			<tr>
+																				<th>Date</th>
+																				<th>Item Sales Colunt</th>
+																				<th>Earnings</th>
+																			</tr>
+																		</thead>
+																		<tfoot>
+																			<tr>
+																				<th colspan="2">total:</th>
+																				<th></th>
+																			</tr>
+																		</tfoot>
+																		<tbody>
+																			<tr>
+																				<td>monday, 12</td>
+																				<td>
+																				 3
+																				</td>
+																				<td>$400</td>
+																			</tr>
+																			<tr>
+																				<td>tuesday, 13</td>
+																				<td>
+																				 2
+																				</td>
+																				<td>$400</td>
+																			</tr>
+																			<tr>
+																				<td>wednesday, 14</td>
+																				<td>
+																				 3
+																				</td>
+																				<td>$420</td>
+																			</tr>
+																			<tr>
+																				<td>thursday, 15</td>
+																				<td>
+																				 5
+																				</td>
+																				<td>$500</td>
+																			</tr>
+																			<tr>
+																				<td>friday, 15</td>
+																				<td>
+																				 3
+																				</td>
+																				<td>$400</td>
+																			</tr>
+																			<tr>
+																				<td>saturday, 16</td>
+																				<td>
+																				 3
+																				</td>
+																				<td>$400</td>
+																			</tr>
+																			<tr>
+																				<td>sunday, 17</td>
+																				<td>
+																				 3
+																				</td>
+																				<td>$400</td>
+																			</tr>
+																			<tr>
+																				<td>monday, 18</td>
+																				<td>
+																				 3
+																				</td>
+																				<td>$500</td>
+																			</tr>
+																			<tr>
+																				<td>tuesday, 19</td>
+																				<td>
+																				 3
+																				</td>
+																				<td>$400</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</div>
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>
+											<div  id="settings_8" class="tab-pane fade" role="tabpanel">
+												<div class="row">
+													<div class="col-lg-12">
+														<div class="">
+															<div class="panel-wrapper collapse in">
+																<div class="panel-body pa-0">
+																	<div class="col-sm-12 col-xs-12">
+																		<div class="form-wrap">
+																			<form action="#">
+																				<div class="form-body overflow-hide">
+																					<div class="form-group">
+																						<label class="control-label mb-10" for="exampleInputuname_01">Name</label>
+																						<div class="input-group">
+																							<div class="input-group-addon"><i class="icon-user"></i></div>
+																							<input type="text" class="form-control" id="exampleInputuname_01" placeholder="willard bryant">
+																						</div>
+																					</div>
+																					<div class="form-group">
+																						<label class="control-label mb-10" for="exampleInputEmail_01">Email address</label>
+																						<div class="input-group">
+																							<div class="input-group-addon"><i class="icon-envelope-open"></i></div>
+																							<input type="email" class="form-control" id="exampleInputEmail_01" placeholder="xyz@gmail.com">
+																						</div>
+																					</div>
+																					<div class="form-group">
+																						<label class="control-label mb-10" for="exampleInputContact_01">Contact number</label>
+																						<div class="input-group">
+																							<div class="input-group-addon"><i class="icon-phone"></i></div>
+																							<input type="email" class="form-control" id="exampleInputContact_01" placeholder="+102 9388333">
+																						</div>
+																					</div>
+																					<div class="form-group">
+																						<label class="control-label mb-10" for="exampleInputpwd_01">Password</label>
+																						<div class="input-group">
+																							<div class="input-group-addon"><i class="icon-lock"></i></div>
+																							<input type="password" class="form-control" id="exampleInputpwd_01" placeholder="Enter pwd" value="password">
+																						</div>
+																					</div>
+																					<div class="form-group">
+																						<label class="control-label mb-10">Gender</label>
+																						<div>
+																							<div class="radio">
+																								<input type="radio" name="radio1" id="radio_01" value="option1" checked="">
+																								<label for="radio_01">
+																								M
+																								</label>
+																							</div>
+																							<div class="radio">
+																								<input type="radio" name="radio1" id="radio_02" value="option2">
+																								<label for="radio_02">
+																								F
+																								</label>
+																							</div>
+																						</div>
+																					</div>
+																					<div class="form-group">
+																						<label class="control-label mb-10">Country</label>
+																						<select class="form-control" data-placeholder="Choose a Category" tabindex="1">
+																							<option value="Category 1">USA</option>
+																							<option value="Category 2">Austrailia</option>
+																							<option value="Category 3">India</option>
+																							<option value="Category 4">UK</option>
+																						</select>
+																					</div>
+																				</div>
+																				<div class="form-actions mt-10">			
+																					<button type="submit" class="btn btn-primary mr-10 mb-30">Update profile</button>
+																				</div>				
+																			</form>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 </template>

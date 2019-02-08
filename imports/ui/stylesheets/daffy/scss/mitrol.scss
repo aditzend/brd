@@ -1,16 +1,13 @@
 @charset "UTF-8"; 
-// @import "bourbon";
-// @import "{bourbon:bourbon}";
+
 @import "{}/node_modules/bourbon/core/_bourbon.scss";
-// @import "{}/node_modules/bourbon/core/bourbon/*";
-// @import "{}/node_modules/bourbon";
-// @import "{}/node_modules/bourbon/";
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800);
 // @import "../css/font-awesome.min.css";	
 // @import "./css/font-awesome.min.css"
-// @import "./t5.css";	    
 // @import "{}/imports/ui/stylesheets/daffy/css/font-awesome.min.css";	
+// @import "{}/imports/ui/stylesheets/daffy/css/animate.css";	
 @import "mixins.scss";
+@import "custom";
 
 $green:#8BC34A;
 $lightgreen:#AED581;
@@ -23,7 +20,7 @@ $blue:#4e44e7;
 $skyblue:#00a5d1;
 $lightblue:#958FEF;
 $navytblue:#322e56;
-$pink:#e11d8e;
+$color-info:#e11d8e;
 $babypink:#e284a3;
 $orange:#ff6300;
 $brown:#6d300e;
@@ -45,6 +42,9 @@ $xtra_lighter_grey:rgba(33,33,33,0.05);
 $xtra_lighter_white:rgba(255,255,255,0.05);
 $font_main: 'Montserrat', sans-serif;
 
+
+$color-info: $twitter_blue;
+$color-primary: $twitter_blue;
 
 /****************************/
 /** Reset **/
@@ -68,7 +68,7 @@ body {
 	font-size: 14px;
 	font-style: normal;
 	line-height:1.5;
-	background:#acb0b1;
+	background: white;
 	overflow-x:hidden;
 }
 
@@ -311,11 +311,11 @@ $num: 0;
 }
 .bg-blue,
 .bg-primary {
-	background:$blue !important;
+	background:$color-primary !important;
 }
 .bg-pink,
 .bg-info {
-	background:$pink !important;
+	background:$color-info !important;
 }
 .bg-purple {
 	background:$purple !important;
@@ -342,7 +342,7 @@ $num: 0;
 	background:$twitter_blue !important;
 }
 .bg-gradient {
-	background:linear-gradient(45deg,$blue,$pink) !important;
+	background:linear-gradient(45deg,$color-primary,$color-info) !important;
 }
 .txt-dark {
 	color:$black !important;
@@ -358,7 +358,7 @@ $num: 0;
 }
 .txt-info,
 .text-info {
-	color: $pink !important;
+	color: $color-info !important;
 }
 .txt-warning,
 .text-warning {
@@ -366,7 +366,8 @@ $num: 0;
 }
 .txt-primary,
 .text-primary {
-	color: $blue !important;
+	color: $color-primary !important;
+	font-family:'Titillium', 'Montserrat', Arial, Helvetica, sans-serif;
 }
 .txt-success,
 .text-success {
@@ -570,7 +571,7 @@ blockquote {
 	padding: 15px 20px;
 	margin: 0 0 20px;
 	font-size: 16px;
-	border-left: 4px solid $blue;
+	border-left: 4px solid $color-primary;
 	background: #f7f7f9;
 	color: $black;
 	small {
@@ -611,20 +612,20 @@ ul.uo-list {
 		}
 	}
 	&.btn-info {
-		background:rgba(225, 29, 142,1);
-		border:solid 1px rgba(225, 29, 142,1);
+		background:$color-info;
+		border:solid 1px $color-info;
 		&:hover,&:active,&:focus {
-			background:rgba(225, 29, 142,.85);
-			border:solid 1px rgba(225, 29, 142,.1);
+			background: lighten($color-info,15%);
+			border:solid 1px lighten($color-info,90%);
 			
 		}
 	}
 	&.btn-primary {
-		background:rgba(78, 68, 231,1);
-		border:solid 1px rgba(78, 68, 231,1);
+		background:$color-primary;
+		// border:solid 1px rgba(78, 68, 231,1);
 		&:hover,&:active,&:focus {
-			background:rgba(78, 68, 231,.85);
-			border:solid 1px rgba(78, 68, 231,.1);
+			background:lighten($color-primary,15%);
+			// border:solid 1px rgba(78, 68, 231,.1);
 		}
 	}
 	&.btn-success {
@@ -672,17 +673,17 @@ ul.uo-list {
 			}
 		}
 		&.btn-info {
-			border:solid 1px rgba(225, 29, 142,.5);
-			color: $pink;
+			border:solid 1px $color-info;
+			color: $color-info;
 			&:hover,&:focus,&:active {
-				border:solid 1px rgba(225, 29, 142,1);
+				border:solid 1px $color-info;
 			}
 		}
 		&.btn-primary {
-			border:solid 1px rgba(78, 68, 231,.5);
-			color: $blue;
+			// border:solid 1px rgba(78, 68, 231,.5);
+			color: $color-primary;
 			&:hover,&:focus,&:active {
-				border:solid 1px rgba(78, 68, 231,1);
+				// border:solid 1px rgba(78, 68, 231,1);
 			}
 		}
 		&.btn-success {
@@ -859,23 +860,23 @@ ul.uo-list {
 		}
 		&.btn-info {
 			&:before {
-					box-shadow: 0 0 0 35px $pink inset;
+					box-shadow: 0 0 0 35px $color-info inset;
 			}
 			&:hover {
-				color: $pink!important;
+				color: $color-info!important;
 				&:before {
-					box-shadow: 0 0 0 1px $pink inset;
+					box-shadow: 0 0 0 1px $color-info inset;
 				}	
 			}
 		}
 		&.btn-primary {
 			&:before {
-					box-shadow: 0 0 0 35px $blue inset;
+					box-shadow: 0 0 0 35px $color-primary inset;
 			}
 			&:hover {
-				color: $blue!important;
+				color: $color-primary!important;
 				&:before {
-					box-shadow: 0 0 0 1px $blue inset;
+					box-shadow: 0 0 0 1px $color-primary inset;
 				}	
 			}
 		}
@@ -1105,7 +1106,7 @@ ul.uo-list {
 		&.btn-info {
 			&.btn-0{
 				&:before {
-				  background: $pink;
+				  background: $color-info;
 				}
 			}
 			&.btn-0{
@@ -1117,7 +1118,7 @@ ul.uo-list {
 		&.btn-primary {
 			&.btn-0{
 				&:before {
-				  background: $blue;
+				  background: $color-primary;
 				}
 			}
 			&.btn-0{
@@ -1178,11 +1179,11 @@ ul.uo-list {
 			}
 		}
 		&.btn-info{
-			background:rgba(225, 29, 142,1);
-			border:solid 1px rgba(225, 29, 142,1);
+			background:$color-info;
+			border:solid 1px $color-info;
 			&:hover,&:active,&:focus {
-				background:rgba(225, 29, 142,.85);
-				border:solid 1px rgba(225, 29, 142,.1);
+				background:lighten($color-info,15%);
+				border:solid 1px lighten($color-info,90%);
 				
 			}
 		}
@@ -1233,16 +1234,16 @@ ul.uo-list {
 				border:solid 1px $yellow;
 			}
 			&.btn-info {
-				color:$pink;
-				border:solid 1px $pink;
+				color:$color-info;
+				border:solid 1px $color-info;
 			}
 			&.btn-danger {
 				color:$red;
 				border:solid 1px $red;
 			}
 			&.btn-primary {
-				color:$blue;
-				border:solid 1px $blue;
+				color:$color-primary;
+				border:solid 1px $color-primary;
 			}
 		}
 	}	
@@ -1753,9 +1754,10 @@ a#toggle_mobile_nav {
 }
 
 .page-wrapper {
-    margin-left: 225px;
+    margin-left: 0px;
+    // margin-left: 225px;
 	background: $white;
-    padding:70px 20px;
+    padding:70px 120px;
 	position:relative;
 	@include transition(all 0.4s ease);
 	left:0;
@@ -1979,7 +1981,7 @@ a#toggle_mobile_nav {
 		&.pimary-color-blue {
 			.fixed-sidebar-left .side-nav {
 				> li > a.active {
-					color:$blue;
+					color:$color-primary;
 				}
 			}
 		}
@@ -2000,7 +2002,7 @@ a#toggle_mobile_nav {
 		&.pimary-color-pink {
 			.fixed-sidebar-left .side-nav {
 				> li > a.active {
-					color:$pink;
+					color:$color-info;
 				}
 			}
 		}
@@ -2105,12 +2107,12 @@ a#toggle_mobile_nav {
 						top: 4px;
 					}
 					.brand-text {
-						color: $black;
+						color: $grey;
 						display: inline-block;
-						font-size: 23px;
-						font-weight:600;
-						letter-spacing:1px;
-						text-transform: uppercase;
+						font-size: 13px;
+						font-weight:300;
+						// letter-spacing:1px;
+						// text-transform: uppercase;
 						opacity:1;
 						visibility:visible;
 					}
@@ -2496,7 +2498,7 @@ a#toggle_mobile_nav {
 		
 	}
 	.page-wrapper{
-		margin-left:44px;
+		margin-left:0px;
 	}
 }
 
@@ -3704,7 +3706,7 @@ ul.wysihtml5-toolbar {
 			}
 			&.active {
 					> a {
-						border-bottom:3px solid $blue;
+						border-bottom:3px solid $color-primary;
 					}
 			}
 		}
@@ -3716,7 +3718,7 @@ ul.wysihtml5-toolbar {
 				&.active {
 						> a {
 							border-bottom:none;
-							border-right:3px solid $blue;
+							border-right:3px solid $color-primary;
 						}
 				}
 			}
@@ -3726,7 +3728,7 @@ ul.wysihtml5-toolbar {
 				&.active {
 						> a {
 							border-right:none;
-							border-left:3px solid $blue;
+							border-left:3px solid $color-primary;
 						}
 				}
 			}
@@ -3741,16 +3743,16 @@ ul.wysihtml5-toolbar {
 				background:transparent;
 				border-radius:0;
 				&:active,&:focus,&:hover {
-					color:$blue;
+					color:$color-primary;
 				}
 			}
 			&.active,&.open {
 				> a {
-					color:$blue;
+					color:$color-primary;
 					background:$white;
 					
 					&:active,&:focus,&:hover {
-						color:$blue;
+						color:$color-primary;
 						background:$white;
 					}
 				}
@@ -3786,17 +3788,17 @@ ul.wysihtml5-toolbar {
 			text-transform:capitalize;
 			
 			&:active,&:focus,&:hover {
-				background:$blue;
+				background:$color-primary;
 				color:$white;
 			}
 		}
 				
 		&.active,&.open {
 			> a {
-				background:$blue;
+				background:$color-primary;
 				color:$white;
 				&:active,&:focus,&:hover {
-					background:$blue;
+					background:$color-primary;
 					color:$white;
 				}
 			}
@@ -3864,17 +3866,17 @@ ul.wysihtml5-toolbar {
 				border:2px solid #f7f7f9;
 				color:$grey;
 				&:hover,&:active,&:focus {
-					border-color:$blue;
+					border-color:$color-primary;
 					color:$black;
 				}
 			}
 			&.active {
 				>a {
 					background-color:transparent!important;
-					border:2px solid $blue;
+					border:2px solid $color-primary;
 					color:$black;
 					&:hover,&:active,&:focus {
-						border:2px solid $blue;
+						border:2px solid $color-primary;
 						color:$black;
 					}
 				}
@@ -4625,7 +4627,7 @@ table.footable > tbody > tr.footable-empty > td {
 			height: 42px;
 			padding: 10px 12px;
 			&.node-selected {
-				background: $blue!important;
+				background: $color-primary!important;
 			}
 			&:hover {
 				background:#f7f7f9;
@@ -4673,7 +4675,7 @@ table.footable > tbody > tr.footable-empty > td {
 		background:$green;
 	}
 	&.alert-info {
-		background:$pink;
+		background:$color-info;
 	}
 	&.alert-danger {
 		background:$red;
@@ -4706,7 +4708,7 @@ table.footable > tbody > tr.footable-empty > td {
 		}
 		&.alert-info {
 			i {
-				color:$pink;
+				color:$color-info;
 				background: #f7f7f7;
 			}	
 		}
@@ -4754,7 +4756,7 @@ table.footable > tbody > tr.footable-empty > td {
 			}
 		}
 		&.jq-icon-info {
-			background:$pink;
+			background:$color-info;
 			padding-left:50px;
 			&:before {
 				content: "\e717";
@@ -4868,8 +4870,8 @@ table.footable > tbody > tr.footable-empty > td {
 
 .checkbox-primary input[type="checkbox"]:checked + label::before,
 .checkbox-primary input[type="radio"]:checked + label::before {
-  background-color: $blue;
-  border-color: $blue;
+  background-color: $color-primary;
+  border-color: $color-primary;
 }
 
 .checkbox-danger input[type="checkbox"]:checked + label::before,
@@ -4880,8 +4882,8 @@ table.footable > tbody > tr.footable-empty > td {
 
 .checkbox-info input[type="checkbox"]:checked + label::before,
 .checkbox-info input[type="radio"]:checked + label::before {
-  background-color: $pink;
-  border-color: $pink;
+  background-color: $color-info;
+  border-color: $color-info;
 }
 
 .checkbox-warning input[type="checkbox"]:checked + label::before,
@@ -4898,8 +4900,8 @@ table.footable > tbody > tr.footable-empty > td {
 
 .checkbox-primary input[type="checkbox"]:indeterminate + label::before,
 .checkbox-primary input[type="radio"]:indeterminate + label::before {
-  background-color: $blue;
-  border-color: $blue;
+  background-color: $color-primary;
+  border-color: $color-primary;
 }
 
 .checkbox-danger input[type="checkbox"]:indeterminate + label::before,
@@ -4910,8 +4912,8 @@ table.footable > tbody > tr.footable-empty > td {
 
 .checkbox-info input[type="checkbox"]:indeterminate + label::before,
 .checkbox-info input[type="radio"]:indeterminate + label::before {
-  background-color: $pink;
-  border-color: $pink;
+  background-color: $color-info;
+  border-color: $color-info;
 }
 
 .checkbox-warning input[type="checkbox"]:indeterminate + label::before,
@@ -4927,13 +4929,13 @@ table.footable > tbody > tr.footable-empty > td {
 }
 
 .radio-primary input[type="radio"] + label::after {
-  background-color: $blue;
+  background-color: $color-primary;
 }
 .radio-primary input[type="radio"]:checked + label::before {
-  border-color: $blue;
+  border-color: $color-primary;
 }
 .radio-primary input[type="radio"]:checked + label::after {
-  background-color: $blue;
+  background-color: $color-primary;
 }
 
 .radio-danger input[type="radio"] + label::after {
@@ -4947,13 +4949,13 @@ table.footable > tbody > tr.footable-empty > td {
 }
 
 .radio-info input[type="radio"] + label::after {
-  background-color: $pink;
+  background-color: $color-info;
 }
 .radio-info input[type="radio"]:checked + label::before {
-  border-color: $pink;
+  border-color: $color-info;
 }
 .radio-info input[type="radio"]:checked + label::after {
-  background-color: $pink;
+  background-color: $color-info;
 }
 
 .radio-warning input[type="radio"] + label::after {
@@ -5086,7 +5088,7 @@ table.footable > tbody > tr.footable-empty > td {
 		text-align: center;
   }
   .icon i {
-		color: $blue;
+		color: $color-primary;
 		display: table-cell;
 		font-size: 30px;
 		vertical-align: middle;
@@ -5529,7 +5531,7 @@ a.compose-mail {
 	}
 }
 .panel-info > .panel-heading {
-    background-color: $pink;
+    background-color: $color-info;
 }
 .panel-danger > .panel-heading {
     background-color: $red;
@@ -5541,7 +5543,7 @@ a.compose-mail {
     background-color: $green;
 }
 .panel-primary > .panel-heading {
-    background-color: $blue;
+    background-color: $color-primary;
 }
 .panel-inverse > .panel-heading {
     background-color: $light_grey;
@@ -5764,7 +5766,7 @@ a.compose-mail {
 }
 .weather-info {
 	.left-block-wrap { 
-		background:$pink;
+		background:$color-info;
 		color:$white!important;
 		h5,.temprature {
 			color:$white!important;
@@ -5800,7 +5802,7 @@ a.compose-mail {
 }
 .weather-primary {
 	.left-block-wrap { 
-		background:$blue;
+		background:$color-primary;
 		color:$white!important;
 		h5,.temprature {
 			color:$white!important;
@@ -5872,10 +5874,10 @@ a.compose-mail {
 	text-transform: capitalize;
 	font-weight:400;
 	&.label-info {
-		background:$pink;
+		background:$color-info;
 	}
 	&.label-primary {
-		background:$blue;
+		background:$color-primary;
 	}
 	&.label-success {
 		background:$green;
@@ -5894,11 +5896,11 @@ a.compose-mail {
 	padding:5px 10px;
 	color:$black;
 	&.badge-info {
-		background:$pink;
+		background:$color-info;
 		color:$white;
 	}
 	&.badge-primary {
-		background:$blue;
+		background:$color-primary;
 		color:$white;
 	}
 	&.badge-success {
@@ -5918,10 +5920,10 @@ a.compose-mail {
 		padding-left: 0;
 		padding-right: 0;
 		&.badge-info {
-			color:$pink;
+			color:$color-info;
 		}
 		&.badge-primary {
-			color:$blue;
+			color:$color-primary;
 		}
 		&.badge-success {
 			color:$green;
@@ -6011,10 +6013,10 @@ a.compose-mail {
   }
 }
 .progress-bar-info {
-	background:$pink;
+	background:$color-info;
 }
 .progress-bar-primary {
-	background:$blue;
+	background:$color-primary;
 }
 
 .progress-bar-success {
@@ -6643,7 +6645,7 @@ a.compose-mail {
 			}
 			&.bg-blue {
 				&:after {
-					border-left-color:$blue;
+					border-left-color:$color-primary;
 				}
 			}
 			&.bg-green {
@@ -6688,7 +6690,7 @@ a.compose-mail {
 			}
 			&.bg-pink {
 				&:after {
-					border-right-color:$pink;
+					border-right-color:$color-info;
 				}
 			}
 			&.bg-red {
@@ -6698,7 +6700,7 @@ a.compose-mail {
 			}
 			&.bg-blue {
 				&:after {
-					border-right-color:$blue;
+					border-right-color:$color-primary;
 				}
 			}
 			&.bg-green {
@@ -7624,7 +7626,7 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
 		}
 	}
 	.page-wrapper{
-		margin-left: 44px;
+		margin-left: 0px;
 	}
 	.navbar.navbar-inverse.navbar-fixed-top {
 		.nav-header {
@@ -7671,7 +7673,7 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
 		}
 		.page-wrapper{
 			margin-left: 0;
-			left:225px;
+			// left:225px;
 		}
 		.navbar.navbar-inverse.navbar-fixed-top .nav-header {
 			width: 225px;
@@ -8048,7 +8050,7 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
 				}
 				&.bg-pink {
 					&:after {
-						border-right-color:$pink;
+						border-right-color:$color-info;
 					}
 				}
 				&.bg-red {
@@ -8240,3 +8242,4 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
 	.pagination-lg > li > a, .pagination-lg > li > span {
     padding: 10px 12px;}
 }
+

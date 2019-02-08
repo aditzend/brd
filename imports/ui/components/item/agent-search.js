@@ -14,7 +14,7 @@ Template.Agent_search.helpers({
             'id': 'search-input',
             'class': 'form-control',
             'autocomplete': 'off',
-            'placeholder': " '29980789'... ",
+            'placeholder': " Sin puntos",
             'style': "text-transform:uppercase"
         };
     },
@@ -44,6 +44,7 @@ Template.Agent_search.events({
     //     console.log(event.target.docnumber.value);
     // }
     'click .js-search-result-item': function(e, instance) {
+        e.preventDefault()
         //console.log("id elegido ", );
         instance.data.selectedItem(e.target.id);
 

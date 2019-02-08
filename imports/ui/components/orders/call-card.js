@@ -19,9 +19,11 @@ Template.CallCard.onCreated(function() {
     
     const orderAgent = Orders.findOne({ call_id:this.data.callID,agent: { $exists: true } });
     if (orderAgent) {
-      const agentBiometricProfile = orderAgent.agent;
-      console.log('agent bio2 : ', agentBiometricProfile)
-      const agentDocNumber = agentBiometricProfile.split("-")[2];
+      const agentProvidedNumber = orderAgent.agent;
+      console.log('agent bio2 : ', agentProvidedNumber)
+      const agentDocNumber = agentProvidedNumber.includes("-")?
+      agentProvidedNumber.split("-")[2]
+      :agentProvidedNumber;
       console.log('agent bio3 : ', agentDocNumber)
 
       const agent = Agents.findOne({ DocNumber: agentDocNumber });
@@ -94,36 +96,6 @@ Template.CallCard.helpers({
     return {
       min: moment.duration(callEnd.diff(callStart)).minutes(),
       seg: moment.duration(callEnd.diff(callStart)).seconds()
-    }
-  },
-  explain(type) {
-    switch (type) {
-      case "call_started":
-        return '<i class="zmdi zmdi-phone-ring text-info"></i> Inicio de llamada';
-        break;
-      case "call_ended":
-        return '<i class="zmdi zmdi-phone-end text-info"></i> Fin de llamada';
-        break;
-      case "validation_finished":
-        return "<i class='zmdi zmdi-gps-dot text-info'></i> Validación finalizada";
-        break;
-      case "validation_violated":
-        return "<i class='zmdi zmdi-alert-triangle text-danger'></i> Infracción";
-        break;
-      case "enrolment_full":
-        return "<i class='zmdi zmdi-check text-success'></i>Enrolamiento exitoso";
-        break;
-      case "enrolment_error":
-        return "<i class='zmdi zmdi-alert-polygon text-warning'></i> Error en el enrolamiento";
-        break;
-      case "signature_finished":
-        return "Firma exitosa";
-        break;
-      case "signature_failed":
-        return "Firma errónea";
-        break;
-      default:
-        return type;
     }
   },
   delta(eventCreatedAt) {
