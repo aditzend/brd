@@ -6,45 +6,12 @@
 // @import "./css/font-awesome.min.css"
 // @import "{}/imports/ui/stylesheets/daffy/css/font-awesome.min.css";	
 // @import "{}/imports/ui/stylesheets/daffy/css/animate.css";	
-@import "mixins.scss";
+@import "colors";
+@import "mixins";
+@import "preloader";
 @import "custom";
 
-$green:#8BC34A;
-$lightgreen:#AED581;
-$xtralightgreen:#DCEDC8;
-$darkgreen:#558B2F;
-$seagreen:#007153;
-$yellow:#f8b32d;
-$red:#f33923;
-$blue:#4e44e7;
-$skyblue:#00a5d1;
-$lightblue:#958FEF;
-$navytblue:#322e56;
-$color-info:#e11d8e;
-$babypink:#e284a3;
-$orange:#ff6300;
-$brown:#6d300e;
-$purple:#ac235c;
-$violet:#6a3a83;
-$lightviolet:#bb9ac1;
-$gold:#e58b25;
-$silver:#83878d;
-$black:#212121;
-$grey:#878787;
-$beige:#f7ce99;
-$light_grey:#dedede;
-$menu_bg_col_1:#322d34;
-$menu_bg_col_2:#27242a;
-$white:#fff;
-$twitter_blue:#00aced;
-$light_white:rgba(255,255,255,0.1);
-$xtra_lighter_grey:rgba(33,33,33,0.05);
-$xtra_lighter_white:rgba(255,255,255,0.05);
-$font_main: 'Montserrat', sans-serif;
 
-
-$color-info: $twitter_blue;
-$color-primary: $twitter_blue;
 
 /****************************/
 /** Reset **/
@@ -124,19 +91,19 @@ h3 {
 h4{
 	font-size:24px;
 	line-height:30px;
-	text-transform:capitalize;
+	text-transform:uppercase;
 }
 
 h5{
 	font-size:18px;
 	line-height:26px;
-	text-transform:capitalize;
+	text-transform:uppercase;
 }
 
 h6{
 	font-size:16px;
 	line-height:24px;
-	text-transform:capitalize;
+	text-transform:uppercase;
 }
 p{
 	font-size:14px;
@@ -587,7 +554,7 @@ ul.uo-list {
 .btn {
 	color: $white;
     padding: 10px 25px;
-    text-transform: capitalize;
+    text-transform: uppercase;
 	border-radius:2px;
 	outline:none;
 	box-shadow:none;
@@ -1329,7 +1296,7 @@ ul.uo-list {
 			}
 			a {
 				width:100%;
-				text-transform: capitalize;
+				text-transform: uppercase;
 				@include transition(.3s ease);
 				.pull-left {
 					>i{
@@ -1565,7 +1532,7 @@ a#toggle_mobile_nav {
 		padding-top: 17px;
 		color:$white;
 		background:$green;
-		text-transform:capitalize;
+		text-transform:uppercase;
 	}
 	.layout-switcher-wrap {
 		> ul {
@@ -1576,7 +1543,7 @@ a#toggle_mobile_nav {
 				display: inline-block;
 				font-size: 14px;
 				margin-right: 15px;
-				text-transform: capitalize;
+				text-transform: uppercase;
 				width: 130px;
 			}
 			.layout-switcher {
@@ -1757,7 +1724,7 @@ a#toggle_mobile_nav {
     margin-left: 0px;
     // margin-left: 225px;
 	background: $white;
-    padding:70px 120px;
+    padding:70px 10px;
 	position:relative;
 	@include transition(all 0.4s ease);
 	left:0;
@@ -2190,7 +2157,7 @@ a#toggle_mobile_nav {
 								padding-top: 10px;
 								text-align: center;
 								color:$grey;
-								text-transform:capitalize;
+								text-transform:uppercase;
 								width:80px;
 								i {
 									font-size: 25px;
@@ -2212,7 +2179,7 @@ a#toggle_mobile_nav {
 									padding:5px 15px 0;
 									font-size:13px;
 									color:$grey;
-									text-transform:capitalize;
+									text-transform:uppercase;
 								}
 							}
 						}
@@ -2223,7 +2190,7 @@ a#toggle_mobile_nav {
 									font-size:16px;
 									color:$black;
 									display:block;
-									text-transform:capitalize;
+									text-transform:uppercase;
 									padding:7px 15px 10px;
 								}
 								.clear-notifications {
@@ -2237,7 +2204,7 @@ a#toggle_mobile_nav {
 									padding:5px 15px 0;
 									font-size:13px;
 									color:$grey;
-									text-transform:capitalize;
+									text-transform:uppercase;
 								}
 							}
 							.streamline {
@@ -2299,7 +2266,7 @@ a#toggle_mobile_nav {
 						}
 						&.user-auth-dropdown {
 							min-width: 175px;
-							text-transform: capitalize;
+							text-transform: uppercase;
 						}
 						&.mega-menu {
 							right: 23px;
@@ -2315,7 +2282,7 @@ a#toggle_mobile_nav {
 									padding:10px 0;
 									display:block;
 									background:transparent;
-									text-transform:capitalize;
+									text-transform:uppercase;
 									.pull-left {
 										i {
 											color:$black;
@@ -2337,7 +2304,7 @@ a#toggle_mobile_nav {
 									> li {
 										> a {
 											display: block;
-											text-transform:capitalize;
+											text-transform:uppercase;
 											padding: 8px 0 8px 39px;
 											color:$grey;
 										}
@@ -2350,7 +2317,7 @@ a#toggle_mobile_nav {
 									padding:10px 0;
 									background:transparent;
 									display:inline-block;
-									text-transform:capitalize;
+									text-transform:uppercase;
 								}	
 								.product-carousel {
 									a {
@@ -2618,7 +2585,7 @@ a#toggle_mobile_nav {
     padding: 9px 0 0 0;
 	font-size:13px;
 	a,span {
-		text-transform:capitalize;
+		text-transform:uppercase;
 	}
 	a {
 		color:$black;
@@ -2662,7 +2629,7 @@ footer {
 		padding-left:10px;
 		padding-left:10px;
 		font-size:12px;
-		text-transform: capitalize;
+		text-transform: uppercase;
 	}
 	.nav > li > a:focus, .nav > li > a:hover {
 		background:transparent;
@@ -2686,16 +2653,16 @@ footer {
 		outline: 0 none;
 	}
 	&::-webkit-input-placeholder {
-		text-transform: capitalize;
+		text-transform: uppercase;
 	}
 	&:-moz-placeholder {
-		text-transform: capitalize;
+		text-transform: uppercase;
 	}
 	&::-moz-placeholder {
-		text-transform: capitalize;
+		text-transform: uppercase;
 	}
 	&:-ms-input-placeholder {
-	  text-transform: capitalize;
+	  text-transform: uppercase;
 	}
 	&.filled-input {
 		background:rgba(247,247,249,1);
@@ -2729,7 +2696,7 @@ footer {
 	padding-left:3px;
 }
 .control-label {
-		text-transform:capitalize;
+		text-transform:uppercase;
 	}
 .checkbox,.radio {
 	padding-top:5px;
@@ -3172,7 +3139,7 @@ div.colorpicker {
 				color:$grey;
 				margin:0;
 				border-radius:0;
-				text-transform:capitalize;
+				text-transform:uppercase;
 				
 				&:active,&:focus,&:hover {
 					color:$black;
@@ -3474,7 +3441,7 @@ ul.wysihtml5-toolbar {
 				}
 				a {
 					color:$grey	;
-					text-transform:capitalize;
+					text-transform:uppercase;
 					padding: 10px 20px;
 					width:100%;
 					display:block;
@@ -3583,7 +3550,7 @@ ul.wysihtml5-toolbar {
 			color:$grey;
 			margin:0;
 			border-radius:0;
-			text-transform:capitalize;
+			text-transform:uppercase;
 			@include transition(.2s ease);
 			
 			&:active,&:focus,&:hover {
@@ -3785,7 +3752,7 @@ ul.wysihtml5-toolbar {
 			color:$grey;
 			margin:0;
 			border-radius:0;
-			text-transform:capitalize;
+			text-transform:uppercase;
 			
 			&:active,&:focus,&:hover {
 				background:$color-primary;
@@ -4160,7 +4127,7 @@ tr.footable-header > th {
 			min-height: inherit;
 			padding: 3px 20px !important;
 			font-family:$font_main;
-			text-transform:capitalize;
+			text-transform:uppercase;
 			input[type="checkbox"] {
 				opacity:1;
 			}
@@ -4318,7 +4285,7 @@ table.footable > tbody > tr.footable-empty > td {
     color:$black!important;
 	font-size:14px!important;
     font-weight: 400;
-    text-transform: capitalize;
+    text-transform: uppercase;
 	filter: alpha(opacity=1);
 	display: inline-block;
 	color: inherit;
@@ -5421,7 +5388,7 @@ a.compose-mail {
 			color: $grey;
 			display: inline-block;
 			padding: 10px 20px;
-			text-transform: capitalize;
+			text-transform: uppercase;
 			font-size:14px;
 			&.active,&:active,&:hover,&:focus {
 				background:$green;
@@ -5605,7 +5572,7 @@ a.compose-mail {
 			font-weight:700;
 			display:block;
 			margin-top:20px;
-			text-transform:capitalize;
+			text-transform:uppercase;
 			.pricing-dolor {
 				display: inline-block;
 				font-size: 18px;
@@ -5728,11 +5695,11 @@ a.compose-mail {
 			display: table-cell;
 			padding-bottom: 5px;
 			padding-top: 5px;
-			text-transform: capitalize;
+			text-transform: uppercase;
 			width: 25%;
 			&:nth-child(2),&:nth-child(4) {
 				color:$black;
-				text-transform:capitalize;
+				text-transform:uppercase;
 			}
 		}
 	}
@@ -5871,7 +5838,7 @@ a.compose-mail {
 	padding: 3px 6px 3px;
 	font-size: 11px;
 	border-radius:50px;
-	text-transform: capitalize;
+	text-transform: uppercase;
 	font-weight:400;
 	&.label-info {
 		background:$color-info;
@@ -6164,7 +6131,7 @@ a.compose-mail {
 	padding-left: 15px;
 	padding-right: 15px;
 	span {
-		text-transform:capitalize;
+		text-transform:uppercase;
 		font-size:16px;
 		width:33.33%;
 		float:left;
@@ -6241,7 +6208,7 @@ a.compose-mail {
 			padding-right: 15px;
 			border-bottom:1px solid $light_grey;
 			span {
-				text-transform:capitalize;
+				text-transform:uppercase;
 				font-size:16px;
 				width:33.33%;
 				float:left;
@@ -6522,7 +6489,7 @@ a.compose-mail {
 		width:33.33%;
 		text-align:center;
 		> span {
-			text-transform:capitalize;
+			text-transform:uppercase;
 		}
 	}
 }
@@ -6857,7 +6824,7 @@ button.fc-agendaWeek-button,
 		padding-right: 15px;
 		border-bottom:1px solid $light_grey;
 		span {
-			text-transform:capitalize;
+			text-transform:uppercase;
 			font-size:16px;
 			width:33.33%;
 			float:left;
@@ -6986,7 +6953,7 @@ button.fc-agendaWeek-button,
 		padding-right: 15px;
 		border-bottom:1px solid $light_grey;
 		span {
-			text-transform:capitalize;
+			text-transform:uppercase;
 			font-size:16px;
 			width:33.33%;
 			float:left;
@@ -7005,7 +6972,7 @@ button.fc-agendaWeek-button,
 			padding:5px 15px;
 			font-size:13px;
 			color:$grey;
-			text-transform:capitalize;
+			text-transform:uppercase;
 		}
 	}
 }
@@ -7140,7 +7107,7 @@ ul {
 				display: inline-block;
 				padding:10px 15px;
 				width: 100%;
-				text-transform:capitalize;
+				text-transform:uppercase;
 				@include transition(.3s ease);
 				i {
 					font-size: 16px;
@@ -7359,12 +7326,12 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
 			.card-user-name {
 				font-size:16px;
 				font-weight: 500;
-				text-transform:capitalize;
+				text-transform:uppercase;
 				color:$white;
 			}
 			.card-user-desn {
 				color:$white;
-				text-transform:capitalize;
+				text-transform:uppercase;
 				font-size:13px;
 			}
 		}

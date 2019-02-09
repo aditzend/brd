@@ -44,5 +44,7 @@ import './global-functions.js';
 import './global-helpers.js';
 // import { log } from 'util';
 
+import '../../ui/components/preloader/preloader'
+
 import './startup'
 import './styles'

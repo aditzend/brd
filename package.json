@@ -8,6 +8,7 @@
     "@google-cloud/speech": "^2.1.1",
     "bcrypt": "^2.0.1",
     "bourbon": "^5.1.0",
+    "echarts": "^4.2.0-rc.2",
     "eonasdan-bootstrap-datetimepicker": "git+https://github.com/Eonasdan/bootstrap-datetimepicker.git",
     "fetch-base64": "^2.1.2",
     "file-base64": "^1.0.0",

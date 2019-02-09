@@ -2,6 +2,8 @@
 import '../components/user/user-edit'
 import '../components/user/user-show'
 
+// EXTERNAL MODULES
+import echarts from 'echarts'
 // TEMPLATES
 import './user-show-page.html';
 
@@ -12,7 +14,12 @@ Template.User_show_page.onCreated(function() {
 
     this.subscribe('Orders.all');
   });
+
 });
+
+Template.User_show_page.onRendered(function() {
+
+})
 
 
 
