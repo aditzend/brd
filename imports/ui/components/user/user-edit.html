@@ -1,101 +1,189 @@
 <template name="User_edit">
-        <div class="panel hpanel subpanel">
-            <div class="panel-heading hpanel">{{Client.FirstName}} {{Client.LastName}} </div>
-            <div class="panel-body hpanel">
-                <hr>
-                <form class="form-horizontal" data-action='user-edit-form'>
-                    <div class="row">
-                        <!-- DNI -->
-                        <div class="form-group col-lg-2 col-xs-12">
-                            <label class="control-label" for='DocNumber'>DNI</label>
-                            <input id='DocNumber' type="number" class="form-control plate" name='DocNumber' value="{{Client.DocNumber}}">
-                            <span class='form-control-feedback'></span>
-                            <span class='help-block'></span>
-                        </div>
-                        <!-- FirstName -->
-                        <div class="form-group col-lg-5 col-xs-12">
-                            <label class="control-label " for='FirstName'>Nombre</label>
-                            <input id='FirstName' type="text" class="form-control uppercase" name="FirstName" value="{{Client.FirstName}}">
-                            <span class='form-control-feedback'></span>
-                            <span class='help-block'></span>
-                        </div>
-                        <!-- LastName -->
-                        <div class="form-group col-lg-5 col-xs-12">
-                            <label class="control-label" for='LastName'>Apellido</label>
-                                <input id='LastName' type="text" class="form-control uppercase" value="{{Client.LastName}}"
-                                name="LastName">
-                            <span class='form-control-feedback'></span>
-                            <span class='help-block'></span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <!-- PhoneNumber -->
-                        <div class="form-group col-lg-3 col-xs-12">
-<label class="control-label" for='PhoneNumber'>Teléfono</label>
-<input id='PhoneNumber' type="tel" class="form-control" name="PhoneNumber" value="{{Client.PhoneNumber}}">
-                            <span class='form-control-feedback'></span>
-                            <span class='help-block'></span>
-                        </div>
-                        <!-- DateOfBirth -->
-                        <div class="form-group col-lg-3 col-xs-12">
-                            <label class="control-label" for='DateOfBirth'>Fecha Nac.</label>
-                            <input id='DateOfBirth' type="date" class="form-control" name="DateOfBirth" value="{{Client.DateOfBirth}}">
-                            <span class='form-control-feedback'></span>
-                            <span class='help-block'></span>
-                        </div>
-                        <!-- Sex -->
-                        <div class="form-group col-lg-2 col-xs-12" style="margin-top:2px;">
-                        <label style="margin-top:4px;"  for="Sex">Sexo</label>
-                        <select class="form-control" id="Sex" style="margin-top:-4px;">
-                            <option {{checkIfFemale Client.Sex}} value="F">F</option>
-                            <option {{checkIfMale Client.Sex}} value="M">M</option>
-                        </select>
-                        </div>
-                        <!-- Notes -->
-                        <div class="form-group col-lg-4 col-xs-12">
-                            <label class="control-label" for='Notes'>Notas</label>
-                            <input id='Notes' type="text" class="form-control uppercase" value="{{Client.Notes}}"
-                                name="Notes">
-                            <span class='form-control-feedback'></span>
-                            <span class='help-block'></span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        
-                        <!-- EnroledWithOwnPhone -->
-                        <div class="form-group col-lg-4 col-xs-12">
-                            <br>
-                            <br>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="EnroledWithOwnPhone"
-                                    {{checkIfEnroledWithOwnPhone Client.EnroledWithOwnPhone}}>
-                                <label class="form-check-label" for="EnroledWithOwnPhone">Se enroló con su propio teléfono</label>
-                            </div>
-                        </div>
-                        <!-- IsBlocked -->
-                        <div class="form-group col-lg-4 col-xs-12">
-                            <br>
-                            <br>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="IsBlocked" {{checkIfIsBlocked Client.IsBlocked}}>
-                                <label class="form-check-label" for="IsBlocked">
-                                    Bloqueo
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="hr-line-dashed"></div>
-                        <!-- Submit Buttons -->
-                        <div class="form-group">
-                            <div class="col-sm-8 col-sm-offset-2">
-                                <span class="btn btn-default js-cancel">Cancelar</span>
-                                <button class="btn btn-success js-save" type="submit">Guardar</button>
-                                <span class="danger" id="summary"></span>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+  <div class="col-sm-12 col-xs-12">
+    <div class="form-wrap">
+      <form action="#" data-action="user-edit-form">
+        <div class="form-body overflow-hide">
+          <div class="form-group">
+            <label class="control-label mb-10">TIPO DE DOCUMENTO</label>
+            <select
+              class="form-control"
+              data-placeholder="SELECCIONAR TIPO DE DOCUMENTO"
+              tabindex="1"
+            >
+              <option value="DNI" selected>DOC. NAC. DE IDENTIDAD</option>
+              <option value="LE">LIBRETA DE ENROLAMIENTO</option>
+              <option value="LC">LIBRETA CIVICA</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="control-label mb-10" for="DocNumber"
+              >NÚMERO DE DOCUMENTO</label
+            >
+            <div class="input-group">
+              <div class="input-group-addon">#</div>
+              <input
+                type="text"
+                class="form-control"
+                id="DocNumber"
+                placeholder="SIN PUNTOS"
+                value="{{ Client.DocNumber }}"
+              />
             </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label mb-10" for="FirstName"
+              >NOMBRE</label
+            >
+            <div class="input-group">
+              <div class="input-group-addon"><i class="zmdi zmdi-account-o"></i></div>
+
+              <input
+                type="text"
+                class="form-control"
+                id="FirstName"
+                placeholder="SIN PUNTOS"
+                value="{{ Client.FirstName }}"
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label mb-10" for="LastName"
+              >APELLIDO</label
+            >
+            <div class="input-group">
+              <div class="input-group-addon"><i class="zmdi zmdi-account-o"></i></div>
+
+              <input
+                type="text"
+                class="form-control"
+                id="LastName"
+                placeholder="SIN PUNTOS"
+                value="{{ Client.LastName }}"
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label mb-10" for="DateOfBirth"
+              >FECHA DE NACIMIENTO</label
+            >
+            <div class="input-group">
+              <input
+                type="date"
+                class="form-control"
+                id="DateOfBirth"
+                placeholder="SIN PUNTOS"
+                value="{{ Client.DateOfBirth }}"
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label mb-10" for="Notes"
+              >NOTAS</label
+            >
+            <div class="input-group">
+              <div class="input-group-addon"><i class="zmdi zmdi-collection-text"></i></div>
+
+              <input
+                type="text"
+                class="form-control"
+                id="Notes"
+                placeholder=""
+                value="{{ Client.Notes }}"
+              />
+            </div>
+          </div>
+          <!-- <div class="form-group">
+            <label class="control-label mb-10" for="exampleInputEmail_1"
+              >EMAIL</label
+            >
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="icon-envelope-open"></i>
+              </div>
+              <input
+                type="email"
+                class="form-control"
+                id="exampleInputEmail_1"
+                placeholder="xyz@gmail.com"
+              />
+            </div>
+          </div> -->
+          <div class="form-group">
+            <label class="control-label mb-10" for="PhoneNumber"
+              >TELÉFONO</label
+            >
+            <div class="input-group">
+              <div class="input-group-addon"><i class="icon-phone"></i></div>
+              <input
+                type="text"
+                class="form-control"
+                id="PhoneNumber"
+                placeholder="119388333"
+              />
+            </div>
+          </div>
+                <!-- Sex -->
+          <div class="form-group col-lg-2 col-xs-12" style="margin-top:2px;">
+            <label style="margin-top:4px;" for="Sex">Sexo</label>
+            <select class="form-control" id="Sex" style="margin-top:-4px;">
+              <option {{checkIfFemale Client.Sex}} value="F">F</option>
+              <option {{checkIfMale Client.Sex}} value="M">M</option>
+            </select>
+          </div>
+           <div class="row">
+          <!-- EnroledWithOwnPhone -->
+          <div class="form-group col-lg-4 col-xs-12">
+            <br />
+            <br />
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="EnroledWithOwnPhone"
+                {{checkIfEnroledWithOwnPhone
+                Client.EnroledWithOwnPhone}}
+              />
+              <label class="form-check-label" for="EnroledWithOwnPhone"
+                >Se enroló con su propio teléfono</label
+              >
+            </div>
+          </div>
+          <!-- IsBlocked -->
+          <div class="form-group col-lg-4 col-xs-12">
+            <br />
+            <br />
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="IsBlocked"
+                {{checkIfIsBlocked
+                Client.IsBlocked}}
+              />
+              <label class="form-check-label" for="IsBlocked">
+                Bloqueo
+              </label>
+            </div>
+          </div>
         </div>
+       
+        </div>
+        <div class="form-actions mt-10">
+          <button type="submit" class="btn btn-primary mr-10 mb-30">
+            ACTUALIZAR PERFIL
+          </button>
+															<button type="button" class="btn btn-default waves-effect mr-10 mb-30" data-dismiss="modal">CANCELAR</button>
+
+        </div>
+        	<!-- <div class="modal-footer">
+															<button type="submit" class="btn btn-primary waves-effect" data-dismiss="modal">GUARDAR</button>
+															<button type="button" class="btn btn-default waves-effect" data-dismiss="modal">CANCELAR</button>
+														</div> -->
+      </form>
+      
+    </div>
+  </div>
+ 
 </template>

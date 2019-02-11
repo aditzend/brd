@@ -25,8 +25,8 @@ export function getBiometricSessionId() {
                 headers: headers,
                 data: body
             }, (err, res) => {
-                err && reject(err)
-                resolve(res.data.sessionId)
+                err && resolve({success:false, message: err})
+                resolve({success:false, message: 'session ok', sessionId: res.data.sessionId})
             }
         )
     })

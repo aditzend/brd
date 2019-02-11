@@ -19,8 +19,14 @@ const basePath = Meteor.settings.mitrol.recordings_path
 const biometricURL = Meteor.settings.biometrics.url
 
 
-// inicia una sesion en el motor biometrico    
- let sessionId = Promise.await(helpers.getBiometricSessionId())
+// inicia una sesion en el motor biometrico   
+let sessionId = 'NO_SESSION' 
+let sessionRequest = Promise.await(helpers.getBiometricSessionId())
+if (sessionRequest.success) {
+    sessionId = sessionRequest.sessionId
+}
+
+
 
 function deleteUser(user, sessionId) {
     return new Promise(function (resolve, reject) {

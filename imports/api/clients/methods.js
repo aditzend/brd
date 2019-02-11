@@ -20,7 +20,8 @@ const selectClient = function (BiometricProfile) {
         , Client.EnroledWithOwnPhone AS EnroledWithOwnPhone
         , Client.Sex AS Sex
         , CONVERT(VARCHAR(19), Client.DateOfBirth, 120) AS DateOfBirth
-        , CONVERT(VARCHAR(19), Client.CreatedAt, 120) AS ModifiedDate
+        , CONVERT(VARCHAR(19), Client.CreatedAt, 120) AS CreatedAt
+        , CONVERT(VARCHAR(19), Client.LastEditAt, 120) AS LastEditAt
         , Phone.PhoneNumber AS PhoneNumber
         FROM Client
         INNER JOIN PhoneClient ON PhoneClient.ClientID = Client.ClientID

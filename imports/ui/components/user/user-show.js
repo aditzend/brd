@@ -22,7 +22,7 @@ Template.User_show.onCreated(function () {
         console.log('result of clients.getData --> ', res);
     })
     this.autorun(() => {
-        // this.subscribe("users.all")
+    this.subscribe('Orders.all');
     });
 });
 
@@ -50,6 +50,15 @@ Template.User_show.helpers({
     ,expanded() {
         return Template.instance().state.get('expanded')
     }
+    ,countValidationsAccepted(user) {
+    return Orders.find({type:'validation_finished', passed:"true", user:user}).count();
+  },
+  countValidationsRejected(user) {
+    return Orders.find({type:'validation_finished', passed:"false", user:user}).count();
+  },
+  countInfractions(user) {
+    return Orders.find({type:'validation_violated', user:user}).count();
+  }
     
 });
 
