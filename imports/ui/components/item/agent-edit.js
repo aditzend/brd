@@ -76,10 +76,10 @@ Template.Agent_edit.onRendered(function () {
             },
             showErrors: function (errorMap, errorList) {
                 console.log('form has errors')
-                instance.$("#summary")
+                instance.$("#agent-edit-summary")
                     .html("El formulario tiene errores (" +
                         this.numberOfInvalids() +
-                        "), ver detalles en rojo.");
+                        ")");
                 this.defaultShowErrors();
             },
             submitHandler: function (errorMap, errorList) {
@@ -170,7 +170,9 @@ Template.Agent_edit.events({
             type: 'warning'
         });
     },
-
+    'click js-save':function(e,instance) {
+        e.preventDefault()
+    },
     'submit form': function (e, instance) {
         e.preventDefault();
 

@@ -144,10 +144,11 @@ Template.Orders_panel.helpers({
   },
   latestCalls() {
     const sinceTime = moment()
-      .subtract(10, "minutes")
+      .subtract(100, "minutes")
       .format();
     const calls = Orders.find(
       {
+        type:"call_started",
         createdAt: {
           $gt: sinceTime
         }
@@ -155,7 +156,7 @@ Template.Orders_panel.helpers({
       {
         call_id: 1,
         sort: {
-          createdAt: -1
+          createdAt: 1
         }
       }
     );

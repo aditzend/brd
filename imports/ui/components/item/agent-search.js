@@ -50,6 +50,7 @@ Template.Agent_search.events({
 
     },
     'click .js-create-item': function(e, instance) {
+        e.preventDefault()
         const index = instance.data.index;
         console.log(index);
         let dict = index.getComponentDict();

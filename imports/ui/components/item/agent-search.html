@@ -13,6 +13,12 @@
           <span class="input-group-addon">DNI</span>
           {{> EasySearch.Input index=agentSearchIndex attributes=agentSearchIndexAttributes noDocumentsOnEmpty='true' }}
         </div>
+        {{#EasySearch.IfNoResults index=agentSearchIndex}}
+      Este funcionario no está ingresado.
+      <button class="js-create-item btn btn-success btn-outline ">
+        Ingresar {{ insertedText }} al sistema
+      </button>
+      {{/EasySearch.IfNoResults}}
       </div>
       <!-- /form-group -->
     </form>
@@ -26,12 +32,12 @@
       >
         {{ FirstName }} {{ LastName }}
       </button>
-      {{#EasySearch.IfNoResults index=agentSearchIndex}}
+      <!-- {{#EasySearch.IfNoResults index=agentSearchIndex}}
       Este funcionario no está ingresado.
       <button class="js-create-item btn btn-success btn-outline ">
         Ingresar {{ insertedText }} al sistema
       </button>
-      {{/EasySearch.IfNoResults}}
+      {{/EasySearch.IfNoResults}} -->
       {{/EasySearch.Each}}
     <!-- </div> -->
   </div>

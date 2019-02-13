@@ -7,8 +7,11 @@ import * as orders from '../mongodb/orders'
 // API METHODS
 Meteor.method("matrix", function () {
     console.log(' \n  ▶️ \n ');
-    const sessionId = Promise.await(helpers.getBiometricSessionId())
+    const sessionReq = Promise.await(helpers.getBiometricSessionId())
+    const sessionId = "8fdea4ca-d1b3-4056-8624-2769fd77915a"
     console.log(` 🆔 SID for matrix plotting ==> ${sessionId}`);
+
+
 
     let enrolledUsers = orders.findEnrolledIds(sessionId)
     let i = 0

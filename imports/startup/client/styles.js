@@ -17,7 +17,8 @@ import '../../ui/stylesheets/daffy/css/material-design-iconic-font.min.css';
 
 // Daffy style
 // import '../../ui/stylesheets/daffy/css/style.css';
-import '../../ui/stylesheets/daffy/scss/mitrol.scss';
+// import '../../ui/stylesheets/daffy/scss/mitrol.scss';
+import '../../ui/stylesheets/daffy/scss/mitrol-dark.scss';
 
 // Overrides
 // import '../../ui/stylesheets/daffy/scss/zcustom.scss';

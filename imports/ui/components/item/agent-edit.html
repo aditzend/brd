@@ -1,84 +1,190 @@
 <template name="Agent_edit">
-{{agent.DocNumber}} {{agent.FirstName}} {{agent.LastName}}
-  <div class="panel hpanel subpanel">
-    <!-- <div class="panel-heading hpanel">{{agent.DocNumber}} </div> -->
-    <div class="panel-body hpanel">
-      <hr>
-      <form class="form-horizontal" data-action='agent-edit-form'>
-        <!-- <h3>Datos del Funcionario</h3> -->
-        <div class="row">
-          <div class="form-group col-lg-2 col-xs-6">
-<label class="control-label" for='DocNumber'>DNI</label>
-<input id='DocNumber' type="number" class="form-control plate" name='DocNumber' value="{{agent.DocNumber}}">
-            <span class='form-control-feedback'></span>
-            <span class='help-block'></span>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default card-view">
+        <div class="panel-heading">
+          <div class="pull-left">
+            <h6 class="panel-title txt-dark">
+              Ficha de Agente {{ agent.DocNumber }} {{ agent.FirstName }}
+              {{ agent.LastName }}
+            </h6>
           </div>
-        <div class="row">
-          <div class="form-group col-lg-3 col-xs-12">
-<label class="control-label " for='FirstName'>Nombre</label>
-<input id='FirstName' type="text" class="form-control uppercase" name="FirstName" value="{{agent.FirstName}}">
-            <span class='form-control-feedback'></span>
-            <span class='help-block'></span>
-          </div>
-          <div class="form-group col-lg-3 col-xs-12">
-<label class="control-label" for='LastName'>Apellido</label>
-<input id='LastName' type="text" class="form-control uppercase" value="{{agent.LastName}}" name="LastName">
-            <span class='form-control-feedback'></span>
-            <span class='help-block'></span>
-          </div>
-          <div class="form-group col-lg-3 col-xs-12">
-<label class="control-label" for='FourDigitPin'>PIN</label>
-<input id='FourDigitPin' type="password" class="form-control uppercase" value="{{agent.FourDigitPin}}" name="FourDigitPin">
-            <span class='form-control-feedback'></span>
-            <span class='help-block'></span>
-<label class="control-label" for='FourDigitPinConfirmation'>Confirmación PIN</label>
-                    
-<input id='FourDigitPinConfirmation' type="password" class="form-control uppercase" value="{{agent.FourDigitPin}}" name="FourDigitPinConfirmation">
-            <span class='form-control-feedback'></span>
-            <span class='help-block'></span>
-          </div>
-          <div class="form-group col-lg-3 col-xs-12">
-            <label class="control-label" for='Roles'>Roles</label>
-<span class="control-label  mg-l-50px">N1</span><input id='isN1' type="checkbox" name="isN1" {{checkIfN1}} />
-<span class="control-label mg-l-50px">N2</span><input id='isN2' type="checkbox" name="isN2" {{checkIfN2}} />
-            <!-- <input id='car-owner-gender' type="text" class="form-control"  value="{{car.carOwner.gender}}"> -->
-            <span class='form-control-feedback'></span>
-            <span class='help-block'></span>
+          <div class="clearfix"></div>
         </div>
-          <!-- <div class="form-group col-lg-3 col-xs-12">
-            <label class="control-label" for='birthdate'>Cumple</label>
-            <input id='birthdateInput' type="date" class="form-control" name="birthdate" value="{{car.carOwner.birthdate}}">
-            <span class='form-control-feedback'></span>
-            <span class='help-block'></span>
-          </div> -->
-        </div>
+        <div class="panel-wrapper collapse in">
+          <div class="panel-body">
+            <form data-action="agent-edit-form">
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label class="control-label col-md-3">DNI</label>
+                    <div class="col-md-9">
+                      <input
+                        id="DocNumber"
+                        type="number"
+                        class="form-control plate"
+                        name="DocNumber"
+                        value="{{ agent.DocNumber }}"
+                      />
+                      <span class="form-control-feedback"></span>
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                </div>
 
-        <div class="row">
-          <div class="form-group col-lg-4 col-xs-12">
-            <label class="control-label" for='Email'>Email</label>
-<input id='Email' type="email" class="form-control" name="Email" value="{{agent.Email}}">
-            <span class='form-control-feedback'></span>
-            <span class='help-block'></span>
+                <!--/span-->
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="control-label col-md-3">Nombre</label>
+                    <div class="col-md-9">
+                      <input
+                        id="FirstName"
+                        type="text"
+                        class="form-control uppercase"
+                        name="FirstName"
+                        value="{{ agent.FirstName }}"
+                      />
+                      <span class="form-control-feedback"></span>
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <div class="form-group">
+                    <label class="control-label col-md-3">Apellido</label>
+                    <div class="col-md-9">
+                      <input
+                        id="LastName"
+                        type="text"
+                        class="form-control uppercase"
+                        value="{{ agent.LastName }}"
+                        name="LastName"
+                      />
+                      <span class="form-control-feedback"></span>
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                </div>
+                <!--/span-->
+              </div>
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label class="control-label col-md-3">PIN</label>
+                    <div class="col-md-9">
+                      <input
+                        id="FourDigitPin"
+                        type="password"
+                        class="form-control uppercase"
+                        value="{{ agent.FourDigitPin }}"
+                        name="FourDigitPin"
+                      />
+                      <span class="form-control-feedback"></span>
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="control-label col-md-3"
+                      >Confirmación PIN</label
+                    >
+                    <div class="col-md-9">
+                      <input
+                        id="FourDigitPinConfirmation"
+                        type="password"
+                        class="form-control uppercase"
+                        value="{{ agent.FourDigitPin }}"
+                        name="FourDigitPinConfirmation"
+                      />
+                      <span class="form-control-feedback"></span>
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="control-label col-md-3">Roles</label>
+                    <div class="col-md-9">
+                      <span class="control-label  mg-l-50px">N1</span
+                      ><input
+                        id="isN1"
+                        type="checkbox"
+                        name="isN1"
+                        {{checkIfN1}}
+                      />
+                      <span class="control-label mg-l-50px">N2</span
+                      ><input
+                        id="isN2"
+                        type="checkbox"
+                        name="isN2"
+                        {{checkIfN2}}
+                      />
+                      <span class="form-control-feedback"></span>
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="control-label col-md-3" for="Email"
+                      >Email</label
+                    >
+                    <div class="col-md-9">
+                      <input
+                        id="Email"
+                        type="email"
+                        class="form-control"
+                        name="Email"
+                        value="{{ agent.Email }}"
+                      />
+                      <span class="form-control-feedback"></span>
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="control-label col-md-3" for="Phone"
+                      >Teléfono</label
+                    >
+                    <div class="col-md-9">
+                      <input
+                        id="Phone"
+                        type="tel"
+                        class="form-control"
+                        name="Phone"
+                        value="{{ agent.Phone }}"
+                      />
+                      <span class="form-control-feedback"></span>
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-md-offset-3 col-md-9">
+                      <button type="submit" class="btn btn-success mr-10">
+                        GUARDAR
+                      </button>
+                      <button type="button" class="btn btn-default js-cancel">
+                        CANCELAR
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <p id="agent-edit-summary"></p>
+                </div>
+              </div>
+            </form>
           </div>
-          <div class="form-group col-lg-4 col-xs-12">
-            <label class="control-label" for='Phone'>Teléfono</label>
-<input id='Phone' type="tel" class="form-control" name="Phone" value="{{agent.Phone}}">
-            <span class='form-control-feedback'></span>
-            <span class='help-block'></span>
-          </div>
-   
         </div>
-
-        <div class="hr-line-dashed"></div>
-        <div class="form-group">
-          <div class="col-sm-8 col-sm-offset-2">
-            <span class="btn btn-default js-cancel">Cancelar</span>
-            <button class="btn btn-success js-save" type="submit">Guardar</button>
-            <span class="danger" id="summary"></span>
-          </div>
-        </div>
-        </div>
-      </form>
+      </div>
     </div>
   </div>
 </template>

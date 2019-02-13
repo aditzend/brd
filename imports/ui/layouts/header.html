@@ -43,7 +43,7 @@
   <div id="header" class="hidden-print">
     <!-- <div class="color-line">
     </div> -->
-    <div id="logo" class="light-version">
+    <div id="logo" class="dark-version">
       <span>
         <!-- Mitrol Biometrics -->
       </span>
@@ -81,9 +81,10 @@
           <li class="dropdown full-width-drp" id="dates-menu-button">
             <a
               id="toggle_mobile_search"
-              class="btn btn-primary dropdown-toggle"
+              class="btn dropdown-toggle"
               data-toggle="dropdown"
               href="#"
+              style="padding-top: 4px;"
             >
               {{ reportDatesExplanation }}
             </a>
@@ -91,11 +92,11 @@
           </li>
         
 
-          <li>
+          <!-- <li>
             <a id="open_right_sidebar" href="#"
               ><i class="zmdi zmdi-settings top-nav-icon"></i
             ></a>
-          </li>
+          </li> -->
           <li class="dropdown app-drp">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"
               ><i class="zmdi zmdi-apps top-nav-icon"></i
@@ -145,7 +146,7 @@
           <li class="dropdown alert-drp">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"
               ><i class="zmdi zmdi-notifications top-nav-icon"></i
-              ><span class="top-nav-icon-badge">5</span></a
+              ><span class="top-nav-icon-badge">2</span></a
             >
             <ul
               class="dropdown-menu alert-dropdown"
@@ -154,14 +155,13 @@
             >
               <li>
                 <div class="notification-box-head-wrap">
-                  <span class="notification-box-head pull-left inline-block"
-                    >notifications</span
-                  >
+                  <span class="font-titillium notification-box-head pull-left inline-block"
+                    >Alertas</span>
                   <a
                     class="txt-danger pull-right clear-notifications inline-block"
                     href="javascript:void(0)"
                   >
-                    clear all
+                    BORRAR TODAS
                   </a>
                   <div class="clearfix"></div>
                   <hr class="light-grey-hr ma-0" />
@@ -169,7 +169,7 @@
               </li>
               <li>
                 <div class="streamline message-nicescroll-bar">
-                  <div class="sl-item">
+                  <!-- <div class="sl-item">
                     <a href="javascript:void(0)">
                       <div class="icon bg-green">
                         <i class="zmdi zmdi-flag"></i>
@@ -192,29 +192,29 @@
                       </div>
                     </a>
                   </div>
-                  <hr class="light-grey-hr ma-0" />
+                  <hr class="light-grey-hr ma-0" /> -->
                   <div class="sl-item">
                     <a href="javascript:void(0)">
                       <div class="icon bg-yellow">
-                        <i class="zmdi zmdi-trending-down"></i>
+                        <i class="zmdi zmdi-block"></i>
                       </div>
                       <div class="sl-content">
                         <span
                           class="inline-block capitalize-font  pull-left truncate head-notifications txt-warning"
-                          >Server #2 not responding</span
+                          >Usuario bloqueado</span
                         >
                         <span
                           class="inline-block font-11 pull-right notifications-time"
-                          >1pm</span
+                          >14:30</span
                         >
                         <div class="clearfix"></div>
                         <p class="truncate">
-                          Some technical error occurred needs to be resolved.
+                          El Cliente 5987289 fue bloqueado por infracciones.
                         </p>
                       </div>
                     </a>
                   </div>
-                  <hr class="light-grey-hr ma-0" />
+                  <!-- <hr class="light-grey-hr ma-0" />
                   <div class="sl-item">
                     <a href="javascript:void(0)">
                       <div class="icon bg-blue">
@@ -236,8 +236,8 @@
                         </p>
                       </div>
                     </a>
-                  </div>
-                  <hr class="light-grey-hr ma-0" />
+                  </div> -->
+                  <!-- <hr class="light-grey-hr ma-0" />
                   <div class="sl-item">
                     <a href="javascript:void(0)">
                       <div class="sl-avatar">
@@ -263,24 +263,24 @@
                         </p>
                       </div>
                     </a>
-                  </div>
-                  <hr class="light-grey-hr ma-0" />
+                  </div> -->
+                  <!-- <hr class="light-grey-hr ma-0" /> -->
                   <div class="sl-item">
                     <a href="javascript:void(0)">
                       <div class="icon bg-red">
-                        <i class="zmdi zmdi-storage"></i>
+                        <i class="zmdi zmdi-alert-triangle"></i>
                       </div>
                       <div class="sl-content">
                         <span
                           class="inline-block capitalize-font  pull-left truncate head-notifications txt-danger"
-                          >99% server space occupied.</span
+                          >Infractor detectado</span
                         >
                         <span
                           class="inline-block font-11  pull-right notifications-time"
-                          >1pm</span
+                          >12:10</span
                         >
                         <div class="clearfix"></div>
-                        <p class="truncate">consectetur, adipisci velit.</p>
+                        <p class="truncate">El usuario 5123234 no respetó la consigna.</p>
                       </div>
                     </a>
                   </div>
@@ -288,12 +288,12 @@
               </li>
               <li>
                 <div class="notification-box-bottom-wrap">
-                  <hr class="light-grey-hr ma-0" />
+                  <!-- <hr class="light-grey-hr ma-0" /> -->
                   <a
                     class="block text-center read-all"
                     href="javascript:void(0)"
                   >
-                    read all
+                    ver todas
                   </a>
                   <div class="clearfix"></div>
                 </div>
@@ -304,10 +304,10 @@
             <a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown"
               >
               <div></div>
-              <span
+              <!-- <span
                 class="user-online-status"
               >
-              </span>
+              </span> -->
               <i class="zmdi zmdi-account top-nav-icon"></i>
               <!-- <img
                 src="../img/user1.png"
@@ -320,28 +320,24 @@
               data-dropdown-in="flipInX"
               data-dropdown-out="flipOutX"
             >
-              <li>
+              <!-- <li>
                 <a href="profile.html"
                   ><i class="zmdi zmdi-account"></i><span>Profile</span></a
                 >
-              </li>
-              <li>
-                <a href="#"
-                  ><i class="zmdi zmdi-card"></i><span>my balance</span></a
-                >
-              </li>
-              <li>
+              </li> -->
+              
+              <!-- <li>
                 <a href="inbox.html"
                   ><i class="zmdi zmdi-email"></i><span>Inbox</span></a
                 >
-              </li>
-              <li>
+              </li> -->
+              <!-- <li>
                 <a href="#"
                   ><i class="zmdi zmdi-settings"></i><span>Settings</span></a
                 >
-              </li>
-              <li class="divider"></li>
-              <li class="sub-menu show-on-hover">
+              </li> -->
+              <!-- <li class="divider"></li> -->
+              <!-- <li class="sub-menu show-on-hover">
                 <a href="#" class="dropdown-toggle pr-0 level-2-drp"
                   ><i class="zmdi zmdi-check text-success"></i> available</a
                 >
@@ -365,11 +361,11 @@
                     >
                   </li>
                 </ul>
-              </li>
-              <li class="divider"></li>
+              </li> -->
+              <!-- <li class="divider"></li> -->
               <li>
-                <a href="#"
-                  ><i class="zmdi zmdi-power"></i><span>Log Out</span></a
+                <a href="{{pathFor 'exit'}}"
+                  ><i class="zmdi zmdi-power"></i><span>SALIR</span></a
                 >
               </li>
             </ul>

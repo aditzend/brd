@@ -119,8 +119,9 @@ Template.User_edit.onRendered(function () {
                             swal("Error en SQL Server", res.message, "error")
                         }
                         instance.data.onSavedData();
-                        swal(`${FirstName} ${LastName} `, `Datos guardados`, "success")
-                        location.reload()
+                        // location.reload()
+
+                        // swal(`${FirstName} ${LastName} `, `Datos guardados`, "success")
                     })
 
                 }
@@ -157,6 +158,9 @@ Template.User_edit.events({
             type: 'warning'
         });
     },
+    // 'click .js-edit-user': function(e,instance) {
+    //     e.preventDefault();
+    // },
     'submit form': function (e, instance) {
         e.preventDefault();
         console.log('helper updating');

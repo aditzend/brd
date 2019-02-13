@@ -78,56 +78,27 @@ Project:	Daffy
 /** Imports **/
 /****************************/
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800);
-@import "../../../vendors/bower_components/bootstrap/dist/css/bootstrap.min.css";
-@import "font-awesome.min.css";	
-@import "themify-icons.css";	
-@import "animate.css";	
-@import "simple-line-icons.css";	
-@import "linea-icon.css";	
-@import "pe-icon-7-stroke.css";	
-@import "pe-icon-7-styles.css";	
-@import "material-design-iconic-font.min.css";	
-@import "filter.css";	
-@import "../../../vendors/bower_components/switchery/dist/switchery.min.css";	
-@import "../../../vendors/bower_components/owl.carousel/dist/assets/owl.carousel.min.css";	
-@import "../../../vendors/bower_components/owl.carousel/dist/assets/owl.theme.default.min.css";	
-@import "lightgallery.css";	
-@import "../../../vendors/bower_components/bourbon/app/assets/stylesheets/_bourbon.scss";	
-@import "../../../vendors/bower_components/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css";	
-@import "mixins.scss";	
+// @import "../../../vendors/bower_components/bootstrap/dist/css/bootstrap.min.css";
+// @import "font-awesome.min.css";	
+// @import "themify-icons.css";	
+// @import "animate.css";	
+// @import "simple-line-icons.css";	
+// @import "linea-icon.css";	
+// @import "pe-icon-7-stroke.css";	
+// @import "pe-icon-7-styles.css";	
+// @import "material-design-iconic-font.min.css";	
+// @import "filter.css";	
+// @import "../../../vendors/bower_components/switchery/dist/switchery.min.css";	
+// @import "../../../vendors/bower_components/owl.carousel/dist/assets/owl.carousel.min.css";	
+// @import "../../../vendors/bower_components/owl.carousel/dist/assets/owl.theme.default.min.css";	
+// @import "lightgallery.css";	
+// @import "../../../vendors/bower_components/bourbon/app/assets/stylesheets/_bourbon.scss";	
+// @import "../../../vendors/bower_components/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css";	
+@import "colors";
+@import "mixins";
+@import "preloader";
+@import "custom";
 
-$green:#8BC34A;
-$lightgreen:#AED581;
-$xtralightgreen:#DCEDC8;
-$darkgreen:#558B2F;
-$seagreen:#007153;
-$yellow:#f8b32d;
-$red:#f33923;
-$blue:#4e44e7;
-$skyblue:#00a5d1;
-$lightblue:#958FEF;
-$navytblue:#322e56;
-$pink:#e11d8e;
-$babypink:#e284a3;
-$orange:#ff6300;
-$brown:#6d300e;
-$purple:#ac235c;
-$violet:#6a3a83;
-$lightviolet:#bb9ac1;
-$gold:#e58b25;
-$silver:#83878d;
-$black:#212121;
-$grey:#878787;
-$beige:#f7ce99;
-$light_grey:#dedede;
-$menu_bg_col_1:#322d34;
-$menu_bg_col_2:#27242a;
-$white:#fff;
-$twitter_blue:#00aced;
-$light_white:rgba(255,255,255,0.1);
-$xtra_lighter_grey:rgba(33,33,33,0.05);
-$xtra_lighter_white:rgba(255,255,255,0.05);
-$font_main: 'Montserrat', sans-serif;
 
 /****************************/
 /** Reset **/
@@ -395,7 +366,7 @@ $num: 0;
 }
 .bg-pink,
 .bg-info {
-	background:$pink !important;
+	background:$color-primary !important;
 }
 .bg-purple {
 	background:$purple !important;
@@ -422,7 +393,7 @@ $num: 0;
 	background:$twitter_blue !important;
 }
 .bg-gradient {
-	background:linear-gradient(45deg,$blue,$pink) !important;
+	background:linear-gradient(45deg,$blue,$color-primary) !important;
 }
 .txt-dark {
 	color:$white !important;
@@ -441,7 +412,7 @@ $num: 0;
 }
 .txt-info,
 .text-info {
-	color: $pink !important;
+	color: $color-info !important;
 }
 .txt-warning,
 .text-warning {
@@ -449,7 +420,7 @@ $num: 0;
 }
 .txt-primary,
 .text-primary {
-	color: $blue !important;
+	color: $color-primary !important;
 }
 .txt-success,
 .text-success {
@@ -671,6 +642,7 @@ ul.uo-list {
 	outline:none;
 	box-shadow:none;
 	border:none;
+	margin: 2px 3px;
 	@include transition(all .3s ease);
 	i {
 		font-size:14px;
@@ -691,8 +663,8 @@ ul.uo-list {
 		}
 	}
 	&.btn-info {
-		background:rgba(225, 29, 142,1);
-		border:solid 1px rgba(225, 29, 142,1);
+		background:$color-info;
+		border:solid 1px $color-info;
 		&:hover,&:active,&:focus {
 			background:rgba(225, 29, 142,.85);
 			border:solid 1px rgba(225, 29, 142,.1);
@@ -700,11 +672,11 @@ ul.uo-list {
 		}
 	}
 	&.btn-primary {
-		background:rgba(78, 68, 231,1);
-		border:solid 1px rgba(78, 68, 231,1);
+		background:$color-primary;
+		border:solid 1px $color-primary;
 		&:hover,&:active,&:focus {
-			background:rgba(78, 68, 231,.85);
-			border:solid 1px rgba(78, 68, 231,.1);
+			background:lighten($color-primary,15%);
+			border:solid 1px lighten($color-primary,90%);
 		}
 	}
 	&.btn-success {
@@ -752,17 +724,18 @@ ul.uo-list {
 			}
 		}
 		&.btn-info {
-			border:solid 1px rgba(225, 29, 142,.5);
-			color: $pink;
+			// border:solid 1px red;
+			border:solid 1px $color-info;
+			color: $color-primary;
 			&:hover,&:focus,&:active {
-				border:solid 1px rgba(225, 29, 142,1);
+				border:solid 1px lighten($color-info,30%);
 			}
 		}
 		&.btn-primary {
-			border:solid 1px rgba(78, 68, 231,.5);
-			color: $blue;
+			border:solid 1px $color-primary;
+			color: $color-primary;
 			&:hover,&:focus,&:active {
-				border:solid 1px rgba(78, 68, 231,1);
+				border:solid 1px lighten($color-primary,30%);
 			}
 		}
 		&.btn-success {
@@ -939,12 +912,12 @@ ul.uo-list {
 		}
 		&.btn-info {
 			&:before {
-					box-shadow: 0 0 0 35px $pink inset;
+					box-shadow: 0 0 0 35px $color-info inset;
 			}
 			&:hover {
-				color: $pink!important;
+				color: $color-info!important;
 				&:before {
-					box-shadow: 0 0 0 1px $pink inset;
+					box-shadow: 0 0 0 1px $color-info inset;
 				}	
 			}
 		}
@@ -1185,7 +1158,7 @@ ul.uo-list {
 		&.btn-info {
 			&.btn-0{
 				&:before {
-				  background: $pink;
+				  background: $color-info;
 				}
 			}
 			&.btn-0{
@@ -1258,8 +1231,8 @@ ul.uo-list {
 			}
 		}
 		&.btn-info{
-			background:rgba(225, 29, 142,1);
-			border:solid 1px rgba(225, 29, 142,1);
+			background:$color-info;
+			border:solid 1px $color-info;
 			&:hover,&:active,&:focus {
 				background:rgba(225, 29, 142,.85);
 				border:solid 1px rgba(225, 29, 142,.1);
@@ -1267,11 +1240,11 @@ ul.uo-list {
 			}
 		}
 		&.btn-primary {
-			background:rgba(78, 68, 231,1);
-			border:solid 1px rgba(78, 68, 231,1);
+			background:$color-primary;
+			border:solid 1px $color-primary;
 			&:hover,&:active,&:focus {
-				background:rgba(78, 68, 231,.85);
-				border:solid 1px rgba(78, 68, 231,.1);
+				background:lighten($color-primary,15%);
+				border:solid 1px lighten($color-primary,90%);
 			}
 		}
 		&.btn-success{
@@ -1313,8 +1286,8 @@ ul.uo-list {
 				border:solid 1px $yellow;
 			}
 			&.btn-info {
-				color:$pink;
-				border:solid 1px $pink;
+				color:$color-info;
+				border:solid 1px $color-info;
 			}
 			&.btn-danger {
 				color:$red;
@@ -1840,7 +1813,8 @@ a#toggle_mobile_nav {
 }
 
 .page-wrapper {
-    margin-left: 225px;
+    margin-left: 0px;
+    // margin-left: 225px;
     padding:70px 20px;
 	background:#444;
 	position:relative;
@@ -2089,7 +2063,7 @@ a#toggle_mobile_nav {
 		&.pimary-color-pink {
 			.fixed-sidebar-left .side-nav {
 				> li > a.active {
-					color:$pink;
+					color:$color-primary;
 				}
 			}
 		}
@@ -2495,7 +2469,7 @@ a#toggle_mobile_nav {
 								vertical-align:middle;
 							}
 							.top-nav-icon-badge {
-								background: $green;
+								background: $color-info;
 								border-radius: 50%;
 								color: $white;
 								font-size: 10px;
@@ -4539,7 +4513,7 @@ table.footable > tbody > tr.footable-empty > td {
 	stroke:rgba(139,195,74,1);
 }
 .ct-series-c .ct-bar, .ct-series-c .ct-line, .ct-series-c .ct-point, .ct-series-c .ct-slice-donut {
-	stroke:rgba(78, 68, 231,1);
+	stroke:$color-primary;
 }
 .ct-series-d .ct-bar, .ct-series-d .ct-line, .ct-series-d .ct-point, .ct-series-d .ct-slice-donut {
 	stroke:rgba(243, 57, 35,1);
@@ -4548,7 +4522,7 @@ table.footable > tbody > tr.footable-empty > td {
 	fill:rgba(139,195,74,1);
 }
 .ct-series-a .ct-area, .ct-series-a .ct-slice-pie {
-	fill:rgba(78, 68, 231,1);
+	fill:$color-primary;
 }
 
 .ct-series-b .ct-area, .ct-series-b .ct-slice-pie {
@@ -4777,7 +4751,7 @@ table.footable > tbody > tr.footable-empty > td {
 		background:$green;
 	}
 	&.alert-info {
-		background:$pink;
+		background:$color-primary;
 	}
 	&.alert-danger {
 		background:$red;
@@ -4810,7 +4784,7 @@ table.footable > tbody > tr.footable-empty > td {
 		}
 		&.alert-info {
 			i {
-				color:$pink;
+				color:$color-primary;
 				background: #f7f7f7;
 			}	
 		}
@@ -4858,7 +4832,7 @@ table.footable > tbody > tr.footable-empty > td {
 			}
 		}
 		&.jq-icon-info {
-			background:$pink;
+			background:$color-primary;
 			padding-left:50px;
 			&:before {
 				content: "\e717";
@@ -4995,8 +4969,8 @@ table.footable > tbody > tr.footable-empty > td {
 
 .checkbox-info input[type="checkbox"]:checked + label::before,
 .checkbox-info input[type="radio"]:checked + label::before {
-  background-color: $pink;
-  border-color: $pink;
+  background-color: $color-primary;
+  border-color: $color-primary;
 }
 
 .checkbox-warning input[type="checkbox"]:checked + label::before,
@@ -5025,8 +4999,8 @@ table.footable > tbody > tr.footable-empty > td {
 
 .checkbox-info input[type="checkbox"]:indeterminate + label::before,
 .checkbox-info input[type="radio"]:indeterminate + label::before {
-  background-color: $pink;
-  border-color: $pink;
+  background-color: $color-primary;
+  border-color: $color-primary;
 }
 
 .checkbox-warning input[type="checkbox"]:indeterminate + label::before,
@@ -5062,13 +5036,13 @@ table.footable > tbody > tr.footable-empty > td {
 }
 
 .radio-info input[type="radio"] + label::after {
-  background-color: $pink;
+  background-color: $color-primary;
 }
 .radio-info input[type="radio"]:checked + label::before {
-  border-color: $pink;
+  border-color: $color-primary;
 }
 .radio-info input[type="radio"]:checked + label::after {
-  background-color: $pink;
+  background-color: $color-primary;
 }
 
 .radio-warning input[type="radio"] + label::after {
@@ -5645,7 +5619,7 @@ a.compose-mail {
 	}
 }
 .panel-info > .panel-heading {
-    background-color: $pink;
+    background-color: $color-primary;
 }
 .panel-danger > .panel-heading {
     background-color: $red;
@@ -5743,7 +5717,7 @@ a.compose-mail {
 .dropdown-menu {
 	border-radius:2px;
 	border:none;
-	background:#2a2a2a;
+	background:#2a2a2a !important;
 	box-shadow: 0 2px 15px rgba(0,0,0,.175);
 	> li {
 		> a {
@@ -5889,7 +5863,7 @@ a.compose-mail {
 }
 .weather-info {
 	.left-block-wrap { 
-		background:$pink;
+		background:$color-primary;
 		color:$white!important;
 		h5,.temprature {
 			color:$white!important;
@@ -5994,7 +5968,7 @@ a.compose-mail {
 	text-transform: capitalize;
 	font-weight:400;
 	&.label-info {
-		background:$pink;
+		background:$color-primary;
 	}
 	&.label-primary {
 		background:$blue;
@@ -6016,7 +5990,7 @@ a.compose-mail {
 	padding:5px 10px;
 	color:$white;
 	&.badge-info {
-		background:$pink;
+		background:$color-primary;
 		color:$white;
 	}
 	&.badge-primary {
@@ -6040,7 +6014,7 @@ a.compose-mail {
 		padding-left: 0;
 		padding-right: 0;
 		&.badge-info {
-			color:$pink;
+			color:$color-primary;
 		}
 		&.badge-primary {
 			color:$blue;
@@ -6133,7 +6107,7 @@ a.compose-mail {
   }
 }
 .progress-bar-info {
-	background:$pink;
+	background:$color-primary;
 }
 .progress-bar-primary {
 	background:$blue;
@@ -6838,7 +6812,7 @@ a.compose-mail {
 			}
 			&.bg-pink {
 				&:after {
-					border-right-color:$pink;
+					border-right-color:$color-primary;
 				}
 			}
 			&.bg-red {
@@ -8203,7 +8177,7 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
 				}
 				&.bg-pink {
 					&:after {
-						border-right-color:$pink;
+						border-right-color:$color-primary;
 					}
 				}
 				&.bg-red {

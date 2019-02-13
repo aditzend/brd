@@ -328,33 +328,21 @@ AccountsTemplates.configureRoute('signIn', {
     layoutRegions: {},
     contentRegion: 'main'
 });
-
-
-
-
-AccountsTemplates.configureRoute('changePwd', {
-    layoutType: 'blaze',
-    name: 'changePwd',
-    path: '/change-password',
-    //template: 'myLogin',
-    //layoutTemplate: 'AT_layout',
-    layoutTemplate: 'login',
-    layoutRegions: {},
-    contentRegion: 'main'
-});
+//  path: '/change-password',
+//     //template: 'myLogin',
+//     //layoutTemplate: 'AT_layout',
+//     layoutTemplate: 'login',
+//     layoutRegions: {},
+//     contentRegion: 'main'
+// });
 //AccountsTemplates.configureRoute('resetPwd');
 
 FlowRouter.route('/reset-password', {
     name: 'resetPwd',
     action: function() {
-
         BlazeLayout.render('Landing_layout', {
             main: "resetPassword"
-
         });
-
-
-
     }
 });
 

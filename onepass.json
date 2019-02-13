@@ -1,0 +1,42 @@
+{
+    "mailgun": {
+        "key": "key-ca749cc6a5c8daa7b2a85213547decab",
+        "domain": "mailgun.gomatodo.com",
+        "url": "smtp://postmaster%40mailgun.gomatodo.com:a34e2bdecff4d0990bb443603d30fbb5@smtp.mailgun.org:465"
+    },
+    "ftp": {
+        "host": "serabey.com",
+        "user": "gts@serabey.com",
+        "password": "R6M2%t%lT0l["
+    },
+    "biometrics": {
+        "username": "vk_user",
+        "password": "123",
+        "domain_id": "201",
+        "device_info": "Panel",
+        "url": "https://onepass.tech/"
+    },
+    "mitrol": {
+        "ip_mite1x":"192.168.41.227",
+        "ip_panel":"192.168.43.42",
+        "recordings_path": "http://192.168.41.227:9000/",
+        "ae_phoneNumber": "6841-6492",
+        "ce_phoneNumber": "6841-6493",
+        "iv_phoneNumber": "6841-6493",
+        "notes_at_agent_insert": "Creado desde el panel en desarrollo"
+    },
+    "client": {
+        "minimum_retirement_age": 60
+    },
+    "mssqlConfig": {
+        "user": "mituser",
+        "password": "mitcall",
+        "server": "192.168.43.254",
+        "database": "NSSA_BIOMETRICS_PILOT",
+        "pool": {
+            "max": 10,
+            "min": 0,
+            "idleTimeoutMillis": 30000
+        }
+    }
+}
