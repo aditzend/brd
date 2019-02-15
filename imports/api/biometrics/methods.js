@@ -24,6 +24,8 @@ let sessionId = 'NO_SESSION'
 let sessionRequest = Promise.await(helpers.getBiometricSessionId())
 if (sessionRequest.success) {
     sessionId = sessionRequest.sessionId
+} else {
+    Meteor.call("logs.insert","ERROR","1002","NO_SESSION", "","","")
 }
 
 
@@ -155,19 +157,22 @@ const processEnrolmentAudio = function (req) {
         }
     }).content).toString('base64')
     console.log("AUDIO RECEIVED ==> ", req.audio);
-    // let comparison = Promise.await(biometricsMiddleware.compare(
-    //     req.challenge, req.phrase, audioInBase64
-    // se lo manda a google para analizar contenido y largo
-    // let d = comparison.data
-    // console.log("content analysis : ", d);
-    if ( // si esta todo ok, envia a enrolar al biometrico
-        // d.STATUS === "OK"
-        true
-        // && !d.CONTENT_ERR
-        // && !d.LENGTH_ERR
-    ) {
+    if (Meteor.settings.biometrics.use_asr) {
+        let comparison = Promise.await(biometricsMiddleware.compare())
+        req.challenge, req.phrase, audioInBase64
+        let d = comparison.data 
+        console.log("content analysis : ", d);
+        Meteor.call("logs.insert","INFO","3050","CONTENT_ANALYSIS : " + d , req.call_id,"BIOMETRICS_MIDDLEWARE",Meteor.settings.mitrol.ip_panel)
 
-        console.log("BIOMETRIC SESSION ID ==> ", sessionId);
+    }
+    
+    if ( // si esta todo ok, envia a enrolar al biometrico
+        d.STATUS === "OK"
+        // true
+        && !d.CONTENT_ERR
+        && !d.LENGTH_ERR
+    ) {
+        // console.log("BIOMETRIC SESSION ID ==> ", sessionId);
         // tiene transactionId?
         let hasOpenTransaction = Orders.findOne({
             type: "enrolment_transaction",
@@ -184,14 +189,16 @@ const processEnrolmentAudio = function (req) {
                 audio: req.audio,
                 call_id: req.call_id,
                 intent: req.intent,
-                // transcription: d.TRANSCRIPTION,
+                transcription: d.TRANSCRIPTION?d.TRANSCRIPTION:"NO_TRANSCRIPTION", 
                 record_count: req.record_count,
                 transaction_id: transactionId
             })
-            console.log('user has open transaction', transactionId)
+                    Meteor.call("logs.insert","INFO","3011","OPEN_TRANSACTION_FOUND: "+transactionId, req.call_id,Meteor.settings.biometrics.url,Meteor.settings.mitrol.ip_panel)
+
         } else {
             // comienzo de enrolamiento
-            console.log('imports/api/biometrics/methods.js LINE 219 ==> CREATING NEW ENROLMENT TRANSACTION');
+            Meteor.call("logs.insert","INFO","3012","REQUESTED_ENROLMENT_TRANSACTION "+transactionId, req.call_id,Meteor.settings.biometrics.url,Meteor.settings.mitrol.ip_panel)
+
             let createdTransaction = Promise.await(getEnrolmentTransactionId(
                 req.user, sessionId
             ))
@@ -199,6 +206,7 @@ const processEnrolmentAudio = function (req) {
             console.log('SESSIONID ==> ', sessionId)
             console.log('USER ==> ', req.user)
             console.log('TRANSACTION ID CREATED ==> ', transactionId)
+            Meteor.call("logs.insert","INFO","3013",`OBTAINED_ENROLMENT_TRANSACTION  sessionId:${sessionId}, user:${req.user}, transactionId:${transactionId}`, req.call_id,Meteor.settings.biometrics.url,Meteor.settings.mitrol.ip_panel)
             Orders.insert({
                 type: "enrolment_transaction",
                 user: req.user,
@@ -217,6 +225,8 @@ const processEnrolmentAudio = function (req) {
         if (enrol.success) {
             // se guarda el evento en el log de eventos y se muestra en tiempo real en el panel
             console.log('AUDIO ACCEPTED BY VOICEKEY ==> ', enrol.message);
+            Meteor.call("logs.insert","INFO","3014",`AUDIO_ACCEPTED message:${enrol.message}`, req.call_id,Meteor.settings.biometrics.url,Meteor.settings.mitrol.ip_panel)
+
             Orders.insert({
                 user: req.user,
                 type: "signature_finished",
@@ -224,25 +234,33 @@ const processEnrolmentAudio = function (req) {
                 audio: req.audio,
                 call_id: req.call_id,
                 intent: req.intent,
-                // transcription: d.TRANSCRIPTION,
+                transcription: d.TRANSCRIPTION?d.TRANSCRIPTION:"NO_TRANSCRIPTION", 
                 record_count: req.record_count
             })
             // return enrol 
         } else {
             // guarda en la base que hubo errores 
             console.log('AUDIO REJECTED BY VOICEKEY ==> ', enrol.message);
+            Meteor.call("logs.insert","ERROR","1003",`AUDIO_REJECTED message:${enrol.message}`, req.call_id,Meteor.settings.biometrics.url,Meteor.settings.mitrol.ip_panel)
+
             Orders.insert({
                 user: req.user,
                 call_id: req.call_id,
-                intent: "ARV",
-                // asr_status: d.STATUS,
-                // content_err: d.CONTENT_ERR,
-                // length_err: d.LENGTH_ERR,
-                // transcription: d.TRANSCRIPTION,
+                intent: "audio_reject_by_vk",
+                asr_status: d.STATUS?d.STATUS:"NOT_USING_ASR", 
+                content_err: d.content_err?d.content_err:"", 
+                length_err: d.length_err?d.length_err:"", 
+                transcription: d.TRANSCRIPTION?d.TRANSCRIPTION:"", 
                 record_count: req.record_count
             })
         }
     } else {
+            Meteor.call("logs.insert","ERROR","1004",`ASR_ERROR message:Errores en el audio de enrolamiento asr_status: ${d.STATUS}
+            content_err: ${d.CONTENT_ERR}
+            length_err: ${d.LENGTH_ERR}
+            transcription: ${d.TRANSCRIPTION}
+            record_count: ${req.record_count}`, req.call_id,Meteor.settings.biometrics.url,Meteor.settings.mitrol.ip_panel)
+
         Orders.insert({
             user: req.user,
             call_id: req.call_id,

@@ -115,9 +115,12 @@ html, body, .wrapper , .page-wrapper{
 }
 
 .btn-table-md {
-    width: 140px !important;
     padding-top:1px !important;
     padding-bottom:1px !important;
+}
+
+.w-140 {
+    width: 140px !important;
 }
 
 .nav-tabs > li > a {

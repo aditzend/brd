@@ -130,8 +130,8 @@ peerlibrary:reactive-publish
 tap:i18n
 
 shell-server@0.2.1
-matb33:bootstrap-print
-risul:mailgun
+#matb33:bootstrap-printmailgun
+#risul:
 harrison:papa-parse
 pfafman:filesaver
 simple:rest

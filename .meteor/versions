@@ -65,8 +65,6 @@ less@2.7.5_1
 livedata@1.0.18
 localstorage@1.0.11
 logging@1.1.15_1
-matb33:bootstrap-base@10.0.0
-matb33:bootstrap-print@10.0.0
 matb33:collection-hooks@0.8.4
 mdg:validated-method@1.1.0
 mdg:validation-error@0.2.0
@@ -117,7 +115,6 @@ reactive-dict@1.1.8
 reactive-var@1.0.10
 reload@1.1.10
 retry@1.0.8
-risul:mailgun@0.0.2
 routepolicy@1.0.11
 rzymek:moment-locale-es@2.12.0
 seba:minifiers-autoprefixer@1.0.1
