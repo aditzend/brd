@@ -1,0 +1,14 @@
+@font-face {
+    font-family: 'Titillium';
+    src: url('/fonts/Titillium-Regular.eot');
+    src: url('/fonts/Titillium-Regular.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/Titillium-Regular.woff2') format('woff2'),
+        url('/fonts/Titillium-Regular.woff') format('woff'),
+        url('/fonts/Titillium-Regular.ttf') format('truetype'),
+        url('/fonts/Titillium-Regular.svg#Titillium-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+$font_main: 'Titillium', sans-serif;
+$font_mono: 'Source Code Pro', monospace;

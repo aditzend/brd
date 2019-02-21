@@ -1,5 +1,5 @@
-//server
-
+// FIX HTTP CALLING ERROR WHEN USING NON ENCRYPTED ENDPOINTS
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 import './email.js';
 import './excel.js';

@@ -121,7 +121,7 @@ const deleteAgent = function(DocNumber) {
     })
 }
 
-const updateAgent = function(AgentID, DocNumber, FirstName, LastName, FourDigitPin, Notes, IP, User) {
+const updateAgent = function(AgentID, DocNumber, FirstName, LastName, FourDigitPin, IsBlocked, Notes, IP, User) {
     return new Promise ( (resolve, reject) => {
         sql.close()
         const query = `EXEC UpdateAgent 
@@ -130,6 +130,7 @@ const updateAgent = function(AgentID, DocNumber, FirstName, LastName, FourDigitP
                         ,@FirstName
                         ,@LastName
                         ,@FourDigitPin
+                        ,@IsBlocked
                         ,@Notes
                         ,@IP
                         ,@User
@@ -141,6 +142,7 @@ const updateAgent = function(AgentID, DocNumber, FirstName, LastName, FourDigitP
             .input('FirstName', sql.VarChar(50), FirstName)
             .input('LastName', sql.VarChar(50), LastName)
             .input('FourDigitPin', sql.VarChar(255), FourDigitPin)
+            .input('IsBlocked', sql.Char(1), IsBlocked)
             .input('Notes', sql.Text, Notes)
             .input('IP', sql.VarChar(20), IP)
             .input('User', sql.VarChar(20), User)
@@ -260,7 +262,6 @@ Meteor.methods({
     }
     ,'agents.update' (data) {
         console.log('1')
-
          check(data, Object)
          if (!Meteor.userId()) {
              throw new Meteor.Error('not authorized')
@@ -275,6 +276,7 @@ Meteor.methods({
                  ,data.FirstName
                  ,data.LastName
                  ,data.FourDigitPin
+                 ,data.IsBlocked
                  ,data.Notes
                  ,IP
                  ,`${Meteor.user().emails[0].address}`))
@@ -317,6 +319,7 @@ Meteor.methods({
                         Phone: data.Phone,
                         isN2: data.isN2,
                         isN1: data.isN1,
+                        IsBlocked: data.IsBlocked,
                         FourDigitPin: data.FourDigitPin
                     }
                 });

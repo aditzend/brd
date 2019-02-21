@@ -62,6 +62,9 @@ Orders.before.insert(function (userId, doc) {
         case 'login_error':
             Meteor.call('logs.insert', 'ERROR', 1200, explanation, notes, callID, clientIP, serverIP)
             break;
+        case 'name_audio':
+            Meteor.call('logs.insert', 'INFO', 3007, explanation, notes, callID, clientIP, serverIP)
+            break;
         default:
             Meteor.call('logs.insert', 'INFO', 3999, explanation, notes, callID, clientIP, serverIP)
             console.log('UNEXPECTED LOG ATTEMPT')

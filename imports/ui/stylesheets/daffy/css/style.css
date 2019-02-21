@@ -76,7 +76,7 @@ Project:	Daffy
 /****************************/
 /** Imports **/
 /****************************/
-/* @import url(https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800);
+/* @import url(https://fonts.googleapis.com/css?family=Source Code Pro:400,500,600,700,800);
 @import url(../../../vendors/bower_components/bootstrap/dist/css/bootstrap.min.css);
 @import url(font-awesome.min.css);
 @import url(themify-icons.css);
@@ -108,7 +108,7 @@ strong {
 
 body {
   color: #878787;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Source Code Pro", sans-serif;
   font-size: 14px;
   font-style: normal;
   line-height: 1.5;
@@ -755,10 +755,10 @@ code {
   font-weight: 600 !important; }
 
 .head-font {
-  font-family: "Montserrat", sans-serif !important; }
+  font-family: "Source Code Pro", sans-serif !important; }
 
 .main-font {
-  font-family: "Montserrat", sans-serif !important; }
+  font-family: "Source Code Pro", sans-serif !important; }
 
 .capitalize-font {
   text-transform: capitalize !important; }
@@ -3672,11 +3672,11 @@ div.colorpicker {
     background-color: #8BC34A;
     border-bottom: 1px solid #dedede;
     border-radius: 0;
-    font-family: "Montserrat", sans-serif;
+    font-family: "Source Code Pro", sans-serif;
     color: #fff;
     font-size: 15px; }
   .popover .popover-content {
-    font-family: "Montserrat", sans-serif; }
+    font-family: "Source Code Pro", sans-serif; }
 
 .popover.bottom > .arrow::after {
   border-bottom-color: #8BC34A; }
@@ -3747,7 +3747,7 @@ ul.wysihtml5-toolbar a.btn.wysihtml5-command-active, ul.wysihtml5-toolbar .wizar
   box-shadow: none; }
 
 .mce-container, .mce-container *, .mce-widget, .mce-widget *, .mce-reset {
-  font-family: "Montserrat", sans-serif !important; }
+  font-family: "Source Code Pro", sans-serif !important; }
 
 .mce-ico {
   font-family: "tinymce",Arial !important; }
@@ -4290,7 +4290,7 @@ tr.footable-header > th {
   margin-top: inherit;
   min-height: inherit;
   padding: 3px 20px !important;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Source Code Pro", sans-serif;
   text-transform: none; }
   .footable-filtering .checkbox input[type="checkbox"] {
     opacity: 1; }
@@ -4411,7 +4411,7 @@ table.footable > tbody > tr.footable-empty > td {
 
 .tablesaw-bar .btn-select select {
   opacity: 1;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Source Code Pro", sans-serif;
   color: #212121 !important;
   font-size: 14px !important;
   font-weight: 400;
@@ -4453,7 +4453,7 @@ button.btn-small.btn-select.fc-agendaWeek-button, .btn-small.btn-select.fc-prev-
 .tablesaw-bar button.fc-month-button.fc-state-default.fc-corner-left select option,
 .tablesaw-bar button.fc-agendaWeek-button select option, .tablesaw-bar .fc-prev-button select option, .tablesaw-bar .fc-next-button select option, .tablesaw-bar .fc-today-button select option {
   color: #212121;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Source Code Pro", sans-serif;
   font-weight: 400; }
 
 /*Charts Label*/
@@ -4483,7 +4483,7 @@ button.btn-small.btn-select.fc-agendaWeek-button, .btn-small.btn-select.fc-prev-
   border: none;
   border-radius: 0;
   color: #212121;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Source Code Pro", sans-serif;
   font-size: 12px; }
   .morris-hover.morris-default-style .morris-hover-row-label {
     color: #fff;
@@ -4508,7 +4508,7 @@ button.btn-small.btn-select.fc-agendaWeek-button, .btn-small.btn-select.fc-prev-
   font-size: 12px; }
 
 .legendLabel {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Source Code Pro", sans-serif;
   color: #212121;
   font-size: 12px;
   padding-left: 9px; }
@@ -4768,7 +4768,7 @@ button.btn-small.btn-select.fc-agendaWeek-button, .btn-small.btn-select.fc-prev-
     color: #fff;
     border-radius: 2px;
     margin: 0;
-    font-family: "Montserrat", sans-serif; }
+    font-family: "Source Code Pro", sans-serif; }
     .jq-toast-wrap .jq-toast-single .jq-toast-loader {
       border-radius: 2px 2px 0 0;
       height: 3px; }
@@ -4818,7 +4818,7 @@ button.btn-small.btn-select.fc-agendaWeek-button, .btn-small.btn-select.fc-prev-
 /*Tooltop*/
 .tooltip-inner {
   border-radius: 0;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Source Code Pro", sans-serif;
   background: #212121; }
 
 .tooltip.left .tooltip-arrow {

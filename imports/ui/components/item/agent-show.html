@@ -15,6 +15,7 @@
 											</div>	 -->
 											<h5 class="block mt-25 mb-5 weight-500 txt-primary">{{agent.FirstName}} {{agent.LastName}}</h5>
 											<h6 class="block uppercase-font pb-20 font-12">{{#if agent.isN1}} Funcionario Nivel 1 {{/if}} {{#if agent.isN2}} Funcionario Nivel 2 {{/if}}</h6>
+											<p class="block capitalize-font text-danger font-12">{{#if convertBoolean agent.IsBlocked}}AGENTE BLOQUEADO{{/if}}</p>
 											<p class="block capitalize-font"><i class="zmdi zmdi-user"></i> {{agent.DocNumber}}</p>
 											<p class="block capitalize-font">{{#if agent.Phone}}<i class="zmdi zmdi-phone"></i> {{agent.Phone}}{{/if}}</p>
 											<p class="block pb-20"><i class="zmdi zmdi-email"></i> {{agent.Email}}</p>

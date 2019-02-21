@@ -55,6 +55,9 @@ Template.registerHelper("pathForUser", function(id) {
 Template.registerHelper("formatDate", function(D, M, Y) {
   return moment([Y, M, D]).format('DD / MM / YYYY');
 });
+Template.registerHelper("formatDateTime", function(str) {
+  return moment(str).format('DD/MM/YYYY HH:mm:ss');
+});
 Template.registerHelper("clean", function(userV) {
   return userV.split("-")[2]
 });
@@ -72,6 +75,9 @@ Template.registerHelper("logo", function() {
 });
 Template.registerHelper("timeFromCreation", function(createdAt) {
   return moment(createdAt).fromNow();
+});
+Template.registerHelper("checkIfIsBlocked", function(IsBlocked) {
+  return IsBlocked ? 'checked' : ''
 });
 Template.registerHelper("age", function(createdAt) {
   return moment(createdAt).fromNow(true);

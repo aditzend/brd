@@ -143,9 +143,6 @@ Template.User_edit.helpers({
     },
     checkIfEnroledWithOwnPhone(EnroledWithOwnPhone) {
         return EnroledWithOwnPhone ? 'checked' : ''
-    },
-    checkIfIsBlocked(IsBlocked) {
-        return IsBlocked ? 'checked' : ''
     }
 });
 

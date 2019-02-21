@@ -22,11 +22,11 @@
                   <th>ID Interacción</th>
                   <th>IP Origen</th>
                   <th>IP Destino</th>
-                  <th>T (ISO 8601)</th>
+                  <th>T</th>
 
                 </tr>
               </thead>
-              <tbody>
+              <tbody class="mono">
                   {{#each log in logs}}
                 <tr>
                   <td><span class="label {{labelClass log.label}}">{{log.label}} {{log.code}}</span></td>
@@ -35,7 +35,7 @@
                   <td>{{log.callID}}</td>
                   <td>{{log.senderIP}}</td>
                   <td>{{log.receiverIP}}</td>
-                  <td>{{log.createdAt}}</td>
+                  <td>{{formatDateTime log.createdAt}}</td>
                 </tr>
                 {{/each}}
               </tbody>

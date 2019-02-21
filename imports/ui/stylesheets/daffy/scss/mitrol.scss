@@ -1,7 +1,7 @@
 @charset "UTF-8"; 
 
 @import "{}/node_modules/bourbon/core/_bourbon.scss";
-@import url(https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800);
+@import url(https://fonts.googleapis.com/css?family=Source Code Pro:400,500,600,700,800);
 // @import "../css/font-awesome.min.css";	
 // @import "./css/font-awesome.min.css"
 // @import "{}/imports/ui/stylesheets/daffy/css/font-awesome.min.css";	
@@ -334,7 +334,7 @@ $num: 0;
 .txt-primary,
 .text-primary {
 	color: $color-primary !important;
-	font-family:'Titillium', 'Montserrat', Arial, Helvetica, sans-serif;
+	font-family:'Titillium', 'Source Code Pro', Arial, Helvetica, sans-serif;
 }
 .txt-success,
 .text-success {

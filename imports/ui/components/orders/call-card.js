@@ -3,6 +3,14 @@ import moment from "moment/moment";
 import { Session } from "meteor/session";
 import { ReactiveDict } from "meteor/reactive-dict";
 
+function correctDigits(str) {
+  if (str.length < 2) {
+    return "0" + str
+  } else {
+    return str
+  }
+} 
+
 Template.CallCard.onCreated(function() {
   this.state = new ReactiveDict();
   this.state.setDefault({
@@ -13,7 +21,7 @@ Template.CallCard.onCreated(function() {
     this.subscribe("agents.all");
     this.subscribe("Orders.byCallID", this.data.callID);
 
-    const callEnd = Orders.findOne({ call_id:this.data.callID,type: 'call_ended' })
+    const callEnd = Orders.findOne({call_id:this.data.callID, type:'call_ended'})
     callEnd && this.state.set('endedAt', callEnd.createdAt)
     this.state.set('callEnd', callEnd?true:false)
     
@@ -33,7 +41,7 @@ Template.CallCard.onCreated(function() {
       );
       if (agent) {
            const firstName = agent.FirstName;
-      console.log('agent bio 4 : ', agent.FirstName)
+      // console.log('agent bio 4 : ', agent.FirstName)
 
       const lastName = agent.LastName;
       this.state.set(
@@ -43,9 +51,12 @@ Template.CallCard.onCreated(function() {
       }
     }
 
-    this.state.set("ani", '<i class="zmdi zmdi-phone"></i> +5491160134585');
-    this.state.set("source", '<i class="zmdi zmdi-memory"></i> IVR CE');
-    this.state.set("source_version", "V 4");
+    const callStart = Orders.findOne({call_id:this.data.callID, type:'call_started'})
+    callStart && this.state.set('startedAt', callStart.createdAt)
+
+    this.state.set("ani", `<i class="zmdi zmdi-phone"></i> ${callStart.ani}`);
+    this.state.set("source", `<i class="zmdi zmdi-memory"></i> ${callStart.source}`);
+    this.state.set("source_version", callStart.source_version);
     Meteor.setInterval(() => {
       let createdAt = this.state.get("createdAt");
       this.state.set("timeElapsed", moment().diff(createdAt, "minutes"));
@@ -85,6 +96,16 @@ Template.CallCard.helpers({
       const instance = Template.instance();
     return instance.state.get("callEnd");
   },
+  callStartDate() {
+      const instance = Template.instance();
+      const callStart = moment(instance.state.get("callStart"))
+      return `<i class="zmdi zmdi-calendar"></i> ${callStart.format("DD/MM/YYYY")}`
+  },
+  callStartTime() {
+      const instance = Template.instance();
+      const callStart = moment(instance.state.get("callStart"))
+      return `<i class="zmdi zmdi-time"></i> ${callStart.format("HH:mm:ss")}`
+  },
   call() {
     const instance = Template.instance();
     return instance.data.callID;
@@ -93,18 +114,20 @@ Template.CallCard.helpers({
       const instance = Template.instance();
     const callStart = moment(instance.state.get("createdAt"));
     const callEnd = moment(instance.state.get("endedAt"));
+    const elapsed = moment.duration(callEnd.diff(callStart))
     return {
-      min: moment.duration(callEnd.diff(callStart)).minutes(),
-      seg: moment.duration(callEnd.diff(callStart)).seconds()
+      min: correctDigits( String(elapsed.minutes()) ),
+      seg: correctDigits( String(elapsed.seconds()) )
     }
   },
   delta(eventCreatedAt) {
     const instance = Template.instance();
     const callStart = moment(instance.state.get("createdAt"));
     const eventStart = moment(eventCreatedAt);
+    // const diff = 
     return {
-      min: moment.duration(eventStart.diff(callStart)).minutes(),
-      seg: moment.duration(eventStart.diff(callStart)).seconds()
+      min: correctDigits(String(moment.duration(eventStart.diff(callStart)).minutes())),
+      seg: correctDigits(String(moment.duration(eventStart.diff(callStart)).seconds()))
     };
   },
   feedByCallID(callID) {

@@ -18,6 +18,9 @@ Template.Agent_show.helpers({
     agent() {
         return Template.instance().data.agent;
     },
+    convertBoolean(num) {
+        return (num===1)?true:false
+    },
     events() {
         return Orders.find({},{sort:{createdAt:-1}})
     },

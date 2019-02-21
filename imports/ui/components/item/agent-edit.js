@@ -92,6 +92,7 @@ Template.Agent_edit.onRendered(function () {
                 let Phone = instance.$('#Phone').val().toUpperCase();
                 let isN1 = instance.$('#isN1').is(':checked')
                 let isN2 = instance.$('#isN2').is(':checked')
+                let IsBlocked = instance.$('#IsBlocked').is(':checked')?1:0
                 let FourDigitPin = instance.$('#FourDigitPin').val()
                 if (agent._id == undefined) {
                     console.log("INSERTING...");
@@ -105,6 +106,7 @@ Template.Agent_edit.onRendered(function () {
                         isN2: isN2,
                         Phone: Phone,
                         Email: Email,
+                        IsBlocked: IsBlocked
                     }
                     let newAgentId
                     Meteor.call('agents.insert', data, (err, res) => {
@@ -132,7 +134,8 @@ Template.Agent_edit.onRendered(function () {
                         Phone: Phone,
                         isN2: isN2,
                         isN1: isN1,
-                        FourDigitPin: FourDigitPin
+                        FourDigitPin: FourDigitPin,
+                        IsBlocked: IsBlocked
                     }
                     Meteor.call('agents.update', data)
                     instance.data.onSavedData(agent._id);
@@ -156,6 +159,13 @@ Template.Agent_edit.helpers({
     },
     checkIfN2() {
         return Template.instance().data.agent.isN2 ? "checked" : ""
+    },
+    checkIfIsBlocked(IsBlocked) {
+        if(IsBlocked === 1 ) {
+            return "checked"
+        } else {
+            return ""
+        }
     }
 });
 

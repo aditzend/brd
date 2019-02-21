@@ -9,7 +9,7 @@ Meteor.method("matrix", function () {
     console.log(' \n  ▶️ \n ');
     const sessionReq = Promise.await(helpers.getBiometricSessionId())
     const sessionId = "8fdea4ca-d1b3-4056-8624-2769fd77915a"
-    console.log(` 🆔 SID for matrix plotting ==> ${sessionId}`);
+    console.log(` 🆔 Session ID for matrix plotting ==> ${sessionId}`);
 
 
 
