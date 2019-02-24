@@ -8,7 +8,7 @@ import {
 
 
 // EXPORT MODULES
-export function getBiometricSessionId() {
+export default function() {
     return new Promise(function (resolve, reject) {
         // const uri = Meteor.settings.biometrics.url + "vksession/rest/session"
         const uri = Meteor.settings.biometrics.url + "vkivr_static/rest/session"

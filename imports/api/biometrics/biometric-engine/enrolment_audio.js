@@ -7,6 +7,7 @@ Meteor.method("enrolment_audio", function(req) {
       // enrolWithASR.process(req, sessionId)
       processWithoutASR(req);
     } else {
+      
       processWithoutASR(req);
     }
   }, 1);

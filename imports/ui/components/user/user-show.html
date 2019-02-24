@@ -1,6 +1,18 @@
 <template name="User_show">
   {{#if editing}}
-  {{> User_edit editArgs}}
+   <div class="row">
+    <div class="col-lg-12">
+      <div class="panel panel-default card-view  pa-0">
+        <div class="panel-wrapper collapse in">
+          <div class="panel-body pa-0">
+            <div>
+              {{> User_edit editArgs}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   {{else}}
   <!-- name -->
   <div class="col-lg-3 col-xs-12">
@@ -17,7 +29,7 @@
 												</div>
 											</div>	 -->
               <h5 class="block mt-25 mb-5 weight-500 txt-primary">
-                {{ Client.LastName }}, {{ Client.FirstName }} 
+                {{ Client.LastName }}, {{ Client.FirstName }}
               </h5>
               <!-- <h6 class="block capitalize-font pb-20">{{#if agent.isN1}} Funcionario Nivel 1 {{/if}} {{#if agent.isN2}} Funcionario Nivel 2 {{/if}}</h6> -->
               <p class="block capitalize-font pb-20">
@@ -30,70 +42,118 @@
                 <i class="zmdi zmdi-phone"></i> {{ Client.PhoneNumber }}
               </p>
               <p class="block pb-20">
-                <i class="zmdi zmdi-email"></i> {{ agent.Email }}
+                <i class="zmdi zmdi-email"></i> {{ Client.Email }}
+              </p>
+              <p class="block pb-20 text-danger">
+                {{#if Client.IsBlocked }} CLIENTE BLOQUEADO {{/if}}
               </p>
               <p class="block pb-20 uppercase-font font-12">
-                ENROLAMIENTO 
+                ENROLAMIENTO
                 {{timeFromCreation Client.CreatedAt}}
               </p>
-							{{#if Client.LastEditAt}}
+              {{#if Client.LastEditAt}}
               <p class="block pb-20 uppercase-font font-12">
-                ÚLTIMA EDICIÓN 
+                ÚLTIMA EDICIÓN
                 {{timeFromCreation Client.LastEditAt}}
               </p>
-							{{/if}}
+              {{/if}}
             </div>
-            	<div class="social-info">
-											<div class="row">
-												<div class="col-xs-4 text-center">
-													<span class="counts block head-font"><span class="counter-anim">{{countValidationsAccepted}}</span></span>
-													<span class="counts-text block"><i class="zmdi zmdi-check"></i></span>
-												</div>
-												<div class="col-xs-4 text-center">
-													<span class="counts block head-font"><span class="counter-anim">{{countValidationsRejected}}</span></span>
-													<span class="counts-text block"><i class="zmdi zmdi-close"></i></span>
-												</div>
-												<div class="col-xs-4 text-center">
-													<span class="counts block head-font"><span class="counter-anim">{{countInfractions}}</span></span>
-													<span class="counts-text block"><i class="zmdi zmdi-alert-triangle"></i></span>
-												</div>
-											</div>
-											<button class="btn btn-primary btn-block  btn-anim mt-30" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i><span class="btn-text uppercase-font">editar cliente</span></button>
-											<div id="myModal" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-												<div class="modal-dialog">
-													<div class="modal-content">
-														<div class="modal-header">
-															<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-															<h5 class="modal-title" id="myModalLabel">EDITAR PERFIL</h5>
-														</div>
-														<div class="modal-body">
-															<!-- Row -->
-															<div class="row">
-																<div class="col-lg-12">
-																	<div class="">
-																		<div class="panel-wrapper collapse in">
-																			<div class="panel-body pa-0">
-                                                                                <div>
-  {{> User_edit editArgs}}
-
-                                                                                </div>
-																				
-																			</div>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-														<!-- <div class="modal-footer">
+            <div class="social-info">
+              <div class="row">
+                <div class="col-xs-4 text-center">
+                  <span class="counts block head-font"
+                    ><span class="counter-anim">{{
+                      countValidationsAccepted
+                    }}</span></span
+                  >
+                  <span class="counts-text block"
+                    ><i class="zmdi zmdi-check"></i
+                  ></span>
+                </div>
+                <div class="col-xs-4 text-center">
+                  <span class="counts block head-font"
+                    ><span class="counter-anim">{{
+                      countValidationsRejected
+                    }}</span></span
+                  >
+                  <span class="counts-text block"
+                    ><i class="zmdi zmdi-close"></i
+                  ></span>
+                </div>
+                <div class="col-xs-4 text-center">
+                  <span class="counts block head-font"
+                    ><span class="counter-anim">{{
+                      countInfractions
+                    }}</span></span
+                  >
+                  <span class="counts-text block"
+                    ><i class="zmdi zmdi-alert-triangle"></i
+                  ></span>
+                </div>
+              </div>
+              <button
+                class="btn btn-primary btn-block  btn-anim mt-30 js-edit-user"
+              >
+                <i class="fa fa-pencil"></i
+                ><span class="btn-text uppercase-font">editar cliente</span>
+              </button>
+              <!-- <button
+                class="btn btn-primary btn-block  btn-anim mt-30"
+                data-toggle="modal"
+                data-target="#myModal"
+              >
+                <i class="fa fa-pencil"></i
+                ><span class="btn-text uppercase-font">editar cliente</span>
+              </button> -->
+              <div
+                id="myModal"
+                class="modal fade in"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="myModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button
+                        type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-hidden="true"
+                      >
+                        ×
+                      </button>
+                      <h5 class="modal-title" id="myModalLabel">
+                        EDITAR PERFIL
+                      </h5>
+                    </div>
+                    <div class="modal-body">
+                      <!-- Row -->
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <div class="">
+                            <div class="panel-wrapper collapse in">
+                              <div class="panel-body pa-0">
+                                <div>
+                                  {{> User_edit editArgs}}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="modal-footer">
 															<button type="button" class="btn btn-primary waves-effect" data-dismiss="modal">Save</button>
 															<button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cancel</button>
 														</div> -->
-													</div>
-													<!-- /.modal-content -->
-												</div>
-												<!-- /.modal-dialog -->
-											</div>
-										</div>
+                  </div>
+                  <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+              </div>
+            </div>
           </div>
         </div>
       </div>

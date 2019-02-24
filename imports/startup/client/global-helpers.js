@@ -22,10 +22,10 @@ Template.registerHelper("explain", function(type) {
         return "<i class='zmdi zmdi-account-add text-success'></i> Enrolamiento exitoso";
         break;
       case "signature_finished":
-        return "Firma exitosa";
+        return "Audio ok para firma";
         break;
       case "signature_failed":
-        return "Firma errónea";
+        return "Audio rechazado";
         break;
       default:
         return type;
@@ -78,6 +78,9 @@ Template.registerHelper("timeFromCreation", function(createdAt) {
 });
 Template.registerHelper("checkIfIsBlocked", function(IsBlocked) {
   return IsBlocked ? 'checked' : ''
+});
+Template.registerHelper("convertBoolean", function(num) {
+  return (num===1)?true:false
 });
 Template.registerHelper("age", function(createdAt) {
   return moment(createdAt).fromNow(true);

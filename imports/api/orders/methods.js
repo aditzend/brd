@@ -1,5 +1,11 @@
-Meteor.methods({
+import './calls'
+import './transactions'
 
+Meteor.methods({
+    audioLink(relativePath){
+        return relativePath
+        // return Meteor.settings.mitrol.relative_path + relativePath
+    },
   changeCorrectness(orderId, value) {
     Orders.update({_id: orderId},{$set:{isCorrect:value}})
   },

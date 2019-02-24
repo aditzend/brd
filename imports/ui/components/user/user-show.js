@@ -26,6 +26,14 @@ Template.User_show.onCreated(function () {
     });
 });
 
+// Template.User_show.onRendered(function() {
+//     const instance = Template.instance()
+//      Meteor.call('clients.getData', biometricProfile, (err, res) => {
+//         err && console.log('❌  ', err)
+//         instance.client.set('data', res)
+//     })
+// })
+
 Template.User_show.helpers({
     Client() {
         return Template.instance().client.get('data')
@@ -80,7 +88,7 @@ Template.User_show.events({
     'click .js-delete': function (e, instance) {
         // instance.data.onDelete(instance.data.item._id);
     },
-    'click .js-edit': function (e, instance) {
+    'click .js-edit-user': function (e, instance) {
         instance.state.set('editing', true)
         // instance.data.onEdit(instance.data.item._id);
 

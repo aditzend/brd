@@ -92,6 +92,9 @@ Template.CallCard.helpers({
     const instance = Template.instance();
     return instance.state.get("ani");
   },
+  audioLink(relativePath) {
+    return Meteor.call("audioLink", relativePath)
+  },
   callEnd() {
       const instance = Template.instance();
     return instance.state.get("callEnd");
@@ -103,8 +106,11 @@ Template.CallCard.helpers({
   },
   callStartTime() {
       const instance = Template.instance();
-      const callStart = moment(instance.state.get("callStart"))
-      return `<i class="zmdi zmdi-time"></i> ${callStart.format("HH:mm:ss")}`
+    const callStart = Orders.findOne({call_id:instance.data.callID, type:'call_started'})
+
+      const callStartMoment = moment(callStart.createdAt)
+      // const callStartMoment = moment(instance.state.get("callStart"))
+      return `<i class="zmdi zmdi-time"></i> ${callStartMoment.format("HH:mm:ss")}`
   },
   call() {
     const instance = Template.instance();

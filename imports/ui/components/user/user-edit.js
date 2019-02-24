@@ -15,6 +15,7 @@ Template.User_edit.onCreated(function () {
     });
 });
 Template.User_edit.onRendered(function () {
+    window.scrollTo(0,0)
     const instance = Template.instance();
     console.log('settings ==> ', instance.settings.get('minimum_retirement_age'));
     const user = instance.client;
@@ -82,8 +83,8 @@ Template.User_edit.onRendered(function () {
                     let DateOfBirth = instance.$('#DateOfBirth').val()
                     let Sex = instance.$('#Sex').val()
                     let Notes = instance.$('#Notes').val().toUpperCase();
-                    let EnroledWithOwnPhone = instance.$('#EnroledWithOwnPhone').is(':checked')
-                    let IsBlocked = instance.$('#IsBlocked').is(':checked')
+                    let EnroledWithOwnPhone = instance.$('#EnroledWithOwnPhone').is(':checked')? 1 : 0
+                    let IsBlocked = instance.$('#IsBlocked').is(':checked')?1:0
                     console.log("UPDATING...");
                     // const data = {
                     //     DocNumber: DocNumber,
@@ -105,8 +106,8 @@ Template.User_edit.onRendered(function () {
                         DateOfBirth: DateOfBirth,
                         Sex: Sex,
                         Notes: Notes,
-                        EnroledWithOwnPhone: EnroledWithOwnPhone ? 1 : 0,
-                        IsBlocked: IsBlocked ? 1 : 0
+                        EnroledWithOwnPhone: EnroledWithOwnPhone,
+                        IsBlocked: IsBlocked
                     }
                     console.log('CAPTURED DATA ==> ', data);
                     Meteor.call('clients.update', data, (err, res) => {
@@ -120,8 +121,11 @@ Template.User_edit.onRendered(function () {
                         }
                         instance.data.onSavedData();
                         // location.reload()
-
-                        // swal(`${FirstName} ${LastName} `, `Datos guardados`, "success")
+                        $(function () {
+//    $('#myModal').modal('toggle');
+});
+                        swal(`${FirstName} ${LastName} `, `Datos guardados`, "success")
+                        location.reload()
                     })
 
                 }
@@ -159,7 +163,7 @@ Template.User_edit.events({
     //     e.preventDefault();
     // },
     'submit form': function (e, instance) {
-        e.preventDefault();
+        // e.preventDefault();
         console.log('helper updating');
     }
 

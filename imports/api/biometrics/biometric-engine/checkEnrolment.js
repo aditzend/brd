@@ -16,8 +16,8 @@ export default function(user, sessionId) {
       },
       (err, res) => {
         if (err) {
-          // Meteor.call("logs.insert", "ERROR", "1101", `ERROR_CHECKING_PERSON : ${user} status : ${err}`, "", Meteor.settings.biometrics.url, Meteor.settings.mitrol.ip_panel);
-          //   console.log(`Error checking person ${user} status : ${err}`);
+          Meteor.call("logs.insert", "ERROR", "1101", `ERROR_CHECKING_PERSON`, `User: ${user} Status : ${err}`, Meteor.settings.biometrics.url, Meteor.settings.mitrol.ip_panel);
+            console.log(`Error checking person ${user} status : ${err}`);
           resolve({
             isFullEnroll: false,
             message: err

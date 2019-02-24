@@ -1,16 +1,13 @@
 // INTERNAL MODULES
-import * as helpers from "./helpers";
 import checkEnrolment from "./checkEnrolment";
+import * as transactions from "../../orders/transactions";
 
 Meteor.method("letgo", function(req) {
-  let sessionId = "NO_SESSION";
-  let sessionRequest = Promise.await(helpers.getBiometricSessionId());
-  if (sessionRequest.success) {
-    sessionId = sessionRequest.sessionId;
-  } else {
-    Meteor.call("logs.insert", "ERROR", "1002", "NO_SESSION", "", "", "");
-  }
+  console.log("********* LETGO ***********")
+  const sessionId = transactions.getLiveSessionId(req.call_id)
+
   const enrolmentStatus = Promise.await(checkEnrolment(req.user, sessionId));
+  console.log('enrolmentStatus ',enrolmentStatus)
   if (enrolmentStatus.isFullEnroll) {
     Orders.insert({
       type: "enrolment_full",

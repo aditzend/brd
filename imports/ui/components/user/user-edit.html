@@ -31,11 +31,11 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label mb-10" for="FirstName"
-              >NOMBRE</label
-            >
+            <label class="control-label mb-10" for="FirstName">NOMBRE</label>
             <div class="input-group">
-              <div class="input-group-addon"><i class="zmdi zmdi-account-o"></i></div>
+              <div class="input-group-addon">
+                <i class="zmdi zmdi-account-o"></i>
+              </div>
 
               <input
                 type="text"
@@ -47,11 +47,11 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label mb-10" for="LastName"
-              >APELLIDO</label
-            >
+            <label class="control-label mb-10" for="LastName">APELLIDO</label>
             <div class="input-group">
-              <div class="input-group-addon"><i class="zmdi zmdi-account-o"></i></div>
+              <div class="input-group-addon">
+                <i class="zmdi zmdi-account-o"></i>
+              </div>
 
               <input
                 type="text"
@@ -77,11 +77,11 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label mb-10" for="Notes"
-              >NOTAS</label
-            >
+            <label class="control-label mb-10" for="Notes">NOTAS</label>
             <div class="input-group">
-              <div class="input-group-addon"><i class="zmdi zmdi-collection-text"></i></div>
+              <div class="input-group-addon">
+                <i class="zmdi zmdi-collection-text"></i>
+              </div>
 
               <input
                 type="text"
@@ -122,7 +122,7 @@
               />
             </div>
           </div>
-                <!-- Sex -->
+          <!-- Sex -->
           <div class="form-group col-lg-2 col-xs-12" style="margin-top:2px;">
             <label style="margin-top:4px;" for="Sex">Sexo</label>
             <select class="form-control" id="Sex" style="margin-top:-4px;">
@@ -130,60 +130,65 @@
               <option {{checkIfMale Client.Sex}} value="M">M</option>
             </select>
           </div>
-           <div class="row">
-          <!-- EnroledWithOwnPhone -->
-          <div class="form-group col-lg-4 col-xs-12">
-            <br />
-            <br />
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="EnroledWithOwnPhone"
-                {{checkIfEnroledWithOwnPhone
-                Client.EnroledWithOwnPhone}}
-              />
-              <label class="form-check-label" for="EnroledWithOwnPhone"
-                >Se enroló con su propio teléfono</label
-              >
+          <div class="row">
+            <!-- EnroledWithOwnPhone -->
+            <div class="form-group col-lg-4 col-xs-12">
+              <br />
+              <br />
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="EnroledWithOwnPhone"
+                  {{checkIfEnroledWithOwnPhone
+                  Client.EnroledWithOwnPhone}}
+                />
+                <label class="form-check-label" for="EnroledWithOwnPhone"
+                  >Se enroló con su propio teléfono</label
+                >
+              </div>
+            </div>
+            <!-- IsBlocked -->
+            <div class="form-group col-lg-4 col-xs-12">
+              <br />
+              <br />
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="IsBlocked"
+                  {{checkIfIsBlocked
+                  Client.IsBlocked}}
+                />
+                <label class="form-check-label" for="IsBlocked">
+                  Bloqueo
+                </label>
+              </div>
             </div>
           </div>
-          <!-- IsBlocked -->
-          <div class="form-group col-lg-4 col-xs-12">
-            <br />
-            <br />
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="IsBlocked"
-                {{checkIfIsBlocked
-                Client.IsBlocked}}
-              />
-              <label class="form-check-label" for="IsBlocked">
-                Bloqueo
-              </label>
-            </div>
-          </div>
-        </div>
-       
         </div>
         <div class="form-actions mt-10">
-          <button type="submit" class="btn btn-success mr-10 mb-30" data-dismiss="modal">
+          <button
+            type="submit"
+            class="btn btn-success mr-10 mb-30"
+          >
             GUARDAR
           </button>
-															<button type="button" class="btn btn-default waves-effect mr-10 mb-30" data-dismiss="modal">CANCELAR</button>
-
+          <button
+            type="button"
+            class="js-cancel btn btn-default waves-effect mr-10 mb-30"
+            data-dismiss="modal"
+          >
+            CANCELAR
+          </button>
         </div>
-        	<!-- <div class="modal-footer">
+        <!-- <div class="modal-footer">
 							`								<button type="submit" class="btn btn-primary waves-effect" data-dismiss="modal">GUARDAR</button>
 															<button type="button" class="btn btn-default waves-effect" data-dismiss="modal">CANCELAR</button>
 														</div> -->
       </form>
-      
     </div>
   </div>
- 
 </template>

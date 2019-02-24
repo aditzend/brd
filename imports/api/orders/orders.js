@@ -3,7 +3,14 @@ Orders = new Mongo.Collection('orders');
 
 
 Orders.before.insert(function (userId, doc) {
-
+    if (doc.type === "call_started") {
+        console.log("call started -> ", doc.call_id)
+        Meteor.call("call.startStatus", doc.call_id)
+    }
+    if (doc.type === "call_ended") {
+        console.log("call ended -> ", doc.call_id)
+        Meteor.call("call.endStatus", doc.call_id)
+    }
     // Translation of incoming params
     const reason = doc.reason ? `Reason:${doc.reason} ` : ''
     const intent = doc.intent ? `Intent:${doc.intent} ` : ''

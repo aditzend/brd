@@ -137,3 +137,4 @@ pfafman:filesaver
 simple:rest
 fourseven:scss@=4.5.4
 seba:minifiers-autoprefixer
+http
