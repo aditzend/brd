@@ -2,7 +2,7 @@
 import * as enrollment from '../biometric-engine/enrollment'
 
 export function findEnrolledIds(sessionId) {
-   let enrolled = Orders.find({type:'signature_finished'},{user:1})
+   let enrolled = Orders.find({type:'audio_sample_posted'},{user:1})
    let arr = []
     enrolled.map((e) => {
         if (e.user && e.user.includes("V1-") && enrollment.isFullEnroll(e.user, sessionId)) {

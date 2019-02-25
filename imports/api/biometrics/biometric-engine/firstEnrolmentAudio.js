@@ -2,6 +2,7 @@
 import * as transactions from "../../orders/transactions";
 import getEnrolmentId from "./getEnrolmentId";
 import postEnrolmentAudio from "../mongodb/postEnrolmentAudio";
+import checkEnrolment from "./checkEnrolment";
 
 export default function(audioInBase64,req) {
     console.log("first enrolment audio")
@@ -67,10 +68,35 @@ export default function(audioInBase64,req) {
       Meteor.settings.mitrol.ip_panel
     );
     // console.log("90");
+      let enrolment_status = Orders.findOne({type:"enrolment_status", user: req.user})
+      if (enrolment_status) {
+        Orders.update(enrolment_status._id, {$set: {enrolment_error: true} })
+      } else {
+
+        const enrolmentCheck = Promise.await(checkEnrolment(req.user, sessionId))
+        const pos = enrolmentCheck.data.models[0].samplesCount
+        Orders.insert({
+          user: req.user,
+          type: "enrolment_status",
+          enrolment_error: false,
+          snr_error: false,
+          length_error: false,
+          content_error: false,
+          is_full_enroll: false,
+          files : [{path: req.audio, pos: pos, signature_id: enrolmentCheck.data.models[0].id}],
+          signatures : [{
+            call_id: req.call_id,
+            id: enrolmentCheck.data.models[0].id,
+            status: 'INACTIVE',
+            type: enrolmentCheck.data.models[0].type
+          }]
+        })
+      }
+  
 
     Orders.insert({
       user: req.user,
-      type: "signature_finished",
+      type: "audio_sample_posted",
       intent: "Audio de Enrolamiento OK",
       audio: req.audio,
       call_id: req.call_id,

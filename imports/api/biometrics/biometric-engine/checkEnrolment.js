@@ -36,6 +36,7 @@ export default function(user, sessionId) {
         // console.log("USER_ENROLED ==> ", user);
         resolve({
           isFullEnroll: res.data.isFullEnroll,
+          data: res.data,
           message: user + " FOUND"
         });
       }

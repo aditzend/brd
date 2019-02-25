@@ -7,6 +7,7 @@ import checkEnrolment from "./checkEnrolment";
 import * as transactions from "../../orders/transactions";
 import firstEnrolmentAudio from "./firstEnrolmentAudio";
 import continueWithEnrolment from "./continueWithEnrolment";
+import validationAudio from "./validationAudio";
 
 export default function(req) {
   console.log("10");

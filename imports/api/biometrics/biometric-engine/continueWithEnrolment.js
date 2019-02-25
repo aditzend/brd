@@ -1,5 +1,6 @@
 import * as transactions from "../../orders/transactions";
 import postEnrolmentAudio from "../mongodb/postEnrolmentAudio";
+import checkEnrolment from "./checkEnrolment";
 
 export default function(audioInBase64, req) {
   let sessionId = transactions.getLiveSessionId(req.call_id)
@@ -54,11 +55,34 @@ export default function(audioInBase64, req) {
       Meteor.settings.biometrics.url,
       Meteor.settings.mitrol.ip_panel
     );
-    console.log("90");
+    const enrolmentCheck = Promise.await(checkEnrolment(req.user, sessionId))
+
+    const isFullEnroll = enrolmentCheck.isFullEnroll
+
+    if (isFullEnroll) {
+      const pos = enrolmentCheck.data.models[0].samplesCount
+      let enrolment_status = Orders.findOne({type:"enrolment_status", user: req.user})
+      Orders.update(enrolment_status._id, {$push: {
+        files: { path: req.audio, pos:pos, signature_id: enrolmentCheck.data.models[0].id}
+      }
+      })
+      Orders.update(enrolment_status._id, {$set: {
+        is_full_enroll: true}
+      })
+    } else {
+      const pos = enrolmentCheck.data.models[0].samplesCount
+
+      let enrolment_status = Orders.findOne({type:"enrolment_status", user: req.user})
+      Orders.update(enrolment_status._id, {$push: {
+        files: { path: req.audio, pos:pos, signature_id: enrolmentCheck.data.models[0].id}
+      }
+      })
+    }
+   
 
     Orders.insert({
       user: req.user,
-      type: "signature_finished",
+      type: "audio_sample_posted",
       intent: "Audio de Enrolamiento OK",
       audio: req.audio,
       call_id: req.call_id,

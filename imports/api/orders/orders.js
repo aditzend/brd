@@ -51,7 +51,7 @@ Orders.before.insert(function (userId, doc) {
         case 'reenrolment':
             Meteor.call('logs.insert', 'INFO', 3004, explanation, notes, callID, clientIP, serverIP)
             break;
-        case 'signature_finished':
+        case 'audio_sample_posted':
             Meteor.call('logs.insert', 'INFO', 3005, explanation, notes, callID, clientIP, serverIP)
             break;
         case 'enrolment_full':

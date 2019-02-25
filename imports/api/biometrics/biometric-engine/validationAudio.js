@@ -72,7 +72,7 @@ export default function(audioInBase64,req) {
 
     Orders.insert({
       user: req.user,
-      type: "signature_finished",
+      type: "audio_sample_posted",
       intent: "Audio de Enrolamiento OK",
       audio: req.audio,
       call_id: req.call_id,

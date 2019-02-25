@@ -24,7 +24,7 @@ export default function(sessionId, transactionId, audioInBase64) {
       },
       (err, res) => {
         if (err) {
-  Meteor.call("logs.insert", "ERROR", "1102", `AUDIO_POSTING_FAILED : ${user} status : ${err}`, "", Meteor.settings.biometrics.url, Meteor.settings.mitrol.ip_panel);
+  Meteor.call("logs.insert", "ERROR", "1102", `AUDIO_POSTING_FAILED status : ${err}`, "", Meteor.settings.biometrics.url, Meteor.settings.mitrol.ip_panel);
   resolve({
             success: false,
             message: err

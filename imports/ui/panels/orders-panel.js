@@ -38,8 +38,8 @@ Template.Orders_panel.helpers({
       case "enrolment_full":
         return "<h3><i class='fa fa-check'></i>Enrolamiento exitoso</h3>";
         break;
-      case "signature_finished":
-        return "Firma exitosa";
+      case "audio_sample_posted":
+        return "Audio ok para firma";
         break;
       case "signature_failed":
         return "Firma errónea";

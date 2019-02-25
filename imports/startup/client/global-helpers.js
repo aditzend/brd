@@ -21,7 +21,7 @@ Template.registerHelper("explain", function(type) {
       case "enrolment_finished":
         return "<i class='zmdi zmdi-account-add text-success'></i> Enrolamiento exitoso";
         break;
-      case "signature_finished":
+      case "audio_sample_posted":
         return "Audio ok para firma";
         break;
       case "signature_failed":
