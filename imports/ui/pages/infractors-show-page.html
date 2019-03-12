@@ -1,57 +1,101 @@
 
 <template name="Infractors_show_page">
   {{#if Template.subscriptionsReady}}
+<div class="page-wrapper" style="margin-left:0px;">
+    <div class="container-fluid">
+      <!-- Title -->
+      <div class="row heading-bg">
+        <!-- <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+					  <h5 class="txt-dark">reporte de usuarios enrolados</h5>
+					</div> -->
+        <!-- Breadcrumb -->
+        <!-- <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+					  <ol class="">
+						<li><a href="index.html">Exportar usuarios enroladosa .csv</a></li>
+						<li><a href="#"><span>table</span></a></li>
+						<li class="active"><span>basic table</span></li>
+					  </ol>
+					</div> -->
+        <!-- /Breadcrumb -->
+      </div>
+      <!-- /Title -->
 
-{{#staggering effect="fadeInDown"}}
-  {{#pageTitle title="Infracciones"}}
-  <br>
-  <h2>
-   {{countInfractors}} <i class="fa fa-exclamation-triangle"></i>
-  </h2>
-  <br>
-<div class='col-xs-12 col-lg-12'>
-<table style="margin:0 auto">
-  <tbody>
-    <tr>
-      <td>
-        <span>DNI</span>
-      </td>
-      <td>
-        <span>
-          <i class="fa fa-clock-o"></i>
-        </span>
-      </td>
-      <td>
-        <span>
-          <i class="fa fa-phone"></i>
-        </span>
-      </td>
-    </tr>
-    <hr> {{#each action in infractors}}
-    <tr>
-      <td>
-        <a class='btn btn-default' href="{{pathForUser action.user}}">
-          {{clean action.user}}
-        </a>
-      </td>
-      <td>
-          <a class='btn btn-default btn-sm' href="">
-           {{timeFromOrderCreation action.createdAt}}
-          </a>
-      </td>
-      <td>
-          <a class='btn btn-default btn-sm' href="">
-          {{action.ani}}
-          </a>
-      </td>
-    </tr>
-    <hr>
-     {{/each}}
-  </tbody>
-</table>
-</div>
-
-  {{/pageTitle}}
-  {{/staggering}}
+      <div class="row">
+        <!-- Basic Table -->
+        <div class="col-sm-12">
+          <div class="panel panel-default card-view">
+            <div class="panel-heading">
+              <div class="pull-left">
+                <h6 class="panel-title txt-dark">
+                   Usuarios Infractores ({{ countInfractors }})
+                </h6>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+            <div class="panel-wrapper collapse in">
+              <div class="panel-body">
+                <!-- <a
+                  href="#"
+                  class="pull-right btn btn-outline btn-info btn-xs js-download-csv"
+                  >Descargar usuarios enrolados</a
+                > -->
+                <!-- <a
+                  href="#"
+                  class="pull-right btn btn-outline btn-info btn-xs js-download-audios-csv"
+                  >Descargar audios</a
+                > -->
+                <!-- <p class="text-muted">Add class <code>table</code> in table tag.</p> -->
+                <div class="table-wrap mt-40">
+                  <div class="table-responsive">
+                    <table class="table mb-0">
+                      <thead>
+                        <tr>
+                          <th>DNI</th>
+                          <th>ID INTERACCIÓN</th>
+                          <th>FECHA Y HORA</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {{#each order in infractors}}
+                        <tr>
+                          <td>
+                            <a
+                              class="btn btn-primary btn-outline btn-table-md w-140"
+                              href="{{pathForUser order.user}}"
+                            >
+                              {{clean order.user}}
+                            </a>
+                          </td>
+                          <td>
+                            <a
+                              class="btn btn-primary btn-outline btn-table-md"
+                              href=""
+                            >
+                              {{ order.call_id }}
+                            </a>
+                          </td>
+                          <td>{{timeFromOrderCreation order.createdAt}}</td>
+                        </tr>
+                        {{/each}}
+                        <!-- <tr>
+													<td>1</td>
+													<td>Jens</td>
+													<td>Brincker</td>
+													<td>Brincker123</td>
+													<td><span class="label label-danger">admin</span> </td>
+												  </tr>
+												  <tr> -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /Basic Table -->
+      </div>
+    </div>
+  </div>
   {{/if}}
 </template>

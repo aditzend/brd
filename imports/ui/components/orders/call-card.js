@@ -93,7 +93,7 @@ Template.CallCard.helpers({
     return instance.state.get("ani");
   },
   audioLink(relativePath) {
-    return Meteor.call("audioLink", relativePath)
+    return Meteor.settings.public.recordings_path + relativePath
   },
   callEnd() {
       const instance = Template.instance();

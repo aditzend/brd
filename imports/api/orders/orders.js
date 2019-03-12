@@ -48,13 +48,13 @@ Orders.before.insert(function (userId, doc) {
         case 'login_success':
             Meteor.call('logs.insert', 'INFO', 3003, explanation, notes, callID, clientIP, serverIP)
             break;
-        case 'reenrolment':
+        case 'reenrollment':
             Meteor.call('logs.insert', 'INFO', 3004, explanation, notes, callID, clientIP, serverIP)
             break;
         case 'audio_sample_posted':
             Meteor.call('logs.insert', 'INFO', 3005, explanation, notes, callID, clientIP, serverIP)
             break;
-        case 'enrolment_full':
+        case 'enrollment_full':
             Meteor.call('logs.insert', 'INFO', 3006, explanation, notes, callID, clientIP, serverIP)
             break;
         case 'agent_blocked':
@@ -63,7 +63,7 @@ Orders.before.insert(function (userId, doc) {
         case 'biometric_engine_down':
             Meteor.call('logs.insert', 'ERROR', 1001, explanation, notes, callID, clientIP, serverIP)
             break;
-        case 'enrolment_error':
+        case 'enrollment_error':
             Meteor.call('logs.insert', 'ERROR', 1100, explanation, notes, callID, clientIP, serverIP)
             break;
         case 'login_error':

@@ -36,7 +36,7 @@ Meteor.methods({
                 .input('SenderIP', sql.VarChar(30), senderIP)
                 .input('ReceiverIP', sql.VarChar(30), receiverIP)
                 .query(query)
-        }).then(result => console.log('event logged to Log Table', result))
+        }).then(result => console.log('==> Log'))
         .catch(err => console.log('ERROR LOGING TO SQL SERVER', err))
     }
 })

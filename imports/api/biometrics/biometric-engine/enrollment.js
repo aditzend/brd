@@ -2,7 +2,7 @@
 import { HTTP } from "meteor/http";
 
 // INTERNAL MODULES
-import * as helpers from "./helpers";
+// import * as helpers from "./helpers";
 
 // INTERNAL HELPERS
 function getEnrollStatus(personId, sessionId) {

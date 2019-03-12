@@ -33,8 +33,7 @@ export function getTransactionId(personId, validationSessionId) {
 }
 export function postAudio(validationSessionId, validationTransactionId, audioRelativePath) {
     return new Promise(function (resolve, reject) {
-        // TODO buscar el audio correcto en la base
-        const audioAbsolutePath = Meteor.settings.mitrol.recordings_path + 'DNI-29984695-190103162544437_MIT_10118-A2.wav'
+        const audioAbsolutePath = Meteor.settings.public.recordings_path + audioRelativePath
         const audioInBase64 = Buffer.from(HTTP.get(audioAbsolutePath, {
             npmRequestOptions: {
                 encoding: null
@@ -50,7 +49,6 @@ export function postAudio(validationSessionId, validationTransactionId, audioRel
             gender: 0,
             channel: 0
         }
-        // const uri = 'https://192.168.43.28/vkivr_static/rest/verification/voice/static/file'
         const uri = Meteor.settings.biometrics.url + 'vkivr_static/rest/verification/voice/static/file'
         HTTP.post(uri, {
                 headers: headers,

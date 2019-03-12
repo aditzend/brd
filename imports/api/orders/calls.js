@@ -3,7 +3,7 @@ import { Promise } from "meteor/promise";
 
 // INTERNAL MODULES
 import getBiometricSessionId from "../biometrics/biometric-engine/getBiometricSessionId";
-import deleteBiometricSession from "../biometrics/biometric-engine/deleteBiometricSession";
+import deleteBiometricSessionId from "../biometrics/biometric-engine/deleteBiometricSessionId";
 
 Meteor.methods({
   "call.startStatus"(call_id) {
@@ -25,7 +25,7 @@ Meteor.methods({
   "call.endStatus"(call_id) {
     const status = Orders.findOne({ type: "call_status", call_id: call_id });
     if (status.session_is_alive) {
-      let sessionDeletion = Promise.await(deleteBiometricSession(status.session_id));
+      let sessionDeletion = Promise.await(deleteBiometricSessionId(status.session_id));
       if (sessionDeletion.success) {
         Orders.update(
           { type: "call_status", call_id: call_id },

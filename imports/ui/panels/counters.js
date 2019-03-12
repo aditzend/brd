@@ -9,7 +9,7 @@ Template.Counters.onCreated(function() {
 
 Template.Counters.helpers({
     countEnroled() {
-    return Orders.find({type:'enrolment_full'}).count()
+    return Orders.find({type:'enrollment_full'}).count()
   },
   countAccepted() {
     return Orders.find(

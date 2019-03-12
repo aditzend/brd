@@ -22,6 +22,7 @@ import '../../api/logs/logs.js';
 import '../../api/logs/methods.js';
 import '../../api/orders/details/details.js';
 import '../../api/orders/details/methods.js';
+import '../../api/orders/methods.js';
 
 import '../../api/orders/orders.js';
 import '../../api/orders/methods.js';

@@ -3,10 +3,9 @@ import {
     HTTP
 } from 'meteor/http'
 
-const basePath = Meteor.settings.mitrol.recordings_path;
-const biometricURL = Meteor.settings.biometrics.url;
 
-import * as transaction from "./transaction"
+const basePath = Meteor.settings.public.recordings_path;
+const biometricURL = Meteor.settings.biometrics.url;
 
 
 // EXPORT MODULES
@@ -20,9 +19,32 @@ export function process(req, sessionId) {
     }).content
   ).toString("base64");
   console.log("AUDIO RECEIVED ==> ", req.audio);
+
+  console.log("20");
+
+  let comparison = Promise.await(
+    biometricsMiddleware.compare(req.challenge, req.phrase, audioInBase64)
+  );
+  console.log("30");
+
+  let d = comparison.data;
+  console.log("content analysis : ", d);
+  // Meteor.call("logs.insert","INFO","3050","CONTENT_ANALYSIS",`${JSON.parse(d)}`, req.call_id,"BIOMETRICS_MIDDLEWARE",Meteor.settings.mitrol.ip_panel)
+  console.log("31");
+    if (d.STATUS === "OK") { console.log("32")}
+    if (!d.CONTENT_ERR) { console.log("33")}
+    if (!d.LENGTH_ERR) { console.log("34")}
+  if (
+    // si esta todo ok, envia a enrolar al biometrico
+    d.STATUS === "OK" &&
+    // true
+    !d.CONTENT_ERR &&
+    !d.LENGTH_ERR
+  ) {
+    console.log("50");
     // tiene transactionId?
     let hasOpenTransaction = Orders.findOne({
-      type: "enrolment_transaction",
+      type: "enrollment_transaction",
       user: req.user
     });
     let transactionId;
@@ -42,7 +64,7 @@ export function process(req, sessionId) {
         record_count: req.record_count,
         transaction_id: transactionId
       });
-       Meteor.call(
+      Meteor.call(
         "logs.insert",
         "INFO",
         "3011",
@@ -56,11 +78,11 @@ export function process(req, sessionId) {
       console.log("70");
 
       // comienzo de enrolamiento
-       Meteor.call(
+      Meteor.call(
         "logs.insert",
         "INFO",
         "3012",
-        "REQUESTED_ENROLMENT_TRANSACTION",
+        "REQUESTED_ENROLLMENT_TRANSACTION",
         `Transaction ID: ` + transactionId,
         req.call_id,
         Meteor.settings.biometrics.url,
@@ -68,7 +90,7 @@ export function process(req, sessionId) {
       );
 
       let createdTransaction = Promise.await(
-        transaction.getEnrolmentId(req.user, sessionId)
+        getEnrollmentTransactionId(req.user, sessionId)
       );
       transactionId = createdTransaction.transactionId;
       console.log("SESSIONID ==> ", sessionId);
@@ -78,15 +100,16 @@ export function process(req, sessionId) {
         "logs.insert",
         "INFO",
         "3013",
-        `OBTAINED_ENROLMENT_TRANSACTION  sessionId:${sessionId}, user:${
+        `OBTAINED_ENROLLMENT_TRANSACTION`,
+        `SessionId:${sessionId}, User:${
           req.user
-        }, transactionId:${transactionId}`,
+        }, TransactionId:${transactionId}`,
         req.call_id,
         Meteor.settings.biometrics.url,
         Meteor.settings.mitrol.ip_panel
       );
       Orders.insert({
-        type: "enrolment_transaction",
+        type: "enrollment_transaction",
         user: req.user,
         is_full_enroll: false,
         transaction_id: transactionId,
@@ -101,7 +124,7 @@ export function process(req, sessionId) {
     console.log("80");
 
     let enrol = Promise.await(
-      postEnrolmentAudio(sessionId, transactionId, audioInBase64)
+      postEnrollmentAudio(sessionId, transactionId, audioInBase64)
     );
     if (enrol.success) {
       // se guarda el evento en el log de eventos y se muestra en tiempo real en el panel
@@ -155,4 +178,38 @@ export function process(req, sessionId) {
         record_count: req.record_count
       });
     }
+  } else {
+    console.log("110");
+
+    Meteor.call(
+      "logs.insert",
+      "ERROR",
+      "1004",
+      `ASR_ERROR message:Errores en el audio de enrolamiento asr_status: ${
+        d.STATUS
+      }
+            content_err: ${d.CONTENT_ERR}
+            length_err: ${d.LENGTH_ERR}
+            transcription: ${d.TRANSCRIPTION}
+            record_count: ${req.record_count}`,
+      req.call_id,
+      Meteor.settings.biometrics.url,
+      Meteor.settings.mitrol.ip_panel
+    );
+
+    Orders.insert({
+      user: req.user,
+      call_id: req.call_id,
+      intent: "Errores en el audio de enrolamiento",
+      asr_status: d.STATUS,
+      content_err: d.CONTENT_ERR,
+      length_err: d.LENGTH_ERR,
+      transcription: d.TRANSCRIPTION,
+      record_count: req.record_count
+    });
+    console.log(
+      "ERROR COMPARING: The audio file does not contain the challenge phrase or is shorter than needed"
+    );
+    // return 'ERROR COMPARING : The audio file does not contain the challenge phrase or is shorter than needed'
+  }
 };

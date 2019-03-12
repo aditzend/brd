@@ -1,6 +1,6 @@
 import processWithoutASR from "./processWithoutASR";
 
-Meteor.method("enrolment_audio", function(req) {
+Meteor.method("enrollment_audio", function(req) {
   console.log("000");
   Meteor.setTimeout(() => {
     if (Meteor.settings.biometrics.use_asr) {

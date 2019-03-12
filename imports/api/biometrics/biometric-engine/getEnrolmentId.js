@@ -26,9 +26,9 @@ export default function(user, sessionId) {
         err &&
           resolve({
             success: false,
-            message: "ERROR GETTING TRANSACTION ID FOR ENROLMENT ==> " + err
+            message: "ERROR GETTING TRANSACTION ID FOR ENROLLMENT ==> " + err
           });
-        console.log("ENROLMENT TRANSACTION ID ==> ", res.data.transactionId);
+        console.log("ENROLLMENT TRANSACTION ID ==> ", res.data.transactionId);
         resolve({
           success: true,
           message: "TRANSACTION ID : " + res,

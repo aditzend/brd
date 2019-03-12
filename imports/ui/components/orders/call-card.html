@@ -1,26 +1,15 @@
 <template name="CallCard">
   <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-    <div class="call-card-400 panel panel-default card-view panel-refresh">
+    <div class="call-card-300 panel panel-default card-view panel-refresh">
       <div class="refresh-container"><div class="la-anim-1"></div></div>
       <div class="panel-heading">
-        <div class="pull-left">
-          <h6 class="panel-title txt-dark">{{ lastIntent call }}</h6>
-          <!-- <div class="row">
-            <div class="col col-md-12">
-              <i class="fa fa-info-circle"></i> {{ call }}
-            </div>
-          </div> -->
-          <!-- <div class="row">
-            <div class="col col-lg-8">{{{agentName}}}</div>
-  
-          </div> -->
-          <p><i class="fa fa-info-circle"></i> {{call}}</p>
-          <p>{{{agentName}}}</p>
-          <p>{{{ani}}} &nbsp; {{{callStartDate}}}</p>
-          <!-- <p>{{{source}}} {{ source_version }}</p> -->
-        </div>
-        <div class="pull-right">
-          <a href="#" class="pull-left inline-block refresh mr-15">
+        <div class="row" style="height:24px !important; display:block !important;">
+          <div class="col-lg-8">
+            <h6 class="panel-title txt-dark">{{ lastIntent call }}</h6>
+          </div>
+          <div class="col-lg-4">
+            <div class="pull-right">
+                <a href="#" class="pull-left inline-block refresh mr-15">
             {{#if callEnd}}
             <span class="text-danger">
               <i class="zmdi zmdi-timer text-danger"></i> {{#with duration}}
@@ -33,8 +22,8 @@
             </span>
             {{/if}}
           </a>
-   
-          <a href="#" class="pull-left inline-block full-screen mr-15">
+
+          <a href="#" class="pull-right inline-block full-screen">
             {{#if callEnd}}
             <span class="text-danger">
               <i class="zmdi zmdi-phone-end text-danger"></i>
@@ -45,44 +34,46 @@
             </span>
             {{/if}}
           </a>
-          <div class="pull-left inline-block dropdown">
-            <a
-                class="dropdown-toggle"
-                data-toggle="dropdown"
-                href="#"
-                aria-expanded="false"
-                role="button"
-                ><i class="zmdi zmdi-more-vert"></i
-              ></a>
-            <ul class="dropdown-menu bullet dropdown-menu-right" role="menu">
-              <li role="presentation">
-                <a href="javascript:void(0)" role="menuitem"
-                  ><i class="icon wb-reply" aria-hidden="true"></i>Ver LLamada</a
-                >
-              </li>
-              <li role="presentation">
-                <a href="javascript:void(0)" role="menuitem"
-                  ><i class="icon wb-share" aria-hidden="true"></i>Ver Agente</a
-                >
-              </li>
-              <li role="presentation">
-                <a href="javascript:void(0)" role="menuitem"
-                  ><i class="icon wb-trash" aria-hidden="true"></i>Ver Usuarios</a
-                >
-              </li>
-            </ul>
+            </div>
+
+            
           </div>
         </div>
-        <div class="pull-right">
-                 <p class="pull-left inline-block mr-15 mt-5">
+        <div class="pull-left">
+          
+          <!-- <div class="row">
+            <div class="col col-md-12">
+              <i class="fa fa-info-circle"></i> {{ call }}
+            </div>
+          </div> -->
+          <!-- <div class="row">
+            <div class="col col-lg-8">{{{agentName}}}</div>
+  
+          </div> -->
+          <p>{{{ani}}} &nbsp; {{{source}}} {{ source_version }}</p>
+          <p><i class="fa fa-info-circle"></i> {{ call }}</p>
+
+          <!-- <p>{{{ani}}} &nbsp; {{{callStartDate}}}</p> -->
+          <!-- <p>{{{source}}} {{ source_version }}</p> -->
+        </div>
+   
+        <!-- <div class="pull-right">
+          <p class="pull-left inline-block mr-15 mt-5">
             {{{source}}} {{ source_version }}
           </p>
-        </div>
+        </div> -->
         <div class="pull-right">
-                 <p class="pull-left inline-block mr-15">
-            {{{callStartTime}}}
-          </p>
+          <div class="row">
+          <p class="pull-right inline-block mr-15">{{{callStartTime}}}</p>
+
+          </div>
+          <div class="row">
+          <p class="pull-left inline-block mr-15">{{{agentName}}}</p>
+
+          </div>
+
         </div>
+       
 
         <!-- <div class="pull-right">
                  <p class="pull-left inline-block mr-15">
@@ -102,13 +93,13 @@
           <div id="call-events-wrapper" class="table-wrap">
             <div class="table-responsive">
               <table class="table table-hover mb-0">
-                <thead class="call-card-events-header">
+                <!-- <thead class="call-card-events-header">
                   <tr>
                     <th><i class="zmdi zmdi-time-interval"></i></th>
                     <th>Evento</th>
                     <th>Detalles</th>
                   </tr>
-                </thead>
+                </thead> -->
                 <tbody class="call-card-scrollable">
                   {{#each event in feedByCallID call }}
                   <tr class="bottom-border-light">
@@ -118,14 +109,31 @@
                       >{{/with}}
                     </td>
                     <td>
-                      {{#if event.audio}}<a class="btn" href="{{audioLink event.audio}}"><span class="label label-info"><i class="zmdi zmdi-play"></i> {{event.type}}</span></a>
-                       <p>audioLink {{audioLink event.audio}}</p>
+                      <!-- <iframe src="google.com" width="300px" height="200px">
+                        {{#if event.audio
+                        }}<a
+                          class="btn"
+                          href="{{audioLink event.audio}}"
+                          target="_top"
+                          ><span class="label label-info"
+                            ><i class="zmdi zmdi-play"></i>
+                            {{ event.type }}</span
+                          ></a
+                        >
                         {{else}}
                         <span class=" uppercase-font txt-dark weight-500">
                           {{{explain event.type}}}
-                          </span>
+                        </span>
+                        {{/if}}
+                      </iframe> -->
+                      {{#if event.audio
+                      }}
+                      <a class="btn btn-ouline btn-xs btn-primary btn-" href="{{audioLink event.audio}}" target="_blank"><i class="zmdi zmdi-play"></i></a>
+                      {{else}}
+                      <span class=" uppercase-font txt-dark weight-500">
+                        {{{explain event.type}}}
+                      </span>
                       {{/if}}
-                      
                     </td>
                     <td>
                       {{#if event.user }}
@@ -149,7 +157,6 @@
 															<span class="label label-danger">Closed</span>
 														</td>
 													</tr> -->
-												
                 </tbody>
               </table>
             </div>

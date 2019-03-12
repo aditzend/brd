@@ -21,7 +21,7 @@ Template.Enroled_show_page.helpers({
   enroled() {
     return Orders.find(
       {
-        type: "enrolment_full"
+        type: "enrollment_full"
       },
       {
         $sort: {
@@ -32,7 +32,7 @@ Template.Enroled_show_page.helpers({
   },
   countEnroled() {
     return Orders.find({
-      type: "enrolment_full"
+      type: "enrollment_full"
     }).count();
   },
   pathForUser(id) {
@@ -55,7 +55,7 @@ Template.Enroled_show_page.events({
     const orders = Orders.find({
       $and: [
         {
-          type: "enrolment_full"
+          type: "enrollment_full"
         },
         {
           createdAt: {

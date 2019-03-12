@@ -12,13 +12,13 @@ Template.registerHelper("explain", function(type) {
       case "validation_violated":
         return "<i class='zmdi zmdi-alert-triangle text-danger'></i> Infracción";
         break;
-      case "enrolment_full":
+      case "enrollment_full":
         return "<i class='zmdi zmdi-check text-success'></i> Enrolamiento exitoso";
         break;
-      case "enrolment_error":
+      case "enrollment_error":
         return "<i class='zmdi zmdi-alert-polygon text-warning'></i> Error en el enrolamiento";
         break;
-      case "enrolment_finished":
+      case "enrollment_finished":
         return "<i class='zmdi zmdi-account-add text-success'></i> Enrolamiento exitoso";
         break;
       case "audio_sample_posted":

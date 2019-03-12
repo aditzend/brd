@@ -3,17 +3,17 @@ import { HTTP } from "meteor/http";
 import { Promise } from "meteor/promise";
 
 // INTERNAL MODULES
-import checkEnrolment from "./checkEnrolment";
+import checkEnrolment from "./checkEnrollment";
 import * as transactions from "../../orders/transactions";
-import firstEnrolmentAudio from "./firstEnrolmentAudio";
-import continueWithEnrolment from "./continueWithEnrolment";
+import firstEnrolmentAudio from "./firstEnrollmentAudio";
+import continueWithEnrolment from "./continueWithEnrollment";
 import validationAudio from "./validationAudio";
 
 export default function(req) {
   console.log("10");
   // PREPARATION
   const audioInBase64 = Buffer.from(
-    HTTP.get(Meteor.settings.mitrol.recordings_path + req.audio, {
+    HTTP.get(Meteor.settings.public.recordings_path + req.audio, {
       npmRequestOptions: {
         encoding: null
       }
@@ -42,25 +42,10 @@ export default function(req) {
     continueWithEnrolment(audioInBase64, req);
     // return enrol
   } else if (check.isFullEnroll && hasOpenTransaction) {
+    console.log("==> ENTER VALIDATION AUDIO")
     validationAudio(audioInBase64, req);
-    console.log(
-      "must close enrol transaction and set audio as validation verified"
-    );
   } else {
     console.log("100");
-
-    // guarda en la base que hubo errores
-    console.log("AUDIO REJECTED BY VOICEKEY ==> ");
-    // Meteor.call(
-    //   "logs.insert",
-    //   "ERROR",
-    //   "1003",
-    //   `AUDIO_REJECTED message:${enrol.message}`,
-    //   req.call_id,
-    //   Meteor.settings.biometrics.url,
-    //   Meteor.settings.mitrol.ip_panel
-    // );
-
     Orders.insert({
       type: "audio_reject_by_vk",
       user: req.user,

@@ -22,10 +22,10 @@ Template.Agent_show.helpers({
         return Orders.find({},{sort:{createdAt:-1}})
     },
     enroled() {
-        return Orders.find({type:"enrolment_full"},{sort:{createdAt:-1}})
+        return Orders.find({type:"enrollment_full"},{sort:{createdAt:-1}})
     },
     countEnroled() {
-        return Orders.find({type:"enrolment_full"}).count()
+        return Orders.find({type:"enrollment_full"}).count()
     }
 });
 

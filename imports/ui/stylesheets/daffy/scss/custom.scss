@@ -33,8 +33,9 @@ body {
     padding-left:0px !important;
 }
 
-.call-card-400 {
-    height:400px !important;
+.call-card-300 {
+    height:300px !important;
+    overflow-x:hidden !important;
 }
 
 .scrollable {
@@ -71,14 +72,15 @@ table {
 
 #call-events-wrapper{
     display: block !important;
-    height:400px !important;
+    height:100px !important;
 }
 
 .panel-title {
     font-family: 'Titillium', 'Source Code Pro', Arial, Helvetica, sans-serif !important;
     text-transform: uppercase !important;
     font-size:13px !important;
-    margin-bottom: 5px !important;
+    // margin-bottom: 5px !important;
+    overflow:hidden;
 }
 
 .bottom-border-light {
@@ -113,4 +115,9 @@ html, body, .wrapper , .page-wrapper{
 
 .nav-tabs > li > a {
     color: $color-body-text !important;
+}
+
+.panel-heading {
+    padding-bottom: 0px !important;
+    border-bottom: 2px solid $color-primary-light !important;
 }

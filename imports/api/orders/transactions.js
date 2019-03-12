@@ -9,10 +9,10 @@ export function userHasLiveEnrolment(user, call_id) {
     call_id: call_id
   });
   let transactionId = _.result(_.find(status.transactions, function(transaction) {
-    return transaction.is_alive === true && transaction.type === 'enrolment'
+    return transaction.is_alive === true && transaction.type === 'enrollment'
   }), 'id')
   if (transactionId) {
-    console.log(`****************** 🥃 enrolment transaction id --> ${transactionId}`)
+    console.log(`****************** 🥃 enrollment transaction id --> ${transactionId}`)
     return true
   } else {
     return false
@@ -29,13 +29,13 @@ export function getLiveSessionId(call_id) {
   }
 }
 
-export function getLiveEnrolmentId(user, call_id) {
+export function getLiveEnrollmentId(user, call_id) {
   const status = Orders.findOne({
     type: "call_status",
     call_id: call_id
   });
      let transactionId = _.result(_.find(status.transactions, function(transaction) {
-    return transaction.is_alive === true && transaction.type === 'enrolment' && transaction.user === user
+    return transaction.is_alive === true && transaction.type === 'enrollment' && transaction.user === user
   }), 'id')
   if (transactionId) {
     return transactionId;

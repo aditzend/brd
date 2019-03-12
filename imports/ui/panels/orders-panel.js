@@ -35,7 +35,7 @@ Template.Orders_panel.helpers({
       case "validation_violated":
         return "Infracción";
         break;
-      case "enrolment_full":
+      case "enrollment_full":
         return "<h3><i class='fa fa-check'></i>Enrolamiento exitoso</h3>";
         break;
       case "audio_sample_posted":
@@ -79,7 +79,7 @@ Template.Orders_panel.helpers({
   // },
   enroledUsers() {
     return Orders.find({
-      type: "enrolment_full"
+      type: "enrollment_full"
     });
   },
   feed() {
