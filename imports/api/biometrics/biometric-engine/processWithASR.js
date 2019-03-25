@@ -3,13 +3,19 @@ import {
     HTTP
 } from 'meteor/http'
 
+// INTERNAL MODULES
+import checkEnrollment from "./checkEnrollment";
+import * as transactions from "../../orders/transactions";
+import firstEnrolmentAudio from "./firstEnrollmentAudio";
+import continueWithEnrolment from "./continueWithEnrollment";
+import validationAudio from "./validationAudio";
 
 const basePath = Meteor.settings.public.recordings_path;
 const biometricURL = Meteor.settings.biometrics.url;
 
 
 // EXPORT MODULES
-export function process(req, sessionId) {
+export default function(req) {
   console.log("10");
   const audioInBase64 = Buffer.from(
     HTTP.get(basePath + req.audio, {
@@ -19,13 +25,27 @@ export function process(req, sessionId) {
     }).content
   ).toString("base64");
   console.log("AUDIO RECEIVED ==> ", req.audio);
+ // session
+  let sessionId = transactions.getLiveSessionId(req.call_id);
+  console.log("sessionid desde process ", sessionId);
 
-  console.log("20");
+
+  
+   // esta enrolado?
+  const check = Promise.await(checkEnrollment(req.user, sessionId));
+  console.log("usuario enrolado? ", check.isFullEnroll);
+
+    // tiene transactionId?
+  const hasOpenTransaction = transactions.userHasLiveEnrolment(
+    req.user,
+    req.call_id
+  );
+  console.log("hasopen transaction", hasOpenTransaction);
 
   let comparison = Promise.await(
     biometricsMiddleware.compare(req.challenge, req.phrase, audioInBase64)
   );
-  console.log("30");
+
 
   let d = comparison.data;
   console.log("content analysis : ", d);

@@ -9,7 +9,7 @@ export function userHasLiveEnrolment(user, call_id) {
     call_id: call_id
   });
   let transactionId = _.result(_.find(status.transactions, function(transaction) {
-    return transaction.is_alive === true && transaction.type === 'enrollment'
+    return transaction.is_alive === true && transaction.type === 'enrollment' && transaction.user === user
   }), 'id')
   if (transactionId) {
     console.log(`****************** 🥃 enrollment transaction id --> ${transactionId}`)

@@ -3,7 +3,7 @@ import { HTTP } from "meteor/http";
 import { Promise } from "meteor/promise";
 
 // INTERNAL MODULES
-import checkEnrolment from "./checkEnrollment";
+import checkEnrollment from "./checkEnrollment";
 import * as transactions from "../../orders/transactions";
 import firstEnrolmentAudio from "./firstEnrollmentAudio";
 import continueWithEnrolment from "./continueWithEnrollment";
@@ -24,7 +24,7 @@ export default function(req) {
   let sessionId = transactions.getLiveSessionId(req.call_id);
   console.log("sessionid desde process ", sessionId);
   // esta enrolado?
-  const check = Promise.await(checkEnrolment(req.user, sessionId));
+  const check = Promise.await(checkEnrollment(req.user, sessionId));
   console.log("usuario enrolado? ", check.isFullEnroll);
   // tiene transactionId?
   const hasOpenTransaction = transactions.userHasLiveEnrolment(

@@ -11,11 +11,13 @@ Meteor.method("letgo", function(req) {
   // const enrollmentStatus = Promise.await(checkEnrollment(req.user, sessionId));
   // console.log('enrollmentStatus ',enrollmentStatus)
   if (enrollmentStatus.is_full_enroll) {
+    Meteor.call("call.closeTransaction", req.call_id,  transactions.getLiveEnrollmentId(req.user, req.call_id) )
     Orders.insert({
       type: "enrollment_full",
       user: req.user,
       call_id: req.call_id
     });
+    Meteor.call("plot", Meteor.settings.biometrics.signature_includes, 10)
     return {
       user: req.user,
       person_id: req.person_id,

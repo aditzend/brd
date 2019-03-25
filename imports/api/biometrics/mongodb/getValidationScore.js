@@ -6,7 +6,7 @@ export default function(sessionId, transactionId) {
   return new Promise(function(resolve, reject) {
     const uri =
       Meteor.settings.biometrics.url +
-      "vkivr_static/rest/verification/result";
+      "vkivr_static/rest/verification/score";
     const headers = {
       "Content-Type": "application/json",
       "X-Session-Id": sessionId,

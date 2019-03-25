@@ -9,6 +9,8 @@ import '../../api/agents/agents.js';
 import '../../api/clients/clients.js';
 import '../../api/companies/companies.js';
 import '../../api/counters/counters.js';
+import '../../api/crossvalidations/crossvalidations.js';
+import '../../api/plots/plots.js';
 import '../../api/controlling/profit-centers/profit-centers.js';
 import '../../api/controlling/cost-centers/cost-centers.js';
 import '../../api/delivery-notes/delivery-notes.js';

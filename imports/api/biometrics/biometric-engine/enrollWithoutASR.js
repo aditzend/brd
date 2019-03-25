@@ -98,25 +98,25 @@ export function process(req, sessionId) {
     // envia el audio a enrolar
     // console.log('sending audio to VoiceKey');
     console.log("POSTING ENROL AUDIO ... ");
-    console.log("80");
+    console.log("800");
 
-    let enrol = Promise.await(
+    let enroll = Promise.await(
       postEnrollmentAudio(sessionId, transactionId, audioInBase64)
     );
-    if (enrol.success) {
+    if (enroll.success) {
       // se guarda el evento en el log de eventos y se muestra en tiempo real en el panel
-      console.log("AUDIO ACCEPTED BY VOICEKEY ==> ", enrol.message);
+      console.log("AUDIO ACCEPTED BY VOICEKEY ==> ", enroll.message);
       Meteor.call(
         "logs.insert",
         "INFO",
         "3014",
         `AUDIO_ACCEPTED`,
-        `Message:${JSON.parse(enrol.message)}`,
+        `Message:${JSON.parse(enroll.message)}`,
         req.call_id,
         Meteor.settings.biometrics.url,
         Meteor.settings.mitrol.ip_panel
       );
-      console.log("90");
+      console.log("900");
 
       Orders.insert({
         user: req.user,
@@ -133,12 +133,12 @@ export function process(req, sessionId) {
       console.log("100");
 
       // guarda en la base que hubo errores
-      console.log("AUDIO REJECTED BY VOICEKEY ==> ", enrol.message);
+      console.log("AUDIO REJECTED BY VOICEKEY ==> ", enroll.message);
       Meteor.call(
         "logs.insert",
         "ERROR",
         "1003",
-        `AUDIO_REJECTED message:${enrol.message}`,
+        `AUDIO_REJECTED message:${enroll.message}`,
         req.call_id,
         Meteor.settings.biometrics.url,
         Meteor.settings.mitrol.ip_panel

@@ -50,7 +50,7 @@ export default function(audioInBase64, req) {
   );
   if (validation.success) {
     // se guarda el evento en el log de eventos y se muestra en tiempo real en el panel
-    // console.log("AUDIO ACCEPTED BY VOICEKEY ==> ", enrol.message);
+    // console.log("AUDIO ACCEPTED BY VOICEKEY ==> ", enroll.message);
     Meteor.call(
       "logs.insert",
       "INFO",

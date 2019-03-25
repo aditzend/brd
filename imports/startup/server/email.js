@@ -5,7 +5,7 @@ import moment from 'moment/moment';
 import path from 'path';
 let fs = require('fs');
 let Client = require('ftp');
-let base = path.resolve('.');
+let base = Meteor.settings.public.recordings_path
 
 // console.log('BASE PATH :', base);
 let c = new Client();
@@ -20,6 +20,21 @@ const connectionProperties = {
 
 
 Meteor.methods({
+    'uploadAudio'(relativePath) {
+        return new Promise((resolve,reject) => {
+                console.log('uploading audio file')
+        c.on('ready', Meteor.bindEnvironment(() => {
+            let localFile = base + relativePath;
+            c.put(localFile, relativePath, function (err) {
+                err && reject(err)
+                console.log('audio uploaded :   ' + relativePath);
+                resolve('uploaded')
+                c.end(); 
+            });
+        }));
+        c.connect(connectionProperties);
+        })
+    },
     'createCSVReport'() {
         c.on('ready', Meteor.bindEnvironment(() => {
 

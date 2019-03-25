@@ -4,6 +4,8 @@ import '../../api/actions/methods.js';
 import '../../api/agents/agents.js';
 import '../../api/agents/methods.js';
 import '../../api/clients/clients.js';
+import '../../api/crossvalidations/crossvalidations.js';
+import '../../api/plots/plots.js';
 import '../../api/clients/methods.js';
 
 import '../../api/accounting/accounts/accounts.js';

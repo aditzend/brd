@@ -26,7 +26,7 @@ export default function(
   return new Promise((resolve, reject) => {
     sql.close();
     const query = `EXEC CreateEnrollmentAudio
-               @CallID,
+    @CallID,
     @RelativePath,
     @UsedFor,
     @RecordCount,
@@ -69,7 +69,7 @@ export default function(
             .query(query)
     }).then(result => resolve({success: true, message: result}))
     .catch(err => {
-        resolve({sucess: false, message: err.originalError.info.message})
+        resolve({success: false, message: err.originalError.info.message})
     })
   });
 }

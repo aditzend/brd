@@ -2,7 +2,8 @@
 import * as transactions from "../../orders/transactions";
 import getEnrolmentId from "./getEnrolmentId";
 import postEnrollmentAudio from "../mongodb/postEnrollmentAudio";
-import checkEnrolment from "./checkEnrollment";
+import checkEnrollment from "./checkEnrollment";
+// import moment = require("moment");
 
 export default function(audioInBase64,req) {
     console.log("first enrollment audio")
@@ -51,18 +52,18 @@ export default function(audioInBase64,req) {
 //   console.log("POSTING ENROL AUDIO ... ");
 //   console.log("80");
 
-  let enrol = Promise.await(
+  let enroll = Promise.await(
     postEnrollmentAudio(sessionId, transactionId, audioInBase64)
   );
-  if (enrol.success) {
+  if (enroll.success) {
     // se guarda el evento en el log de eventos y se muestra en tiempo real en el panel
-    // console.log("AUDIO ACCEPTED BY VOICEKEY ==> ", enrol.message);
+    // console.log("AUDIO ACCEPTED BY VOICEKEY ==> ", enroll.message);
     Meteor.call(
       "logs.insert",
       "INFO",
       "3014",
       `AUDIO_ACCEPTED`,
-      `StatusCode:${enrol.message.statusCode}`,
+      `StatusCode:${enroll.message.statusCode}`,
       req.call_id,
       Meteor.settings.biometrics.url,
       Meteor.settings.mitrol.ip_panel
@@ -73,7 +74,7 @@ export default function(audioInBase64,req) {
         Orders.update(enrollment_status._id, {$set: {enrollment_error: true} })
       } else {
 
-        const enrollmentCheck = Promise.await(checkEnrolment(req.user, sessionId))
+        const enrollmentCheck = Promise.await(checkEnrollment(req.user, sessionId))
         const pos = enrollmentCheck.data.models[0].samplesCount
         Orders.insert({
           user: req.user,
@@ -88,7 +89,8 @@ export default function(audioInBase64,req) {
             call_id: req.call_id,
             id: enrollmentCheck.data.models[0].id,
             status: 'INACTIVE',
-            type: enrollmentCheck.data.models[0].type
+            type: enrollmentCheck.data.models[0].type,
+            createdAt: moment().format()
           }]
         })
       }

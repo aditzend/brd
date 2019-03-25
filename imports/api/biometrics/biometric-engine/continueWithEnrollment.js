@@ -82,12 +82,12 @@ export default function(audioInBase64, req) {
     }
    
     // TODO guardar aca en tabla audios de SQL sin el score y con el campo recalculate = false
-    let audio = Promise.await(createEnrollmentAudio(req.call_id,req.audio,'enrollment',req.record_count,req.user,req.phrase,req.challenge,req.ani,req.source,req.source_version,'transcriptionj','111',0,req.agent,0,0,0,0,0))
-    console.log(`Success creating audio =>>${audio.success} Message =>> ${audio.message}`)
+    // let audio = Promise.await(createEnrollmentAudio(req.call_id,req.audio,'enrollment',req.record_count,req.user,req.phrase,req.challenge,req.ani,req.source,req.source_version,'transcriptionj','111',0,req.agent,0,0,0,0,0))
+    // console.log(`Success creating audio =>>${audio.success} Message =>> ${audio.message}`)
     Orders.insert({
       user: req.user,
       type: "audio_sample_posted",
-      intent: "Audio de enrollamiento OK",
+      intent: "Audio de enrolamiento OK",
       audio: req.audio,
       call_id: req.call_id,
       intent: req.intent,
