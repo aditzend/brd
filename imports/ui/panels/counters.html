@@ -11,17 +11,15 @@
                   <div class="row">
                     <div class="col-xs-6 text-center pl-0 pr-0 data-wrap-left">
                       <span class="txt-dark block counter"
-                        ><span class="counter-anim">{{
-                          countEnroled
-                        }}</span></span
+                        ><span class="counter-anim"
+                          >{{ countInteractions }}</span
+                        ></span
                       >
                       <span class="weight-500 uppercase-font block font-13"
-                        >Enrolamientos</span
+                        >Conversaciones</span
                       >
                     </div>
-                    <div
-                      class="col-xs-6 text-center  pl-0 pr-0 data-wrap-right"
-                    >
+                    <div class="col-xs-6 text-center pl-0 pr-0 data-wrap-right">
                       <i
                         class="icon-layers data-right-rep-icon txt-light-grey"
                       ></i>
@@ -44,19 +42,30 @@
                   <div class="row">
                     <div class="col-xs-6 text-center pl-0 pr-0 data-wrap-left">
                       <span class="txt-dark block counter"
-                        ><span class="counter-anim">{{
-                          countAccepted
-                        }}</span></span
+                        ><span class="counter-anim"
+                          >{{ countAccepted }}</span
+                        ></span
                       >
                       <span class="weight-500 uppercase-font block"
                         >Validaciones</span
                       >
                     </div>
                     <div
-                      class="col-xs-6 text-center  pl-0 pr-0 pt-25  data-wrap-right"
+                      class="
+                        col-xs-6
+                        text-center
+                        pl-0
+                        pr-0
+                        pt-25
+                        data-wrap-right
+                      "
                     >
                       <i
-                        class="icon-user-following data-right-rep-icon txt-light-grey"
+                        class="
+                          icon-user-following
+                          data-right-rep-icon
+                          txt-light-grey
+                        "
                       ></i>
 
                       <!-- <div class="sp-small-chart" id="sparkline_4" ></div> -->
@@ -80,19 +89,21 @@
                   <div class="row">
                     <div class="col-xs-6 text-center pl-0 pr-0 data-wrap-left">
                       <span class="txt-dark block counter"
-                        ><span class="counter-anim">{{
-                          countRejected
-                        }}</span></span
+                        ><span class="counter-anim"
+                          >{{ countRejected }}</span
+                        ></span
                       >
                       <span class="weight-500 uppercase-font block"
                         >Rechazos</span
                       >
                     </div>
-                    <div
-                      class="col-xs-6 text-center  pl-0 pr-0 data-wrap-right"
-                    >
+                    <div class="col-xs-6 text-center pl-0 pr-0 data-wrap-right">
                       <i
-                        class="icon-control-rewind data-right-rep-icon txt-light-grey"
+                        class="
+                          icon-control-rewind
+                          data-right-rep-icon
+                          txt-light-grey
+                        "
                       ></i>
                     </div>
                   </div>
@@ -101,38 +112,38 @@
             </div>
           </div>
         </div>
-		</a>
+      </a>
     </div>
     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
       <a class="" href="{{pathFor 'showInfractorUsers'}}">
-      <div class="panel panel-default card-view pa-0">
-        <div class="panel-wrapper collapse in">
-          <div class="panel-body pa-0">
-            <div class="sm-data-box">
-              <div class="container-fluid">
-                <div class="row">
-                  <div class="col-xs-6 text-center pl-0 pr-0 data-wrap-left">
-                    <span class="txt-dark block counter"
-                      ><span class="counter-anim">{{
-                        countInfracted
-                      }}</span></span
-                    >
-                    <span class="weight-500 uppercase-font block"
-                      >Infracciones</span
-                    >
-                  </div>
-                  <div class="col-xs-6 text-center  pl-0 pr-0 data-wrap-right">
-                    <i
-                      class="icon-close data-right-rep-icon txt-light-grey"
-                    ></i>
+        <div class="panel panel-default card-view pa-0">
+          <div class="panel-wrapper collapse in">
+            <div class="panel-body pa-0">
+              <div class="sm-data-box">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-xs-6 text-center pl-0 pr-0 data-wrap-left">
+                      <span class="txt-dark block counter"
+                        ><span class="counter-anim"
+                          >{{ countInfracted }}</span
+                        ></span
+                      >
+                      <span class="weight-500 uppercase-font block"
+                        >Infracciones</span
+                      >
+                    </div>
+                    <div class="col-xs-6 text-center pl-0 pr-0 data-wrap-right">
+                      <i
+                        class="icon-close data-right-rep-icon txt-light-grey"
+                      ></i>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-	  </a>
+      </a>
     </div>
   </div>
   <!-- /Row -->

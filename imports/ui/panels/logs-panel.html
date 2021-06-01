@@ -9,7 +9,7 @@
     <div class="panel-wrapper collapse in">
       <div class="panel-body">
         <p class="text-muted">
- Todos los eventos del sistema en orden de aparición.
+          Todos los eventos del sistema en orden de aparición.
         </p>
         <div class="table-wrap mt-40">
           <div class="table-responsive">
@@ -23,16 +23,19 @@
                   <th>IP Origen</th>
                   <th>IP Destino</th>
                   <th>T</th>
-
                 </tr>
               </thead>
               <tbody class="mono">
-                  {{#each log in logs}}
+                {{#each log in logs}}
                 <tr>
-                  <td><span class="label {{labelClass log.label}}">{{log.label}} {{log.code}}</span></td>
-                  <td>{{log.explanation}}</td>
+                  <td>
+                    <span class="label {{labelClass log.label}}"
+                      >{{log.level}}</span
+                    >
+                  </td>
+                  <td>{{log.body}}</td>
                   <td>{{log.notes}}</td>
-                  <td>{{log.callID}}</td>
+                  <td>{{log.interaction_id}}</td>
                   <td>{{log.senderIP}}</td>
                   <td>{{log.receiverIP}}</td>
                   <td>{{formatDateTime log.createdAt}}</td>

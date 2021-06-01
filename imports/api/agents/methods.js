@@ -1,7 +1,7 @@
 import {
     check
 } from 'meteor/check';
-
+  
 const sql = require('mssql')
 const mssqlConfig = Meteor.settings.mssqlConfig
     
@@ -89,7 +89,7 @@ const grantClearance = function(AgentID, Clearance_ShortName) {
         }).then(result => resolve({success: true, message: result}))
         .catch(err => {
             console.log('problems granting clearance', err)
-            resolve({sucess: false, message: err.originalError.info.message})
+            resolve({success: false, message: err.originalError.info.message})
         })
     })
 }
